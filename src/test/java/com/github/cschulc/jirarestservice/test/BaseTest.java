@@ -2,6 +2,7 @@ package com.github.cschulc.jirarestservice.test;
 
 
 import com.github.cschulc.jirarestservice.JiraRestService;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,25 +21,23 @@ public class BaseTest {
     static final String LOGIN_PARAM = "login";
     static final String PASSWORD_PARAM = "password";
 
-    static final String USERNAME_TO_SEARCH = "admin";
-    static final String ISSUEKEY_TO_SEARCH = "DEMO-1";
-    static final String PROJECT_TO_SEARCH = "DEMO";
+    static final String PROJECT_NAME_PARAM = "project.name";
+    static final String PROJECT_KEY_PARAM = "project.key";
+    static final String ISSUE_COUNT_PARAM = "issue.count";
+
 
     String testSystemUrl;
     String login;
     String password;
 
+    String projectName;
+    String projectKey;
+
     JiraRestService restService;
 
-    public BaseTest() {
-        try {
-            loadConfig();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    @BeforeSuite
     public void connect() throws URISyntaxException, IOException, ExecutionException, InterruptedException {
+        loadConfig();
         ExecutorService executorService = Executors.newFixedThreadPool(100);
 //        ProxyHost proxy = new ProxyHost("proxy", 3128);
         URI uri = new URI(testSystemUrl);

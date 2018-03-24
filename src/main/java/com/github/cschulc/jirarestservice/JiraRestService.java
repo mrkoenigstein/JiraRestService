@@ -2,10 +2,7 @@ package com.github.cschulc.jirarestservice;
 
 import com.github.cschulc.jirarestservice.domain.field.Field;
 import com.github.cschulc.jirarestservice.misc.RestPaths;
-import com.github.cschulc.jirarestservice.services.IssueService;
-import com.github.cschulc.jirarestservice.services.IssueServiceImpl;
-import com.github.cschulc.jirarestservice.services.UserService;
-import com.github.cschulc.jirarestservice.services.UserServiveImpl;
+import com.github.cschulc.jirarestservice.services.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
@@ -53,6 +50,11 @@ public class JiraRestService {
 
     private UserService userService;
 
+    private ProjectService projectService;
+
+    private SystemService systemService;
+
+    private SearchService searchService;
 
     public JiraRestService(ExecutorService executorService) {
         this.executorService = executorService;
@@ -170,5 +172,26 @@ public class JiraRestService {
             userService = new UserServiveImpl(this, executorService);
         }
         return userService;
+    }
+
+    public ProjectService getProjectService() {
+        if(projectService == null){
+            projectService = new ProjectServiceImpl(this, executorService);
+        }
+        return projectService;
+    }
+
+    public SystemService getSystemService() {
+        if(systemService == null){
+            systemService = new SystemServiceImpl(this, executorService);
+        }
+        return systemService;
+    }
+
+    public SearchService getSearchService() {
+        if(searchService == null){
+            searchService = new SearchServiceImpl(this, executorService);
+        }
+        return searchService;
     }
 }
