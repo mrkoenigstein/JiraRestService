@@ -1,12 +1,12 @@
 package com.github.cschulc.jirarestservice.jql;
 
-public enum SortOrder {
+public enum SortOrderEnum {
 
     ASC("asc"), DESC("desc");
 
     private final String order;
 
-    SortOrder(String order) {
+    SortOrderEnum(String order) {
         this.order = order;
     }
 

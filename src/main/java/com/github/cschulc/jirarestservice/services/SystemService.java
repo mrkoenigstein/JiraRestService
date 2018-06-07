@@ -44,22 +44,22 @@ public interface SystemService {
 
 
     /**
-     * Return a List of all Field configure in Jira, standard and custom
+     * Return a List of all FieldEnum configure in Jira, standard and custom
      *
-     * @return a List of Field
+     * @return a List of FieldEnum
      */
     Future<List<Field>> getAllFields();
 
 
     /**
-     * Return all Custom Field configure in the Jira
+     * Return all Custom FieldEnum configure in the Jira
      *
-     * @return a List of Field
+     * @return a List of FieldEnum
      */
     Future<List<Field>> getAllCustomFields();
 
     /**
-     * Return a Custom Field by Id
+     * Return a Custom FieldEnum by Id
      *
      */
     Future<Field> getCustomFieldById(String id);
@@ -73,10 +73,10 @@ public interface SystemService {
     Future<AttachmentMeta> getAttachmentMeta();
 
     /**
-     * Creates a Custom Field
+     * Creates a Custom FieldEnum
      *
      * @param field The CreateField with the create Informations
-     * @return The created Field as Field
+     * @return The created FieldEnum as FieldEnum
      */
     Future<Field> createCustomField(CreateField fieldBean);
 }

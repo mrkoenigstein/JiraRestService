@@ -51,4 +51,8 @@ public interface RestPaths {
     String MYPERMISSIONS = "/mypermissions";
 
     String CONFIGURATION = "/configuration";
+
+    String PERMISSION_SCHEME = "/permissionscheme";
+
+    String NOTIFICATION_SCHEME = "/notificationscheme";
 }

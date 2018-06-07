@@ -3,9 +3,9 @@ package com.github.cschulc.jirarestservice.jql;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.github.cschulc.jirarestservice.jql.Operator.*;
+import static com.github.cschulc.jirarestservice.jql.OperatorEnum.*;
 
-public enum FieldType {
+public enum FieldTypeEnum {
 
     /**
      * The version.
@@ -102,14 +102,14 @@ public enum FieldType {
     /**
      * List of supported operators for a type of field.
      */
-    private final List<Operator> supportedOperators;
+    private final List<OperatorEnum> supportedOperators;
 
     /**
      * Instantiates a new field type.
      *
      * @param supportedOperators = the supported operators for a type
      */
-    FieldType(Operator... supportedOperators) {
+    FieldTypeEnum(OperatorEnum... supportedOperators) {
         this.supportedOperators = Arrays.asList(supportedOperators);
     }
 
@@ -118,7 +118,7 @@ public enum FieldType {
      *
      * @return the supported opperators
      */
-    public List<Operator> getSupportedOperators() {
+    public List<OperatorEnum> getSupportedOperators() {
         return supportedOperators;
     }
 }

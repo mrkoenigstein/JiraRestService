@@ -7,6 +7,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,6 +59,12 @@ public class RestApiCall {
         JsonReader jsonReader = new JsonReader(reader);
         jsonReader.setLenient(true);
         return jsonReader;
+    }
+
+    public String getAsString() throws IOException {
+        String text = EntityUtils.toString(response.getEntity());
+        EntityUtils.consume(response.getEntity());
+        return text;
     }
 
     public HttpRequestBase getMethod() {

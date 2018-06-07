@@ -1,6 +1,6 @@
 package com.github.cschulc.jirarestservice.jql;
 
-public enum Keyword {
+public enum KeywordEnum {
 
     /**
      * Used to combine multiple clauses, allowing you to refine your search.
@@ -65,7 +65,7 @@ public enum Keyword {
      *
      * @param keyword name of the keyword
      */
-    Keyword(String keyword) {
+    KeywordEnum(String keyword) {
         this.keyword = keyword;
     }
 

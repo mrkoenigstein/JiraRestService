@@ -128,4 +128,9 @@ public class ProjectServiceImpl extends BaseService implements ProjectService {
             }
         });
     }
+
+    @Override
+    public Future<Project> createProject(Project project) {
+        return null;
+    }
 }

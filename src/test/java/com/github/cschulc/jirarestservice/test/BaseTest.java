@@ -2,6 +2,8 @@ package com.github.cschulc.jirarestservice.test;
 
 
 import com.github.cschulc.jirarestservice.JiraRestService;
+import com.github.cschulc.jirarestservice.jql.Constants;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.FileInputStream;
@@ -13,7 +15,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class BaseTest {
+public class BaseTest implements Constants {
 
     static final String CONFIGFILENAME = "config.properties";
 
@@ -25,17 +27,18 @@ public class BaseTest {
     static final String PROJECT_KEY_PARAM = "project.key";
     static final String ISSUE_COUNT_PARAM = "issue.count";
 
+    static final String USERNAME_TO_SEARCH = "admin";
+    static final String ISSUEKEY_TO_SEARCH = "DEMO-1";
+    static final String PROJECT_TO_SEARCH = "DEMO";
+
 
     String testSystemUrl;
     String login;
     String password;
 
-    String projectName;
-    String projectKey;
-
     JiraRestService restService;
 
-    @BeforeSuite
+    @BeforeClass
     public void connect() throws URISyntaxException, IOException, ExecutionException, InterruptedException {
         loadConfig();
         ExecutorService executorService = Executors.newFixedThreadPool(100);

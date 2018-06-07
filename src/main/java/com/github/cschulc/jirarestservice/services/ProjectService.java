@@ -46,8 +46,18 @@ public interface ProjectService {
     /**
      * Return the Meta Data for the IssueTypes of a Project. This includes all possible IssueTypes and the Fields including the AllowedValues
      *
-     * @param projectKey
-     * @return
+     * @param projectKey The Key for the project
+     * @return A {@link Meta} Bean with all Infos
      */
     Future<Meta> getIssueTypesMetaForProject(final String projectKey);
+
+
+    /**
+     * Creates a new Project
+     *
+     * @param project The Project to create
+     * @return The new Project with the given Id
+     */
+    Future<Project> createProject(Project project);
+
 }

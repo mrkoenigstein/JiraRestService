@@ -1,6 +1,6 @@
 package com.github.cschulc.jirarestservice.jql;
 
-public enum Field {
+public enum FieldEnum {
 
     ALL("*all", null),
 
@@ -14,7 +14,7 @@ public enum Field {
      * <li>affectedVersion = "Big Ted"
      * <li>affectedVersion = 10350
      */
-    AFFECTED_VERSION("affectedVersion", FieldType.VERSION),
+    AFFECTED_VERSION("affectedVersion", FieldTypeEnum.VERSION),
 
     /**
      * Issues that are assigned to a particular user.
@@ -25,14 +25,14 @@ public enum Field {
      * <li>assignee WAS jsmith
      * <li>assignee = "bob@mycompany.com"
      */
-    ASSIGNEE("assignee", FieldType.USER),
+    ASSIGNEE("assignee", FieldTypeEnum.USER),
 
     /**
      * Issues that belong to projects in a particular Category.
      * <p>Examples:
      * <li>category = "Alphabet Projects"
      */
-    CATEGORY("category", FieldType.CATEGORY),
+    CATEGORY("category", FieldTypeEnum.CATEGORY),
 
     /**
      * Issues that have a Comment which contains particular text.
@@ -40,7 +40,7 @@ public enum Field {
      * <li>comment ~ "My PC is quite old"
      * <li>comment ~ "\"My PC is quite old\""
      */
-    COMMENT("comment", FieldType.TEXT),
+    COMMENT("comment", FieldTypeEnum.TEXT),
 
     /**
      * Issues that belong to a particular component(s) of a project.
@@ -50,7 +50,7 @@ public enum Field {
      * <li>component = Comp1 and component = Comp2
      * <li>component = 20500
      */
-    COMPONENT("component", FieldType.COMPONENT),
+    COMPONENT("component", FieldTypeEnum.COMPONENT),
 
     /**
      * Issues that were created on, before or after a particular date (or date range).
@@ -68,9 +68,9 @@ public enum Field {
      * <li>created > "2011/01/01" and created < "2011/02/01"
      * <li>created > "2011/01/15" and created < "2011/01/16"
      */
-    CREATED("created", FieldType.DATE),
+    CREATED("created", FieldTypeEnum.DATE),
 
-//	CUSTOM_FIELD("CustomFieldName", FieldType.CUSTOM_TYPE),
+//	CUSTOM_FIELD("CustomFieldName", FieldTypeEnum.CUSTOM_TYPE),
 
     /**
      * Issues where the Description contains particular text.
@@ -78,7 +78,7 @@ public enum Field {
      * <li>description ~ "Please see screenshot"
      * <li>description ~ "\"Please see screenshot\""
      */
-    DESCRIPTION("description", FieldType.TEXT),
+    DESCRIPTION("description", FieldTypeEnum.TEXT),
 
     /**
      * Issues that were due on, before or after a particular date (or date range).
@@ -93,7 +93,7 @@ public enum Field {
      * <li>due >= "2011/01/01" and due <= "2011/01/31"
      * <li>due = "2011/01/15"
      */
-    DUE("due", FieldType.DATE),
+    DUE("due", FieldTypeEnum.DATE),
 
     /**
      * Issues where the Environment contains particular text.
@@ -101,7 +101,7 @@ public enum Field {
      * <li>environment ~ "Third floor"
      * <li>environment ~ "\"Third floor\""
      */
-    ENVIRONMENT("environment", FieldType.TEXT),
+    ENVIRONMENT("environment", FieldTypeEnum.TEXT),
 
     /**
      * <i>Only available if you are using GreenHopper 6.1.2 or later.</i>
@@ -110,7 +110,7 @@ public enum Field {
      * <li>"epic link" = ANERDS-317
      * <li>"epic link" = Jupiter
      */
-    EPIC_LINKS("epic link", FieldType.CUSTOM_TYPE),
+    EPIC_LINKS("epic link", FieldTypeEnum.CUSTOM_TYPE),
 
     /**
      * You can use a saved filter to narrow your search. You can search by filter name or
@@ -120,7 +120,7 @@ public enum Field {
      * <li>filter = "My Saved Filter" and assignee = jsmith
      * <li>filter = 12000 and assignee = jsmith
      */
-    FILTER("filter", FieldType.FILTER),
+    FILTER("filter", FieldTypeEnum.FILTER),
 
     /**
      * Issues that are assigned to a particular Fix Version.
@@ -129,7 +129,7 @@ public enum Field {
      * <li>fixVersion = "Little Ted"
      * <li>fixVersion = 10001
      */
-    FIX_VERSION("fixVersion", FieldType.VERSION),
+    FIX_VERSION("fixVersion", FieldTypeEnum.VERSION),
 
     /**
      * Issues with a particular Issue Key or Issue ID (i.e. the number that JIRA automatically allocates to an Issue).
@@ -137,7 +137,7 @@ public enum Field {
      * <p>Examples:
      * <li>issueKey = ABC-123
      */
-    ISSUE_KEY("issueKey", FieldType.ISSUE),
+    ISSUE_KEY("issueKey", FieldTypeEnum.ISSUE),
 
     /**
      * Issues that were last viewed on, before or after a particular date (or date range).
@@ -154,7 +154,7 @@ public enum Field {
      * <li>lastViewed > "2011/01/01" and created < "2011/02/01"
      * <li>lastViewed > "2011/01/15" and created < "2011/01/16"
      */
-    LAST_VIEWED("lastViewed", FieldType.DATE),
+    LAST_VIEWED("lastViewed", FieldTypeEnum.DATE),
 
     /**
      * <i>Only available if Issue Level Security has been enabled by your JIRA administrator.</i>
@@ -163,7 +163,7 @@ public enum Field {
      * <li>level in ("Really High", level1)
      * <li>level = 123
      */
-    LEVEL("level", FieldType.SECURITY_LEVEL),
+    LEVEL("level", FieldTypeEnum.SECURITY_LEVEL),
 
     /**
      * <i>Only available if time-tracking has been enabled by your JIRA administrator.</i>
@@ -173,7 +173,7 @@ public enum Field {
      * <li>originalEstimate = 1h
      * <li>originalEstimate > 2d
      */
-    ORIGINAL_ESTIMATE("originalEstimate", FieldType.DURATION),
+    ORIGINAL_ESTIMATE("originalEstimate", FieldTypeEnum.DURATION),
 
     /**
      * <i>Only available if sub-tasks have been enabled by your JIRA administrator.</i>
@@ -181,7 +181,7 @@ public enum Field {
      * <p>Examples:
      * <li>parent = TEST-1234
      */
-    PARENT("parent", FieldType.ISSUE),
+    PARENT("parent", FieldTypeEnum.ISSUE),
 
     /**
      * Issues with a particular Priority.
@@ -189,7 +189,7 @@ public enum Field {
      * <li>priority = High
      * <li>priority = 10000
      */
-    PRIORITY("priority", FieldType.PRIORITY),
+    PRIORITY("priority", FieldTypeEnum.PRIORITY),
 
     /**
      * Issues that belong to a particular Project.
@@ -198,7 +198,7 @@ public enum Field {
      * <li>project = "ABC"
      * <li>project = 1234
      */
-    PROJECT("project", FieldType.PROJECT),
+    PROJECT("project", FieldTypeEnum.PROJECT),
 
     /**
      * <i>Only available if time-tracking has been enabled by your JIRA administrator.</i>
@@ -207,7 +207,7 @@ public enum Field {
      * <p>Examples:
      * <li>remainingEstimate > 4h
      */
-    REMAINING_ESTIMATE("remainingEstimate", FieldType.DURATION),
+    REMAINING_ESTIMATE("remainingEstimate", FieldTypeEnum.DURATION),
 
     /**
      * Issues that were reported by (i.e. created by) a particular user.
@@ -216,7 +216,7 @@ public enum Field {
      * <li>reporter = jjones
      * <li>reporter = "bob@mycompany.com"
      */
-    REPORTER("reporter", FieldType.USER),
+    REPORTER("reporter", FieldTypeEnum.USER),
 
     /**
      * Issues that have a particular Resolution.
@@ -225,7 +225,7 @@ public enum Field {
      * <li>resolution = 5
      * <li>resolution = unresolved
      */
-    RESOLUTION("resolution", FieldType.RESOLUTION),
+    RESOLUTION("resolution", FieldTypeEnum.RESOLUTION),
 
     /**
      * Issues that were resolved on, before or after a particular date (or date range).
@@ -243,7 +243,7 @@ public enum Field {
      * <li>resolved > "2011/01/15" and resolved < "2011/01/16"
      * <li>resolved > -1h
      */
-    RESOLVED("resolved", FieldType.DATE),
+    RESOLVED("resolved", FieldTypeEnum.DATE),
 
     /**
      * <i>Only available if you are using GreenHopper.</i>
@@ -254,7 +254,7 @@ public enum Field {
      * <li>sprint in ("February 1","February 2","February 3")
      * <li>sprint is not empty
      */
-    SPRINT("sprint", FieldType.NUMBER),
+    SPRINT("sprint", FieldTypeEnum.NUMBER),
 
     /**
      * Issues that have a particular Status.
@@ -263,7 +263,7 @@ public enum Field {
      * <li>status = 1
      * <li>status WAS Open
      */
-    STATUS("status", FieldType.STATUS),
+    STATUS("status", FieldTypeEnum.STATUS),
 
     /**
      * Issues where the Summary contains particular text.
@@ -271,7 +271,7 @@ public enum Field {
      * <li>summary ~ "Error saving file"
      * <li>summary ~ "\"Error saving file\""
      */
-    SUMMARY("summary", FieldType.TEXT),
+    SUMMARY("summary", FieldTypeEnum.TEXT),
 
     /**
      * This is a "master-field" that allows you to search all text fields, i.e.:
@@ -284,7 +284,7 @@ public enum Field {
      * <li>text ~ Fred
      * <li>text ~ "\"full screen\""
      */
-    TEXT("text", FieldType.TEXT_MASTER),
+    TEXT("text", FieldTypeEnum.TEXT_MASTER),
 
     /**
      * Issues that have a particular Issue Type.
@@ -294,7 +294,7 @@ public enum Field {
      * <li>issueType in (Bug,Improvement)
      * <li>issueType = 2
      */
-    ISSUE_TYPE("issuetype", FieldType.ISSUE_TYPE),
+    ISSUE_TYPE("issuetype", FieldTypeEnum.ISSUE_TYPE),
 
     /**
      * <i>Only available if time-tracking has been enabled by your JIRA administrator.</i>
@@ -302,7 +302,7 @@ public enum Field {
      * <p>Examples:
      * <li>timeSpent > 5d
      */
-    TIME_SPENT("timeSpent", FieldType.DURATION),
+    TIME_SPENT("timeSpent", FieldTypeEnum.DURATION),
 
     /**
      * Issues that were updated on, before or after a particular date (or date range).
@@ -320,35 +320,35 @@ public enum Field {
      * <li>updated > "2011/01/15" and updated < "2011/01/16"
      * <li>updated > "20011/01/01" and updated < "2011/02/01"
      */
-    UPDATED("updated", FieldType.DATE),
+    UPDATED("updated", FieldTypeEnum.DATE),
 
     /**
      * Issues for which a particular user has voted.
      * <p>Examples:
      * <li>voter = "jsmith"
      */
-    VOTER("voter", FieldType.USER),
+    VOTER("voter", FieldTypeEnum.USER),
 
     /**
      * Issues with a specified number of votes.
      * <p>Examples:
      * <li>votes >= 12
      */
-    VOTES("votes", FieldType.NUMBER),
+    VOTES("votes", FieldTypeEnum.NUMBER),
 
     /**
      * Issues that a particular user is watching.
      * <p>Examples:
      * <li>watcher = "jsmith"
      */
-    WATCHER("watcher", FieldType.USER),
+    WATCHER("watcher", FieldTypeEnum.USER),
 
     /**
      * Issues with a specified number of watchers.
      * <p>Examples:
      * <li>watchers > 3
      */
-    WATCHERS("watchers", FieldType.NUMBER),
+    WATCHERS("watchers", FieldTypeEnum.NUMBER),
 
     /**
      * <i>Only available if time-tracking has been enabled by your JIRA administrator.</i>
@@ -357,26 +357,26 @@ public enum Field {
      * <p>Examples:
      * <li>workRatio > 75
      */
-    WORK_RATIO("workRatio", FieldType.NUMBER),
+    WORK_RATIO("workRatio", FieldTypeEnum.NUMBER),
 
     /** <i>Avaiable Transitions for the Issue</i>
      *  <p>an Issue has several Transition to which the status can change.</p>
      */
-    TRANSITIONS("transitions", FieldType.CUSTOM_TYPE),
+    TRANSITIONS("transitions", FieldTypeEnum.CUSTOM_TYPE),
 
 
     /** <i>Avaiable changelog for an Issue</i>
      */
-    CHANGELOG("changelog", FieldType.CUSTOM_TYPE),
+    CHANGELOG("changelog", FieldTypeEnum.CUSTOM_TYPE),
 
     /** <i>Renders the Description Markup to HTML</i>
      */
-    RENDEREDFIELDS("renderedFields", FieldType.CUSTOM_TYPE),
+    RENDEREDFIELDS("renderedFields", FieldTypeEnum.CUSTOM_TYPE),
 
     /**
      * <i>Attachment Informations</i>
      */
-    ATTACHMENT("attachment", FieldType.CUSTOM_TYPE);
+    ATTACHMENT("attachment", FieldTypeEnum.CUSTOM_TYPE);
 
     /**
      * The name of the field.
@@ -386,7 +386,7 @@ public enum Field {
     /**
      * The type of the field.
      */
-    private final FieldType type;
+    private final FieldTypeEnum type;
 
     /**
      * Instantiates a new field.
@@ -394,7 +394,7 @@ public enum Field {
      * @param field = name of the field
      * @param type  = type of the field
      */
-    Field(String field, FieldType type) {
+    FieldEnum(String field, FieldTypeEnum type) {
         this.field = field;
         this.type = type;
     }
@@ -413,7 +413,7 @@ public enum Field {
      *
      * @return the field type
      */
-    public FieldType getType() {
+    public FieldTypeEnum getType() {
         return type;
     }
 

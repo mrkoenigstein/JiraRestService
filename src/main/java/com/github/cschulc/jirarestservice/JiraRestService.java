@@ -56,6 +56,10 @@ public class JiraRestService {
 
     private SearchService searchService;
 
+    private NotificationSchemeService notificationSchemeService;
+
+    private PermissionSchemeService permissionSchemeService;
+
     public JiraRestService(ExecutorService executorService) {
         this.executorService = executorService;
     }
@@ -96,7 +100,7 @@ public class JiraRestService {
         context = HttpClientContext.create();
         context.setAuthCache(authCache);
         this.baseUri = buildBaseURI(uri);
-        if(proxyHost != null){
+        if (proxyHost != null) {
             this.proxy = proxyHost;
             config = RequestConfig.custom().setProxy(proxyHost).build();
         }
@@ -137,8 +141,8 @@ public class JiraRestService {
         return config;
     }
 
-    public static Map<String,Field> getCustomfields() {
-        if(customfields == null){
+    public static Map<String, Field> getCustomfields() {
+        if (customfields == null) {
             customfields = new HashMap<>();
         }
         return customfields;
@@ -161,37 +165,51 @@ public class JiraRestService {
     }
 
     public IssueService getIssueService() {
-        if(issueService == null){
+        if (issueService == null) {
             issueService = new IssueServiceImpl(this, executorService);
         }
         return issueService;
     }
 
     public UserService getUserService() {
-        if(userService == null){
+        if (userService == null) {
             userService = new UserServiveImpl(this, executorService);
         }
         return userService;
     }
 
     public ProjectService getProjectService() {
-        if(projectService == null){
+        if (projectService == null) {
             projectService = new ProjectServiceImpl(this, executorService);
         }
         return projectService;
     }
 
     public SystemService getSystemService() {
-        if(systemService == null){
+        if (systemService == null) {
             systemService = new SystemServiceImpl(this, executorService);
         }
         return systemService;
     }
 
     public SearchService getSearchService() {
-        if(searchService == null){
+        if (searchService == null) {
             searchService = new SearchServiceImpl(this, executorService);
         }
         return searchService;
+    }
+
+    public PermissionSchemeService getPermissionSchemeService() {
+        if (permissionSchemeService == null) {
+            permissionSchemeService = new PermissionSchemeServiceImpl(this, executorService);
+        }
+        return permissionSchemeService;
+    }
+
+    public NotificationSchemeService getNotificationSchemeService() {
+        if (notificationSchemeService == null) {
+            notificationSchemeService = new NotificationSchemeServiceImpl(this, executorService);
+        }
+        return notificationSchemeService;
     }
 }

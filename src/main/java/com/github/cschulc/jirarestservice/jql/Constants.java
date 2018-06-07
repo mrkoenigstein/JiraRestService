@@ -14,7 +14,7 @@ public interface Constants {
 
     String OR = "or";
 
-    // Issue Field Names für die JQL Suche
+    // Issue FieldEnum Names für die JQL Suche
 
     String FIELD_SUMMARY = "summary";
 

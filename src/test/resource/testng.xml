@@ -1,3 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="JiraRestService Tests">
-
+    <test name="Complete Read Test">
+        <classes>
+            <class name="com.github.cschulc.jirarestservice.test.IssueServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.SystemServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.SearchServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.UserServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.ProjectServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.PermissionSchemeServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.NotificationSchemeServiceTest"></class>
+        </classes>
+    </test>
 </suite>

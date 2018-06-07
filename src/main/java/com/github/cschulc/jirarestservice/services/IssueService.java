@@ -33,16 +33,16 @@ public interface IssueService {
     Future<Issue> getIssueByKey(String issueKey);
 
     /**
-     * update Field of an Issue
+     * update FieldEnum of an Issue
      */
     Future<Issue> updateIssue(String issueKey, IssueUpdate issueUpdate);
 
     /**
-     * Return a Issue with the given Field and Expand Fields.
+     * Return a Issue with the given FieldEnum and Expand Fields.
      *
      * @param issueKey The IssueKey
      * @param fields   The field you want to return.
-     * @param expand   The Field which must expand.
+     * @param expand   The FieldEnum which must expand.
      * @return Issue or null if the issue did not exist
      */
     Future<Issue> getIssueByKey(String issueKey, List<String> fields, List<String> expand);

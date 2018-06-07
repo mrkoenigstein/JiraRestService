@@ -1,6 +1,6 @@
 package com.github.cschulc.jirarestservice.jql;
 
-public enum Operator {
+public enum OperatorEnum {
 
     /**
      * The "=" operator is used to search for issues where the value of the specified field exactly matches the specified value.
@@ -191,7 +191,7 @@ public enum Operator {
      *
      * @param operator the name of the operator
      */
-    Operator(String operator) {
+    OperatorEnum(String operator) {
         this.operator = operator;
     }
 

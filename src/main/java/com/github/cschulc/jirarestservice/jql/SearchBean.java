@@ -38,8 +38,8 @@ public class SearchBean {
      *
      * @param fields = returned fields
      */
-    public void addField(Field... fields) {
-        for (Field f : fields) {
+    public void addField(FieldEnum... fields) {
+        for (FieldEnum f : fields) {
             getFields().add(f.toString());
         }
     }
@@ -50,8 +50,8 @@ public class SearchBean {
         }
     }
 
-    public void addExpand(Field... fields){
-        for (Field field : fields) {
+    public void addExpand(FieldEnum... fields){
+        for (FieldEnum field : fields) {
             getExpand().add(field.toString());
         }
     }
