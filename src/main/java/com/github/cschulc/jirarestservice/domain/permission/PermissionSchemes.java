@@ -11,13 +11,13 @@ import java.util.List;
 public class PermissionSchemes {
 
     @Expose
-    public List<Permission> permissionSchemes = new ArrayList<>();
+    public List<PermissionScheme> permissionSchemes = new ArrayList<>();
 
-    public List<Permission> getPermissionSchemes() {
+    public List<PermissionScheme> getPermissionSchemes() {
         return permissionSchemes;
     }
 
-    public void setPermissionSchemes(List<Permission> permissionSchemes) {
+    public void setPermissionSchemes(List<PermissionScheme> permissionSchemes) {
         this.permissionSchemes = permissionSchemes;
     }
 }

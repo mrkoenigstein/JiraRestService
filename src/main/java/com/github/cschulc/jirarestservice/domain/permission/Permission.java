@@ -1,57 +1,30 @@
 package com.github.cschulc.jirarestservice.domain.permission;
 
 import com.github.cschulc.jirarestservice.domain.Base;
+import com.google.gson.annotations.Expose;
 import org.apache.commons.lang3.StringUtils;
 
 public class Permission extends Base {
 
-    private String key = StringUtils.EMPTY;
+    @Expose
+    private Holder holder;
 
-    private String type = StringUtils.EMPTY;
+    @Expose
+    private String permission;
 
-    private String description = StringUtils.EMPTY;
-
-    private boolean havePermission;
-
-    private boolean deprecatedKey;
-
-    public String getKey() {
-        return key;
+    public Holder getHolder() {
+        return holder;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setHolder(Holder holder) {
+        this.holder = holder;
     }
 
-    public String getType() {
-        return type;
+    public String getPermission() {
+        return permission;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean isHavePermission() {
-        return havePermission;
-    }
-
-    public void setHavePermission(boolean havePermission) {
-        this.havePermission = havePermission;
-    }
-
-    public boolean isDeprecatedKey() {
-        return deprecatedKey;
-    }
-
-    public void setDeprecatedKey(boolean deprecatedKey) {
-        this.deprecatedKey = deprecatedKey;
+    public void setPermission(String permission) {
+        this.permission = permission;
     }
 }

@@ -42,6 +42,7 @@ public class PermissionSchemeServiceImpl extends BaseService implements Permissi
     public Future<PermissionScheme> getPermissionScheme(String id) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(PERMISSION_SCHEME, id);
+            uriBuilder.addParameter(EXPAND, "all");
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {

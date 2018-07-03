@@ -7,769 +7,769 @@ public class Permissions {
 
     @SerializedName("VIEW_WORKFLOW_READONLY")
     @Expose
-    private Permission viewWorkflowReadonly;
+    private UserPermission viewWorkflowReadonly;
 
     @SerializedName("CREATE_ISSUES")
     @Expose
-    private Permission createIssues;
+    private UserPermission createIssues;
 
     @SerializedName("BULK_CHANGE")
     @Expose
-    private Permission bulkChange;
+    private UserPermission bulkChange;
 
     @SerializedName("CREATE_ATTACHMENT")
     @Expose
-    private Permission createAttachment;
+    private UserPermission createAttachment;
 
     @SerializedName("DELETE_OWN_COMMENTS")
     @Expose
-    private Permission deleteOwnComments;
+    private UserPermission deleteOwnComments;
 
     @SerializedName("WORK_ON_ISSUES")
     @Expose
-    private Permission workOnIssues;
+    private UserPermission workOnIssues;
 
     @SerializedName("PROJECT_ADMIN")
     @Expose
-    private Permission projectAdmin;
+    private UserPermission projectAdmin;
 
     @SerializedName("COMMENT_EDIT_ALL")
     @Expose
-    private Permission commentEditAll;
+    private UserPermission commentEditAll;
 
     @SerializedName("ATTACHMENT_DELETE_OWN")
     @Expose
-    private Permission attachmentDeleteOwn;
+    private UserPermission attachmentDeleteOwn;
 
     @SerializedName("WORKLOG_DELETE_OWN")
     @Expose
-    private Permission worklogDeleteOwn;
+    private UserPermission worklogDeleteOwn;
 
     @SerializedName("CLOSE_ISSUE")
     @Expose
-    private Permission closeIssue;
+    private UserPermission closeIssue;
 
     @SerializedName("MANAGE_WATCHER_LIST")
     @Expose
-    private Permission manageWatcherList;
+    private UserPermission manageWatcherList;
 
     @SerializedName("VIEW_VOTERS_AND_WATCHERS")
     @Expose
-    private Permission viewVotersAndWatchers;
+    private UserPermission viewVotersAndWatchers;
 
     @SerializedName("ADD_COMMENTS")
     @Expose
-    private Permission addComments;
+    private UserPermission addComments;
 
     @SerializedName("COMMENT_DELETE_ALL")
     @Expose
-    private Permission commentDeleteAll;
+    private UserPermission commentDeleteAll;
 
     @SerializedName("CREATE_ISSUE")
     @Expose
-    private Permission createIssue;
+    private UserPermission createIssue;
 
     @SerializedName("DELETE_OWN_ATTACHMENTS")
     @Expose
-    private Permission deleteOwnAttachments;
+    private UserPermission deleteOwnAttachments;
 
     @SerializedName("ASSIGN_ISSUE")
     @Expose
-    private Permission assignIssue;
+    private UserPermission assignIssue;
 
     @SerializedName("LINK_ISSUE")
     @Expose
-    private Permission linkIssue;
+    private UserPermission linkIssue;
 
     @SerializedName("EDIT_OWN_WORKLOGS")
     @Expose
-    private Permission editOwnWorklogs;
+    private UserPermission editOwnWorklogs;
 
     @SerializedName("CREATE_ATTACHMENTS")
     @Expose
-    private Permission createAttachments;
+    private UserPermission createAttachments;
 
     @SerializedName("EDIT_ALL_WORKLOGS")
     @Expose
-    private Permission editAllWorklogs;
+    private UserPermission editAllWorklogs;
 
     @SerializedName("SCHEDULE_ISSUE")
     @Expose
-    private Permission scheduleIssue;
+    private UserPermission scheduleIssue;
 
     @SerializedName("CLOSE_ISSUES")
     @Expose
-    private Permission closeIssues;
+    private UserPermission closeIssues;
 
     @SerializedName("SET_ISSUE_SECURITY")
     @Expose
-    private Permission setIssueSecurity;
+    private UserPermission setIssueSecurity;
 
     @SerializedName("SCHEDULE_ISSUES")
     @Expose
-    private Permission scheduleIssues;
+    private UserPermission scheduleIssues;
 
     @SerializedName("WORKLOG_DELETE_ALL")
     @Expose
-    private Permission worklogDeleteAll;
+    private UserPermission worklogDeleteAll;
 
     @SerializedName("COMMENT_DELETE_OWN")
     @Expose
-    private Permission commentDeleteOwn;
+    private UserPermission commentDeleteOwn;
 
     @SerializedName("ADMINISTER_PROJECTS")
     @Expose
-    private Permission administerProjects;
+    private UserPermission administerProjects;
 
     @SerializedName("DELETE_ALL_COMMENTS")
     @Expose
-    private Permission deleteAllComments;
+    private UserPermission deleteAllComments;
 
     @SerializedName("RESOLVE_ISSUES")
     @Expose
-    private Permission resolveIssues;
+    private UserPermission resolveIssues;
 
     @SerializedName("VIEW_READONLY_WORKFLOW")
     @Expose
-    private Permission viewReadonlyWorkflow;
+    private UserPermission viewReadonlyWorkflow;
 
     @SerializedName("ADMINISTER")
     @Expose
-    private Permission administer;
+    private UserPermission administer;
 
     @SerializedName("MOVE_ISSUES")
     @Expose
-    private Permission moveIssues;
+    private UserPermission moveIssues;
 
     @SerializedName("TRANSITION_ISSUES")
     @Expose
-    private Permission transitionIssues;
+    private UserPermission transitionIssues;
 
     @SerializedName("SYSTEM_ADMIN")
     @Expose
-    private Permission systemAdmin;
+    private UserPermission systemAdmin;
 
     @SerializedName("DELETE_OWN_WORKLOGS")
     @Expose
-    private Permission deleteOwnWorklogs;
+    private UserPermission deleteOwnWorklogs;
 
     @SerializedName("BROWSE")
     @Expose
-    private Permission brwose;
+    private UserPermission brwose;
 
     @SerializedName("EDIT_ISSUE")
     @Expose
-    private Permission editIssue;
+    private UserPermission editIssue;
 
     @SerializedName("MODIFY_REPORTER")
     @Expose
-    private Permission modifyReporter;
+    private UserPermission modifyReporter;
 
     @SerializedName("EDIT_ISSUES")
     @Expose
-    private Permission editIssues;
+    private UserPermission editIssues;
 
     @SerializedName("MANAGE_WATCHERS")
     @Expose
-    private Permission manageWatchers;
+    private UserPermission manageWatchers;
 
     @SerializedName("EDIT_OWN_COMMENTS")
     @Expose
-    private Permission editOwnComments;
+    private UserPermission editOwnComments;
 
     @SerializedName("ASSIGN_ISSUES")
     @Expose
-    private Permission assignIssues;
+    private UserPermission assignIssues;
 
     @SerializedName("BROWSE_PROJECTS")
     @Expose
-    private Permission browseProjects;
+    private UserPermission browseProjects;
 
     @SerializedName("VIEW_VERSION_CONTROL")
     @Expose
-    private Permission viewVersionControl;
+    private UserPermission viewVersionControl;
 
     @SerializedName("WORK_ISSUE")
     @Expose
-    private Permission workIssue;
+    private UserPermission workIssue;
 
     @SerializedName("COMMENT_ISSUE")
     @Expose
-    private Permission commentIssue;
+    private UserPermission commentIssue;
 
     @SerializedName("WORKLOG_EDIT_ALL")
     @Expose
-    private Permission worklogEditAll;
+    private UserPermission worklogEditAll;
 
     @SerializedName("EDIT_ALL_COMMENTS")
     @Expose
-    private Permission editAllComments;
+    private UserPermission editAllComments;
 
     @SerializedName("DELETE_ISSUE")
     @Expose
-    private Permission deleteIssue;
+    private UserPermission deleteIssue;
 
     @SerializedName("USER_PICKER")
     @Expose
-    private Permission userPicker;
+    private UserPermission userPicker;
 
     @SerializedName("CREATE_SHARED_OBJECTS")
     @Expose
-    private Permission createSharedObjects;
+    private UserPermission createSharedObjects;
 
     @SerializedName("ATTACHMENT_DELETE_ALL")
     @Expose
-    private Permission attachmentDeleteAll;
+    private UserPermission attachmentDeleteAll;
 
     @SerializedName("DELETE_ISSUES")
     @Expose
-    private Permission deleteIssues;
+    private UserPermission deleteIssues;
 
     @SerializedName("MANAGE_GROUP_FILTER_SUBSCRIPTIONS")
     @Expose
-    private Permission manageGroupFilterSubscriptions;
+    private UserPermission manageGroupFilterSubscriptions;
 
     @SerializedName("RESOLVE_ISSUE")
     @Expose
-    private Permission resolveIssue;
+    private UserPermission resolveIssue;
 
     @SerializedName("ASSIGNABLE_USER")
     @Expose
-    private Permission assignableUser;
+    private UserPermission assignableUser;
 
     @SerializedName("TRANSITION_ISSUE")
     @Expose
-    private Permission transitionIssue;
+    private UserPermission transitionIssue;
 
     @SerializedName("COMMENT_EDIT_OWN")
     @Expose
-    private Permission commentEditOwn;
+    private UserPermission commentEditOwn;
 
     @SerializedName("MOVE_ISSUE")
     @Expose
-    private Permission moveIssue;
+    private UserPermission moveIssue;
 
     @SerializedName("WORKLOG_EDIT_OWN")
     @Expose
-    private Permission worklogEditOwn;
+    private UserPermission worklogEditOwn;
 
     @SerializedName("DELETE_ALL_WORKLOGS")
     @Expose
-    private Permission deleteAllWorklogs;
+    private UserPermission deleteAllWorklogs;
 
     @SerializedName("LINK_ISSUES")
     @Expose
-    private Permission linkIssues;
+    private UserPermission linkIssues;
 
-    public Permission getViewWorkflowReadonly() {
+    public UserPermission getViewWorkflowReadonly() {
         return viewWorkflowReadonly;
     }
 
-    public void setViewWorkflowReadonly(Permission viewWorkflowReadonly) {
+    public void setViewWorkflowReadonly(UserPermission viewWorkflowReadonly) {
         this.viewWorkflowReadonly = viewWorkflowReadonly;
     }
 
-    public Permission getCreateIssues() {
+    public UserPermission getCreateIssues() {
         return createIssues;
     }
 
-    public void setCreateIssues(Permission createIssues) {
+    public void setCreateIssues(UserPermission createIssues) {
         this.createIssues = createIssues;
     }
 
-    public Permission getBulkChange() {
+    public UserPermission getBulkChange() {
         return bulkChange;
     }
 
-    public void setBulkChange(Permission bulkChange) {
+    public void setBulkChange(UserPermission bulkChange) {
         this.bulkChange = bulkChange;
     }
 
-    public Permission getCreateAttachment() {
+    public UserPermission getCreateAttachment() {
         return createAttachment;
     }
 
-    public void setCreateAttachment(Permission createAttachment) {
+    public void setCreateAttachment(UserPermission createAttachment) {
         this.createAttachment = createAttachment;
     }
 
-    public Permission getDeleteOwnComments() {
+    public UserPermission getDeleteOwnComments() {
         return deleteOwnComments;
     }
 
-    public void setDeleteOwnComments(Permission deleteOwnComments) {
+    public void setDeleteOwnComments(UserPermission deleteOwnComments) {
         this.deleteOwnComments = deleteOwnComments;
     }
 
-    public Permission getWorkOnIssues() {
+    public UserPermission getWorkOnIssues() {
         return workOnIssues;
     }
 
-    public void setWorkOnIssues(Permission workOnIssues) {
+    public void setWorkOnIssues(UserPermission workOnIssues) {
         this.workOnIssues = workOnIssues;
     }
 
-    public Permission getProjectAdmin() {
+    public UserPermission getProjectAdmin() {
         return projectAdmin;
     }
 
-    public void setProjectAdmin(Permission projectAdmin) {
+    public void setProjectAdmin(UserPermission projectAdmin) {
         this.projectAdmin = projectAdmin;
     }
 
-    public Permission getCommentEditAll() {
+    public UserPermission getCommentEditAll() {
         return commentEditAll;
     }
 
-    public void setCommentEditAll(Permission commentEditAll) {
+    public void setCommentEditAll(UserPermission commentEditAll) {
         this.commentEditAll = commentEditAll;
     }
 
-    public Permission getAttachmentDeleteOwn() {
+    public UserPermission getAttachmentDeleteOwn() {
         return attachmentDeleteOwn;
     }
 
-    public void setAttachmentDeleteOwn(Permission attachmentDeleteOwn) {
+    public void setAttachmentDeleteOwn(UserPermission attachmentDeleteOwn) {
         this.attachmentDeleteOwn = attachmentDeleteOwn;
     }
 
-    public Permission getWorklogDeleteOwn() {
+    public UserPermission getWorklogDeleteOwn() {
         return worklogDeleteOwn;
     }
 
-    public void setWorklogDeleteOwn(Permission worklogDeleteOwn) {
+    public void setWorklogDeleteOwn(UserPermission worklogDeleteOwn) {
         this.worklogDeleteOwn = worklogDeleteOwn;
     }
 
-    public Permission getCloseIssue() {
+    public UserPermission getCloseIssue() {
         return closeIssue;
     }
 
-    public void setCloseIssue(Permission closeIssue) {
+    public void setCloseIssue(UserPermission closeIssue) {
         this.closeIssue = closeIssue;
     }
 
-    public Permission getManageWatcherList() {
+    public UserPermission getManageWatcherList() {
         return manageWatcherList;
     }
 
-    public void setManageWatcherList(Permission manageWatcherList) {
+    public void setManageWatcherList(UserPermission manageWatcherList) {
         this.manageWatcherList = manageWatcherList;
     }
 
-    public Permission getViewVotersAndWatchers() {
+    public UserPermission getViewVotersAndWatchers() {
         return viewVotersAndWatchers;
     }
 
-    public void setViewVotersAndWatchers(Permission viewVotersAndWatchers) {
+    public void setViewVotersAndWatchers(UserPermission viewVotersAndWatchers) {
         this.viewVotersAndWatchers = viewVotersAndWatchers;
     }
 
-    public Permission getAddComments() {
+    public UserPermission getAddComments() {
         return addComments;
     }
 
-    public void setAddComments(Permission addComments) {
+    public void setAddComments(UserPermission addComments) {
         this.addComments = addComments;
     }
 
-    public Permission getCommentDeleteAll() {
+    public UserPermission getCommentDeleteAll() {
         return commentDeleteAll;
     }
 
-    public void setCommentDeleteAll(Permission commentDeleteAll) {
+    public void setCommentDeleteAll(UserPermission commentDeleteAll) {
         this.commentDeleteAll = commentDeleteAll;
     }
 
-    public Permission getCreateIssue() {
+    public UserPermission getCreateIssue() {
         return createIssue;
     }
 
-    public void setCreateIssue(Permission createIssue) {
+    public void setCreateIssue(UserPermission createIssue) {
         this.createIssue = createIssue;
     }
 
-    public Permission getDeleteOwnAttachments() {
+    public UserPermission getDeleteOwnAttachments() {
         return deleteOwnAttachments;
     }
 
-    public void setDeleteOwnAttachments(Permission deleteOwnAttachments) {
+    public void setDeleteOwnAttachments(UserPermission deleteOwnAttachments) {
         this.deleteOwnAttachments = deleteOwnAttachments;
     }
 
-    public Permission getAssignIssue() {
+    public UserPermission getAssignIssue() {
         return assignIssue;
     }
 
-    public void setAssignIssue(Permission assignIssue) {
+    public void setAssignIssue(UserPermission assignIssue) {
         this.assignIssue = assignIssue;
     }
 
-    public Permission getLinkIssue() {
+    public UserPermission getLinkIssue() {
         return linkIssue;
     }
 
-    public void setLinkIssue(Permission linkIssue) {
+    public void setLinkIssue(UserPermission linkIssue) {
         this.linkIssue = linkIssue;
     }
 
-    public Permission getEditOwnWorklogs() {
+    public UserPermission getEditOwnWorklogs() {
         return editOwnWorklogs;
     }
 
-    public void setEditOwnWorklogs(Permission editOwnWorklogs) {
+    public void setEditOwnWorklogs(UserPermission editOwnWorklogs) {
         this.editOwnWorklogs = editOwnWorklogs;
     }
 
-    public Permission getCreateAttachments() {
+    public UserPermission getCreateAttachments() {
         return createAttachments;
     }
 
-    public void setCreateAttachments(Permission createAttachments) {
+    public void setCreateAttachments(UserPermission createAttachments) {
         this.createAttachments = createAttachments;
     }
 
-    public Permission getEditAllWorklogs() {
+    public UserPermission getEditAllWorklogs() {
         return editAllWorklogs;
     }
 
-    public void setEditAllWorklogs(Permission editAllWorklogs) {
+    public void setEditAllWorklogs(UserPermission editAllWorklogs) {
         this.editAllWorklogs = editAllWorklogs;
     }
 
-    public Permission getScheduleIssue() {
+    public UserPermission getScheduleIssue() {
         return scheduleIssue;
     }
 
-    public void setScheduleIssue(Permission scheduleIssue) {
+    public void setScheduleIssue(UserPermission scheduleIssue) {
         this.scheduleIssue = scheduleIssue;
     }
 
-    public Permission getCloseIssues() {
+    public UserPermission getCloseIssues() {
         return closeIssues;
     }
 
-    public void setCloseIssues(Permission closeIssues) {
+    public void setCloseIssues(UserPermission closeIssues) {
         this.closeIssues = closeIssues;
     }
 
-    public Permission getSetIssueSecurity() {
+    public UserPermission getSetIssueSecurity() {
         return setIssueSecurity;
     }
 
-    public void setSetIssueSecurity(Permission setIssueSecurity) {
+    public void setSetIssueSecurity(UserPermission setIssueSecurity) {
         this.setIssueSecurity = setIssueSecurity;
     }
 
-    public Permission getScheduleIssues() {
+    public UserPermission getScheduleIssues() {
         return scheduleIssues;
     }
 
-    public void setScheduleIssues(Permission scheduleIssues) {
+    public void setScheduleIssues(UserPermission scheduleIssues) {
         this.scheduleIssues = scheduleIssues;
     }
 
-    public Permission getWorklogDeleteAll() {
+    public UserPermission getWorklogDeleteAll() {
         return worklogDeleteAll;
     }
 
-    public void setWorklogDeleteAll(Permission worklogDeleteAll) {
+    public void setWorklogDeleteAll(UserPermission worklogDeleteAll) {
         this.worklogDeleteAll = worklogDeleteAll;
     }
 
-    public Permission getCommentDeleteOwn() {
+    public UserPermission getCommentDeleteOwn() {
         return commentDeleteOwn;
     }
 
-    public void setCommentDeleteOwn(Permission commentDeleteOwn) {
+    public void setCommentDeleteOwn(UserPermission commentDeleteOwn) {
         this.commentDeleteOwn = commentDeleteOwn;
     }
 
-    public Permission getAdministerProjects() {
+    public UserPermission getAdministerProjects() {
         return administerProjects;
     }
 
-    public void setAdministerProjects(Permission administerProjects) {
+    public void setAdministerProjects(UserPermission administerProjects) {
         this.administerProjects = administerProjects;
     }
 
-    public Permission getDeleteAllComments() {
+    public UserPermission getDeleteAllComments() {
         return deleteAllComments;
     }
 
-    public void setDeleteAllComments(Permission deleteAllComments) {
+    public void setDeleteAllComments(UserPermission deleteAllComments) {
         this.deleteAllComments = deleteAllComments;
     }
 
-    public Permission getResolveIssues() {
+    public UserPermission getResolveIssues() {
         return resolveIssues;
     }
 
-    public void setResolveIssues(Permission resolveIssues) {
+    public void setResolveIssues(UserPermission resolveIssues) {
         this.resolveIssues = resolveIssues;
     }
 
-    public Permission getViewReadonlyWorkflow() {
+    public UserPermission getViewReadonlyWorkflow() {
         return viewReadonlyWorkflow;
     }
 
-    public void setViewReadonlyWorkflow(Permission viewReadonlyWorkflow) {
+    public void setViewReadonlyWorkflow(UserPermission viewReadonlyWorkflow) {
         this.viewReadonlyWorkflow = viewReadonlyWorkflow;
     }
 
-    public Permission getAdminister() {
+    public UserPermission getAdminister() {
         return administer;
     }
 
-    public void setAdminister(Permission administer) {
+    public void setAdminister(UserPermission administer) {
         this.administer = administer;
     }
 
-    public Permission getMoveIssues() {
+    public UserPermission getMoveIssues() {
         return moveIssues;
     }
 
-    public void setMoveIssues(Permission moveIssues) {
+    public void setMoveIssues(UserPermission moveIssues) {
         this.moveIssues = moveIssues;
     }
 
-    public Permission getTransitionIssues() {
+    public UserPermission getTransitionIssues() {
         return transitionIssues;
     }
 
-    public void setTransitionIssues(Permission transitionIssues) {
+    public void setTransitionIssues(UserPermission transitionIssues) {
         this.transitionIssues = transitionIssues;
     }
 
-    public Permission getSystemAdmin() {
+    public UserPermission getSystemAdmin() {
         return systemAdmin;
     }
 
-    public void setSystemAdmin(Permission systemAdmin) {
+    public void setSystemAdmin(UserPermission systemAdmin) {
         this.systemAdmin = systemAdmin;
     }
 
-    public Permission getDeleteOwnWorklogs() {
+    public UserPermission getDeleteOwnWorklogs() {
         return deleteOwnWorklogs;
     }
 
-    public void setDeleteOwnWorklogs(Permission deleteOwnWorklogs) {
+    public void setDeleteOwnWorklogs(UserPermission deleteOwnWorklogs) {
         this.deleteOwnWorklogs = deleteOwnWorklogs;
     }
 
-    public Permission getBrwose() {
+    public UserPermission getBrwose() {
         return brwose;
     }
 
-    public void setBrwose(Permission brwose) {
+    public void setBrwose(UserPermission brwose) {
         this.brwose = brwose;
     }
 
-    public Permission getEditIssue() {
+    public UserPermission getEditIssue() {
         return editIssue;
     }
 
-    public void setEditIssue(Permission editIssue) {
+    public void setEditIssue(UserPermission editIssue) {
         this.editIssue = editIssue;
     }
 
-    public Permission getModifyReporter() {
+    public UserPermission getModifyReporter() {
         return modifyReporter;
     }
 
-    public void setModifyReporter(Permission modifyReporter) {
+    public void setModifyReporter(UserPermission modifyReporter) {
         this.modifyReporter = modifyReporter;
     }
 
-    public Permission getEditIssues() {
+    public UserPermission getEditIssues() {
         return editIssues;
     }
 
-    public void setEditIssues(Permission editIssues) {
+    public void setEditIssues(UserPermission editIssues) {
         this.editIssues = editIssues;
     }
 
-    public Permission getManageWatchers() {
+    public UserPermission getManageWatchers() {
         return manageWatchers;
     }
 
-    public void setManageWatchers(Permission manageWatchers) {
+    public void setManageWatchers(UserPermission manageWatchers) {
         this.manageWatchers = manageWatchers;
     }
 
-    public Permission getEditOwnComments() {
+    public UserPermission getEditOwnComments() {
         return editOwnComments;
     }
 
-    public void setEditOwnComments(Permission editOwnComments) {
+    public void setEditOwnComments(UserPermission editOwnComments) {
         this.editOwnComments = editOwnComments;
     }
 
-    public Permission getAssignIssues() {
+    public UserPermission getAssignIssues() {
         return assignIssues;
     }
 
-    public void setAssignIssues(Permission assignIssues) {
+    public void setAssignIssues(UserPermission assignIssues) {
         this.assignIssues = assignIssues;
     }
 
-    public Permission getBrowseProjects() {
+    public UserPermission getBrowseProjects() {
         return browseProjects;
     }
 
-    public void setBrowseProjects(Permission browseProjects) {
+    public void setBrowseProjects(UserPermission browseProjects) {
         this.browseProjects = browseProjects;
     }
 
-    public Permission getViewVersionControl() {
+    public UserPermission getViewVersionControl() {
         return viewVersionControl;
     }
 
-    public void setViewVersionControl(Permission viewVersionControl) {
+    public void setViewVersionControl(UserPermission viewVersionControl) {
         this.viewVersionControl = viewVersionControl;
     }
 
-    public Permission getWorkIssue() {
+    public UserPermission getWorkIssue() {
         return workIssue;
     }
 
-    public void setWorkIssue(Permission workIssue) {
+    public void setWorkIssue(UserPermission workIssue) {
         this.workIssue = workIssue;
     }
 
-    public Permission getCommentIssue() {
+    public UserPermission getCommentIssue() {
         return commentIssue;
     }
 
-    public void setCommentIssue(Permission commentIssue) {
+    public void setCommentIssue(UserPermission commentIssue) {
         this.commentIssue = commentIssue;
     }
 
-    public Permission getWorklogEditAll() {
+    public UserPermission getWorklogEditAll() {
         return worklogEditAll;
     }
 
-    public void setWorklogEditAll(Permission worklogEditAll) {
+    public void setWorklogEditAll(UserPermission worklogEditAll) {
         this.worklogEditAll = worklogEditAll;
     }
 
-    public Permission getEditAllComments() {
+    public UserPermission getEditAllComments() {
         return editAllComments;
     }
 
-    public void setEditAllComments(Permission editAllComments) {
+    public void setEditAllComments(UserPermission editAllComments) {
         this.editAllComments = editAllComments;
     }
 
-    public Permission getDeleteIssue() {
+    public UserPermission getDeleteIssue() {
         return deleteIssue;
     }
 
-    public void setDeleteIssue(Permission deleteIssue) {
+    public void setDeleteIssue(UserPermission deleteIssue) {
         this.deleteIssue = deleteIssue;
     }
 
-    public Permission getUserPicker() {
+    public UserPermission getUserPicker() {
         return userPicker;
     }
 
-    public void setUserPicker(Permission userPicker) {
+    public void setUserPicker(UserPermission userPicker) {
         this.userPicker = userPicker;
     }
 
-    public Permission getCreateSharedObjects() {
+    public UserPermission getCreateSharedObjects() {
         return createSharedObjects;
     }
 
-    public void setCreateSharedObjects(Permission createSharedObjects) {
+    public void setCreateSharedObjects(UserPermission createSharedObjects) {
         this.createSharedObjects = createSharedObjects;
     }
 
-    public Permission getAttachmentDeleteAll() {
+    public UserPermission getAttachmentDeleteAll() {
         return attachmentDeleteAll;
     }
 
-    public void setAttachmentDeleteAll(Permission attachmentDeleteAll) {
+    public void setAttachmentDeleteAll(UserPermission attachmentDeleteAll) {
         this.attachmentDeleteAll = attachmentDeleteAll;
     }
 
-    public Permission getDeleteIssues() {
+    public UserPermission getDeleteIssues() {
         return deleteIssues;
     }
 
-    public void setDeleteIssues(Permission deleteIssues) {
+    public void setDeleteIssues(UserPermission deleteIssues) {
         this.deleteIssues = deleteIssues;
     }
 
-    public Permission getManageGroupFilterSubscriptions() {
+    public UserPermission getManageGroupFilterSubscriptions() {
         return manageGroupFilterSubscriptions;
     }
 
-    public void setManageGroupFilterSubscriptions(Permission manageGroupFilterSubscriptions) {
+    public void setManageGroupFilterSubscriptions(UserPermission manageGroupFilterSubscriptions) {
         this.manageGroupFilterSubscriptions = manageGroupFilterSubscriptions;
     }
 
-    public Permission getResolveIssue() {
+    public UserPermission getResolveIssue() {
         return resolveIssue;
     }
 
-    public void setResolveIssue(Permission resolveIssue) {
+    public void setResolveIssue(UserPermission resolveIssue) {
         this.resolveIssue = resolveIssue;
     }
 
-    public Permission getAssignableUser() {
+    public UserPermission getAssignableUser() {
         return assignableUser;
     }
 
-    public void setAssignableUser(Permission assignableUser) {
+    public void setAssignableUser(UserPermission assignableUser) {
         this.assignableUser = assignableUser;
     }
 
-    public Permission getTransitionIssue() {
+    public UserPermission getTransitionIssue() {
         return transitionIssue;
     }
 
-    public void setTransitionIssue(Permission transitionIssue) {
+    public void setTransitionIssue(UserPermission transitionIssue) {
         this.transitionIssue = transitionIssue;
     }
 
-    public Permission getCommentEditOwn() {
+    public UserPermission getCommentEditOwn() {
         return commentEditOwn;
     }
 
-    public void setCommentEditOwn(Permission commentEditOwn) {
+    public void setCommentEditOwn(UserPermission commentEditOwn) {
         this.commentEditOwn = commentEditOwn;
     }
 
-    public Permission getMoveIssue() {
+    public UserPermission getMoveIssue() {
         return moveIssue;
     }
 
-    public void setMoveIssue(Permission moveIssue) {
+    public void setMoveIssue(UserPermission moveIssue) {
         this.moveIssue = moveIssue;
     }
 
-    public Permission getWorklogEditOwn() {
+    public UserPermission getWorklogEditOwn() {
         return worklogEditOwn;
     }
 
-    public void setWorklogEditOwn(Permission worklogEditOwn) {
+    public void setWorklogEditOwn(UserPermission worklogEditOwn) {
         this.worklogEditOwn = worklogEditOwn;
     }
 
-    public Permission getDeleteAllWorklogs() {
+    public UserPermission getDeleteAllWorklogs() {
         return deleteAllWorklogs;
     }
 
-    public void setDeleteAllWorklogs(Permission deleteAllWorklogs) {
+    public void setDeleteAllWorklogs(UserPermission deleteAllWorklogs) {
         this.deleteAllWorklogs = deleteAllWorklogs;
     }
 
-    public Permission getLinkIssues() {
+    public UserPermission getLinkIssues() {
         return linkIssues;
     }
 
-    public void setLinkIssues(Permission linkIssues) {
+    public void setLinkIssues(UserPermission linkIssues) {
         this.linkIssues = linkIssues;
     }
 }

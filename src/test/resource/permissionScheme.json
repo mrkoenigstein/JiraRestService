@@ -1,0 +1,329 @@
+{
+  "expand": "permissions,user,group,projectRole,field,all",
+  "id": 0,
+  "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0",
+  "name": "Default Permission Scheme",
+  "description": "This is the default Permission Scheme. Any new projects that are created will be assigned this scheme.",
+  "permissions": [
+    {
+      "id": 10004,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10004",
+      "holder": {
+        "type": "projectRole",
+        "parameter": "10002",
+        "projectRole": {
+          "self": "http://ubuntu:2990/jira/rest/api/2/role/10002",
+          "name": "Administrators",
+          "id": 10002,
+          "description": "A project role that represents administrators in a project"
+        },
+        "expand": "projectRole"
+      },
+      "permission": "ADMINISTER_PROJECTS"
+    },
+    {
+      "id": 10005,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10005",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "BROWSE_PROJECTS"
+    },
+    {
+      "id": 10006,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10006",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "CREATE_ISSUES"
+    },
+    {
+      "id": 10007,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10007",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "ADD_COMMENTS"
+    },
+    {
+      "id": 10008,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10008",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "CREATE_ATTACHMENTS"
+    },
+    {
+      "id": 10009,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10009",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "ASSIGN_ISSUES"
+    },
+    {
+      "id": 10010,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10010",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "ASSIGNABLE_USER"
+    },
+    {
+      "id": 10011,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10011",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "RESOLVE_ISSUES"
+    },
+    {
+      "id": 10012,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10012",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "LINK_ISSUES"
+    },
+    {
+      "id": 10013,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10013",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "EDIT_ISSUES"
+    },
+    {
+      "id": 10014,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10014",
+      "holder": {
+        "type": "projectRole",
+        "parameter": "10002",
+        "projectRole": {
+          "self": "http://ubuntu:2990/jira/rest/api/2/role/10002",
+          "name": "Administrators",
+          "id": 10002,
+          "description": "A project role that represents administrators in a project"
+        },
+        "expand": "projectRole"
+      },
+      "permission": "DELETE_ISSUES"
+    },
+    {
+      "id": 10015,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10015",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "CLOSE_ISSUES"
+    },
+    {
+      "id": 10016,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10016",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "MOVE_ISSUES"
+    },
+    {
+      "id": 10017,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10017",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "SCHEDULE_ISSUES"
+    },
+    {
+      "id": 10018,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10018",
+      "holder": {
+        "type": "projectRole",
+        "parameter": "10002",
+        "projectRole": {
+          "self": "http://ubuntu:2990/jira/rest/api/2/role/10002",
+          "name": "Administrators",
+          "id": 10002,
+          "description": "A project role that represents administrators in a project"
+        },
+        "expand": "projectRole"
+      },
+      "permission": "MODIFY_REPORTER"
+    },
+    {
+      "id": 10019,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10019",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "WORK_ON_ISSUES"
+    },
+    {
+      "id": 10020,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10020",
+      "holder": {
+        "type": "projectRole",
+        "parameter": "10002",
+        "projectRole": {
+          "self": "http://ubuntu:2990/jira/rest/api/2/role/10002",
+          "name": "Administrators",
+          "id": 10002,
+          "description": "A project role that represents administrators in a project"
+        },
+        "expand": "projectRole"
+      },
+      "permission": "DELETE_ALL_WORKLOGS"
+    },
+    {
+      "id": 10021,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10021",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "DELETE_OWN_WORKLOGS"
+    },
+    {
+      "id": 10022,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10022",
+      "holder": {
+        "type": "projectRole",
+        "parameter": "10002",
+        "projectRole": {
+          "self": "http://ubuntu:2990/jira/rest/api/2/role/10002",
+          "name": "Administrators",
+          "id": 10002,
+          "description": "A project role that represents administrators in a project"
+        },
+        "expand": "projectRole"
+      },
+      "permission": "EDIT_ALL_WORKLOGS"
+    },
+    {
+      "id": 10023,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10023",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "EDIT_OWN_WORKLOGS"
+    },
+    {
+      "id": 10024,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10024",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "VIEW_VOTERS_AND_WATCHERS"
+    },
+    {
+      "id": 10025,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10025",
+      "holder": {
+        "type": "projectRole",
+        "parameter": "10002",
+        "projectRole": {
+          "self": "http://ubuntu:2990/jira/rest/api/2/role/10002",
+          "name": "Administrators",
+          "id": 10002,
+          "description": "A project role that represents administrators in a project"
+        },
+        "expand": "projectRole"
+      },
+      "permission": "MANAGE_WATCHERS"
+    },
+    {
+      "id": 10026,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10026",
+      "holder": {
+        "type": "projectRole",
+        "parameter": "10002",
+        "projectRole": {
+          "self": "http://ubuntu:2990/jira/rest/api/2/role/10002",
+          "name": "Administrators",
+          "id": 10002,
+          "description": "A project role that represents administrators in a project"
+        },
+        "expand": "projectRole"
+      },
+      "permission": "EDIT_ALL_COMMENTS"
+    },
+    {
+      "id": 10027,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10027",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "EDIT_OWN_COMMENTS"
+    },
+    {
+      "id": 10028,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10028",
+      "holder": {
+        "type": "projectRole",
+        "parameter": "10002",
+        "projectRole": {
+          "self": "http://ubuntu:2990/jira/rest/api/2/role/10002",
+          "name": "Administrators",
+          "id": 10002,
+          "description": "A project role that represents administrators in a project"
+        },
+        "expand": "projectRole"
+      },
+      "permission": "DELETE_ALL_COMMENTS"
+    },
+    {
+      "id": 10029,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10029",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "DELETE_OWN_COMMENTS"
+    },
+    {
+      "id": 10030,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10030",
+      "holder": {
+        "type": "projectRole",
+        "parameter": "10002",
+        "projectRole": {
+          "self": "http://ubuntu:2990/jira/rest/api/2/role/10002",
+          "name": "Administrators",
+          "id": 10002,
+          "description": "A project role that represents administrators in a project"
+        },
+        "expand": "projectRole"
+      },
+      "permission": "DELETE_ALL_ATTACHMENTS"
+    },
+    {
+      "id": 10031,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10031",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "DELETE_OWN_ATTACHMENTS"
+    },
+    {
+      "id": 10033,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10033",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "VIEW_DEV_TOOLS"
+    },
+    {
+      "id": 10200,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10200",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "VIEW_READONLY_WORKFLOW"
+    },
+    {
+      "id": 10300,
+      "self": "http://ubuntu:2990/jira/rest/api/2/permissionscheme/0/permission/10300",
+      "holder": {
+        "type": "applicationRole"
+      },
+      "permission": "TRANSITION_ISSUES"
+    }
+  ]
+}
