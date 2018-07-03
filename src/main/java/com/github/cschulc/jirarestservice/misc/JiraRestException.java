@@ -19,7 +19,6 @@ public class JiraRestException extends Exception{
 
     private Error restErrorMessage;
 
-
     public JiraRestException(int statusCode, String reasonPhrase, Error restErrorMessage) {
         super(statusCode + " " + reasonPhrase + " " + restErrorMessage);
         this.statusCode = statusCode;

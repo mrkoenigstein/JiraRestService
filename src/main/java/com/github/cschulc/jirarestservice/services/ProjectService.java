@@ -4,6 +4,7 @@ import com.github.cschulc.jirarestservice.domain.Component;
 import com.github.cschulc.jirarestservice.domain.Project;
 import com.github.cschulc.jirarestservice.domain.Version;
 import com.github.cschulc.jirarestservice.domain.meta.Meta;
+import com.github.cschulc.jirarestservice.domain.project.ProjectCategory;
 
 import java.util.List;
 import java.util.concurrent.Future;
@@ -59,5 +60,21 @@ public interface ProjectService {
      * @return The new Project with the given Id
      */
     Future<Project> createProject(Project project);
+
+    /**
+     * Create a project category via POST.
+     *
+     * @param name The name of the projectcategory
+     * @param description The Description of the projectcategory
+     * @return The create {@link ProjectCategory}
+     */
+    Future<ProjectCategory> createProjectCategory(String name, String description);
+
+    /**
+     * Returns all project categories
+     *
+     * @return A {@link List} of {@link ProjectCategory}
+     */
+    Future<List<ProjectCategory>> getAllProjectCategories();
 
 }

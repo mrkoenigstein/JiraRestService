@@ -4,6 +4,7 @@ import com.github.cschulc.jirarestservice.domain.*;
 import com.github.cschulc.jirarestservice.domain.update.FieldOperation;
 import com.github.cschulc.jirarestservice.domain.update.IssueUpdate;
 import com.github.cschulc.jirarestservice.domain.update.Operation;
+import com.github.cschulc.jirarestservice.domain.user.User;
 import com.github.cschulc.jirarestservice.jql.Constants;
 import com.github.cschulc.jirarestservice.jql.FieldEnum;
 import com.github.cschulc.jirarestservice.misc.JiraRestException;

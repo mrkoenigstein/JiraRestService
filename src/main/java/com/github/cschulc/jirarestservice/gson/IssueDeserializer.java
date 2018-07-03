@@ -2,6 +2,7 @@ package com.github.cschulc.jirarestservice.gson;
 
 import com.github.cschulc.jirarestservice.domain.*;
 import com.github.cschulc.jirarestservice.domain.customFields.*;
+import com.github.cschulc.jirarestservice.domain.user.User;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 

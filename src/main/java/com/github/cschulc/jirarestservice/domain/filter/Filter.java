@@ -2,7 +2,7 @@
 package com.github.cschulc.jirarestservice.domain.filter;
 
 import com.github.cschulc.jirarestservice.domain.Base;
-import com.github.cschulc.jirarestservice.domain.User;
+import com.github.cschulc.jirarestservice.domain.user.User;
 import com.google.gson.annotations.Expose;
 
 import java.util.List;

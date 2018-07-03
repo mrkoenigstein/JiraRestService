@@ -1,6 +1,6 @@
 package com.github.cschulc.jirarestservice.domain.customFields;
 
-import com.github.cschulc.jirarestservice.domain.User;
+import com.github.cschulc.jirarestservice.domain.user.User;
 
 import java.util.ArrayList;
 import java.util.List;

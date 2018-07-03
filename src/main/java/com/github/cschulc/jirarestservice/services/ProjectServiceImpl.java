@@ -5,12 +5,11 @@ import com.github.cschulc.jirarestservice.domain.Component;
 import com.github.cschulc.jirarestservice.domain.Project;
 import com.github.cschulc.jirarestservice.domain.Version;
 import com.github.cschulc.jirarestservice.domain.meta.Meta;
+import com.github.cschulc.jirarestservice.domain.project.ProjectCategory;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import org.apache.commons.lang3.Validate;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.lang.reflect.Type;
@@ -132,5 +131,46 @@ public class ProjectServiceImpl extends BaseService implements ProjectService {
     @Override
     public Future<Project> createProject(Project project) {
         return null;
+    }
+
+    @Override
+    public Future<ProjectCategory> createProjectCategory(String name, String description) {
+        return executorService.submit(() -> {
+            URIBuilder uriBuilder = buildPath(PROJECTCATEGORY);
+            ProjectCategory projectCategory = new ProjectCategory();
+            projectCategory.setName(name);
+            projectCategory.setDescription(description);
+            String body = projectCategory.toString();
+            RestApiCall restApiCall = doPost(uriBuilder.build(), body);
+            int statusCode = restApiCall.getStatusCode();
+            if(statusCode == HttpURLConnection.HTTP_OK){
+                JsonReader jsonReader = restApiCall.getJsonReader();
+                ProjectCategory category = gson.fromJson(jsonReader, ProjectCategory.class);
+                restApiCall.release();
+                return category;
+            }else{
+                throw restApiCall.buildException();
+            }
+        });
+    }
+
+    @Override
+    public Future<List<ProjectCategory>> getAllProjectCategories() {
+        return executorService.submit(() -> {
+            URIBuilder uriBuilder = buildPath(PROJECTCATEGORY);
+            RestApiCall restApiCall = doGet(uriBuilder.build());
+            int statusCode = restApiCall.getStatusCode();
+            if(statusCode == HttpURLConnection.HTTP_OK){
+                JsonReader jsonReader = restApiCall.getJsonReader();
+                Type listType = new TypeToken<ArrayList<ProjectCategory>>() {
+                }.getType();
+                List<ProjectCategory> projectCategories = gson.fromJson(jsonReader, listType);
+                restApiCall.release();
+                return projectCategories;
+            }
+            else{
+                throw restApiCall.buildException();
+            }
+        });
     }
 }

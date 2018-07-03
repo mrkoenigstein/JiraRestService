@@ -54,4 +54,9 @@ public class ProjectServiceTest extends BaseTest {
         Meta meta = future.get();
         Assert.assertNotNull(meta);
     }
+
+    @Test
+    public void testGetAllProjectCategories(){
+
+    }
 }

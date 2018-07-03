@@ -27,6 +27,8 @@ public class Errors {
     private String versions;
     @Expose
     private String components;
+    @Expose
+    private String email;
 
     public String getProject() {
         return project;
@@ -114,5 +116,13 @@ public class Errors {
 
     public void setComponents(String components) {
         this.components = components;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

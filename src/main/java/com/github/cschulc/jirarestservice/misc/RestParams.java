@@ -21,4 +21,12 @@ public interface RestParams {
     String FIELDS = "fields";
 
     String PROJECTKEYS = "projectKeys";
+
+    String QUERY = "query";
+
+    String EXCLUDE = "exclude";
+
+    String USER_NAME = "userName";
+
+    String GROUPNAME = "groupname";
 }

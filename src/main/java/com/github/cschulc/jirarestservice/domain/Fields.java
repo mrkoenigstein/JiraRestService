@@ -1,6 +1,7 @@
 package com.github.cschulc.jirarestservice.domain;
 
 import com.github.cschulc.jirarestservice.domain.customFields.CustomFieldBase;
+import com.github.cschulc.jirarestservice.domain.user.User;
 import com.google.gson.annotations.Expose;
 
 import java.util.List;

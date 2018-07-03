@@ -55,4 +55,16 @@ public interface RestPaths {
     String PERMISSION_SCHEME = "/permissionscheme";
 
     String NOTIFICATION_SCHEME = "/notificationscheme";
+
+    String ISSUESECURITYSCHEMES = "/issuesecurityschemes";
+
+    String GROUPS = "/groups";
+
+    String GROUP = "/group";
+
+    String PICKER = "/picker";
+
+    String BULK = "/bulk";
+
+    String PROJECTCATEGORY = "/projectCategory";
 }

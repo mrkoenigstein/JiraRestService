@@ -1,6 +1,7 @@
 package com.github.cschulc.jirarestservice.test;
 
-import com.github.cschulc.jirarestservice.domain.User;
+import com.github.cschulc.jirarestservice.domain.user.CreateUser;
+import com.github.cschulc.jirarestservice.domain.user.User;
 import com.github.cschulc.jirarestservice.domain.permission.MyPermissions;
 import com.github.cschulc.jirarestservice.misc.JiraRestException;
 import org.testng.Assert;
@@ -51,5 +52,19 @@ public class UserServiceTest extends BaseTest {
         Future<MyPermissions> future = restService.getUserService().getMyPermissions();
         MyPermissions myPermissions = future.get();
         Assert.assertNotNull(myPermissions);
+    }
+
+    @Test
+    public void testCreateUser() throws ExecutionException, InterruptedException {
+        CreateUser createUser = new CreateUser();
+        createUser.setName("Jane Doe");
+        createUser.setPassword("1234");
+        createUser.setEmailAddress("janedoe@test.de");
+        createUser.setDisplayName("Jane Doe the First");
+        createUser.getApplicationKeys().add("jira-core");
+
+        Future<User> future = restService.getUserService().createUser(createUser);
+        User user = future.get();
+        Assert.assertNotNull(user);
     }
 }

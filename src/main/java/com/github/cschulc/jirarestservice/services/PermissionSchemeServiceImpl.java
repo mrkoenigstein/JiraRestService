@@ -40,6 +40,18 @@ public class PermissionSchemeServiceImpl extends BaseService implements Permissi
 
     @Override
     public Future<PermissionScheme> getPermissionScheme(String id) {
-        return null;
+        return executorService.submit(() -> {
+            URIBuilder uriBuilder = buildPath(PERMISSION_SCHEME, id);
+            RestApiCall restApiCall = doGet(uriBuilder.build());
+            int statusCode = restApiCall.getStatusCode();
+            if (statusCode == HttpURLConnection.HTTP_OK) {
+                JsonReader jsonReader = restApiCall.getJsonReader();
+                PermissionScheme permissionScheme = gson.fromJson(jsonReader, PermissionScheme.class);
+                restApiCall.release();
+                return permissionScheme;
+            } else {
+                throw restApiCall.buildException();
+            }
+        });
     }
 }

@@ -50,6 +50,8 @@ public class JiraRestService {
 
     private UserService userService;
 
+    private GroupService groupService;
+
     private ProjectService projectService;
 
     private SystemService systemService;
@@ -59,6 +61,8 @@ public class JiraRestService {
     private NotificationSchemeService notificationSchemeService;
 
     private PermissionSchemeService permissionSchemeService;
+
+    private IssueSecuritySchemeService issueSecuritySchemeService;
 
     public JiraRestService(ExecutorService executorService) {
         this.executorService = executorService;
@@ -178,6 +182,13 @@ public class JiraRestService {
         return userService;
     }
 
+    public GroupService getGroupService() {
+        if(groupService == null){
+            groupService = new GroupServiceImpl(this, executorService);
+        }
+        return groupService;
+    }
+
     public ProjectService getProjectService() {
         if (projectService == null) {
             projectService = new ProjectServiceImpl(this, executorService);
@@ -211,5 +222,12 @@ public class JiraRestService {
             notificationSchemeService = new NotificationSchemeServiceImpl(this, executorService);
         }
         return notificationSchemeService;
+    }
+
+    public IssueSecuritySchemeService getIssueSecuritySchemeService() {
+        if(issueSecuritySchemeService == null){
+            issueSecuritySchemeService = new IssueSecuritySchemeServiceImpl(this, executorService);
+        }
+        return issueSecuritySchemeService;
     }
 }

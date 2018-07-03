@@ -1,8 +1,8 @@
 package com.github.cschulc.jirarestservice.domain.notification;
 
 import com.github.cschulc.jirarestservice.domain.Base;
-import com.github.cschulc.jirarestservice.domain.Group;
-import com.github.cschulc.jirarestservice.domain.User;
+import com.github.cschulc.jirarestservice.domain.groups.Group;
+import com.github.cschulc.jirarestservice.domain.user.User;
 import com.github.cschulc.jirarestservice.domain.field.Field;
 import com.github.cschulc.jirarestservice.domain.project.ProjectRole;
 import com.google.gson.annotations.Expose;
