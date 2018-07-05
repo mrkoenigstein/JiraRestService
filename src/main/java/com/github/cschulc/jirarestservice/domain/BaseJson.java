@@ -1,7 +1,6 @@
 package com.github.cschulc.jirarestservice.domain;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.github.cschulc.jirarestservice.util.GsonHelper;
 
 /**
  * @author Christian Schulze
@@ -10,7 +9,6 @@ public class BaseJson {
 
     @Override
     public String toString() {
-        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-        return gson.toJson(this);
+        return GsonHelper.toJson(this);
     }
 }

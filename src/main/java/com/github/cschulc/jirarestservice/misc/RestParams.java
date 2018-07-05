@@ -29,4 +29,10 @@ public interface RestParams {
     String USER_NAME = "userName";
 
     String GROUPNAME = "groupname";
+
+    String INCLUDE_ACTIVE = "includeActive";
+
+    String INCLUDE_INACTIVE = "includeInactive";
+
+    String PROPERTY = "property";
 }

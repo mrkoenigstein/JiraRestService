@@ -4,6 +4,8 @@ import com.github.cschulc.jirarestservice.domain.AttachmentMeta;
 import com.github.cschulc.jirarestservice.domain.Issuetype;
 import com.github.cschulc.jirarestservice.domain.Priority;
 import com.github.cschulc.jirarestservice.domain.Status;
+import com.github.cschulc.jirarestservice.domain.avatar.AvatarType;
+import com.github.cschulc.jirarestservice.domain.avatar.SystemAvatars;
 import com.github.cschulc.jirarestservice.domain.field.CreateField;
 import com.github.cschulc.jirarestservice.domain.field.Field;
 import com.github.cschulc.jirarestservice.domain.system.Configuration;
@@ -75,8 +77,16 @@ public interface SystemService {
     /**
      * Creates a Custom FieldEnum
      *
-     * @param field The CreateField with the create Informations
+     * @param fieldBean The CreateField with the create Informations
      * @return The created FieldEnum as FieldEnum
      */
     Future<Field> createCustomField(CreateField fieldBean);
+
+    /**
+     * Returns all system avatars of the given type.
+     *
+     * @param avatarType The {@link AvatarType}
+     * @return SystemAvatars with a List of {@link com.github.cschulc.jirarestservice.domain.avatar.Avatar}
+     */
+    Future<SystemAvatars> getAllSystemAvatars(AvatarType avatarType);
 }

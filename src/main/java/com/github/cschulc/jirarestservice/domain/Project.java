@@ -1,5 +1,6 @@
 package com.github.cschulc.jirarestservice.domain;
 
+import com.github.cschulc.jirarestservice.domain.avatar.AvatarUrls;
 import com.github.cschulc.jirarestservice.domain.system.AssigneeTypeEnum;
 import com.google.gson.annotations.Expose;
 

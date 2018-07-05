@@ -1,0 +1,55 @@
+{
+  "expand": "description,lead,url,projectKeys",
+  "self": "http://ubuntu:2990/jira/rest/api/2/project/10000",
+  "id": "10000",
+  "key": "DEMO",
+  "description": "<h3>Welcome to the administration of your demonstration project!</h3>\n <p>This is where you can view and change how the project is configured. Use the tabs on the left to navigate to different project settings.</p>",
+  "lead": {
+    "self": "http://ubuntu:2990/jira/rest/api/2/user?username=admin",
+    "key": "admin",
+    "name": "admin",
+    "avatarUrls": {
+      "48x48": "http://www.gravatar.com/avatar/64e1b8d34f425d19e1ee2ea7236d3028?d=mm&s=48",
+      "24x24": "http://www.gravatar.com/avatar/64e1b8d34f425d19e1ee2ea7236d3028?d=mm&s=24",
+      "16x16": "http://www.gravatar.com/avatar/64e1b8d34f425d19e1ee2ea7236d3028?d=mm&s=16",
+      "32x32": "http://www.gravatar.com/avatar/64e1b8d34f425d19e1ee2ea7236d3028?d=mm&s=32"
+    },
+    "displayName": "admin",
+    "active": true
+  },
+  "components": [],
+  "issueTypes": [
+    {
+      "self": "http://ubuntu:2990/jira/rest/api/2/issuetype/10000",
+      "id": "10000",
+      "description": "Eine Aufgabe, die erledigt werden muss.",
+      "iconUrl": "http://ubuntu:2990/jira/secure/viewavatar?size=xsmall&avatarId=10318&avatarType=issuetype",
+      "name": "Aufgabe",
+      "subtask": false,
+      "avatarId": 10318
+    },
+    {
+      "self": "http://ubuntu:2990/jira/rest/api/2/issuetype/10001",
+      "id": "10001",
+      "description": "Die Unteraufgabe des Vorgangs",
+      "iconUrl": "http://ubuntu:2990/jira/secure/viewavatar?size=xsmall&avatarId=10316&avatarType=issuetype",
+      "name": "Unteraufgabe",
+      "subtask": true,
+      "avatarId": 10316
+    }
+  ],
+  "assigneeType": "UNASSIGNED",
+  "versions": [],
+  "name": "Demonstration",
+  "roles": {
+    "Developers": "http://ubuntu:2990/jira/rest/api/2/project/10000/role/10100",
+    "Administrators": "http://ubuntu:2990/jira/rest/api/2/project/10000/role/10002"
+  },
+  "avatarUrls": {
+    "48x48": "http://ubuntu:2990/jira/secure/projectavatar?avatarId=10324",
+    "24x24": "http://ubuntu:2990/jira/secure/projectavatar?size=small&avatarId=10324",
+    "16x16": "http://ubuntu:2990/jira/secure/projectavatar?size=xsmall&avatarId=10324",
+    "32x32": "http://ubuntu:2990/jira/secure/projectavatar?size=medium&avatarId=10324"
+  },
+  "projectTypeKey": "business"
+}

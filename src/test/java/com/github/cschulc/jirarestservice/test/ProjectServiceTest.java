@@ -18,7 +18,7 @@ public class ProjectServiceTest extends BaseTest {
 
     @Test
     public void testGetProjectByKey() throws ExecutionException, InterruptedException {
-        final Future<Project> future = restService.getProjectService().getProjectByKey(PROJECT_TO_SEARCH);
+        final Future<Project> future = restService.getProjectService().getProjectByKey(PROJECT_TO_SEARCH, "type");
         final Project project = future.get();
         Assert.assertNotNull(project);
         Assert.assertEquals(PROJECT_TO_SEARCH, project.getKey());

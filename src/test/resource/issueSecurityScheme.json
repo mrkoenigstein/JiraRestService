@@ -1,0 +1,10 @@
+{
+  "issueSecuritySchemes": [
+    {
+      "self": "http://ubuntu:2990/jira/rest/api/2/issuesecurityschemes/10000",
+      "id": 10000,
+      "name": "Test",
+      "description": ""
+    }
+  ]
+}

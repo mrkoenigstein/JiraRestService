@@ -67,4 +67,8 @@ public interface RestPaths {
     String BULK = "/bulk";
 
     String PROJECTCATEGORY = "/projectCategory";
+
+    String AVATAR = "/avatar";
+
+    String SYSTEM = "/system";
 }

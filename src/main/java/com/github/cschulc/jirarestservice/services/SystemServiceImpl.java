@@ -5,6 +5,8 @@ import com.github.cschulc.jirarestservice.domain.AttachmentMeta;
 import com.github.cschulc.jirarestservice.domain.Issuetype;
 import com.github.cschulc.jirarestservice.domain.Priority;
 import com.github.cschulc.jirarestservice.domain.Status;
+import com.github.cschulc.jirarestservice.domain.avatar.AvatarType;
+import com.github.cschulc.jirarestservice.domain.avatar.SystemAvatars;
 import com.github.cschulc.jirarestservice.domain.field.CreateField;
 import com.github.cschulc.jirarestservice.domain.field.Field;
 import com.github.cschulc.jirarestservice.domain.system.Configuration;
@@ -175,6 +177,23 @@ public class SystemServiceImpl extends BaseService implements SystemService {
                 restApiCall.release();
                 return fieldBean;
             } else {
+                throw restApiCall.buildException();
+            }
+        });
+    }
+
+    @Override
+    public Future<SystemAvatars> getAllSystemAvatars(AvatarType avatarType) {
+        return executorService.submit(() -> {
+            URIBuilder uriBuilder = buildPath(AVATAR, avatarType.getName(), SYSTEM);
+            RestApiCall restApiCall = doGet(uriBuilder.build());
+            int statusCode = restApiCall.getStatusCode();
+            if(statusCode == HttpURLConnection.HTTP_OK){
+                JsonReader jsonReader = restApiCall.getJsonReader();
+                SystemAvatars systemAvatars = gson.fromJson(jsonReader, SystemAvatars.class);
+                restApiCall.release();
+                return systemAvatars;
+            }else {
                 throw restApiCall.buildException();
             }
         });

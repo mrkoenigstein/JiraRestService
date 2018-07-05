@@ -3,6 +3,7 @@ package com.github.cschulc.jirarestservice.test;
 import com.github.cschulc.jirarestservice.domain.user.CreateUser;
 import com.github.cschulc.jirarestservice.domain.user.User;
 import com.github.cschulc.jirarestservice.domain.permission.MyPermissions;
+import com.github.cschulc.jirarestservice.domain.user.UserResult;
 import com.github.cschulc.jirarestservice.misc.JiraRestException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -62,9 +63,16 @@ public class UserServiceTest extends BaseTest {
         createUser.setEmailAddress("janedoe@test.de");
         createUser.setDisplayName("Jane Doe the First");
         createUser.getApplicationKeys().add("jira-core");
-
         Future<User> future = restService.getUserService().createUser(createUser);
         User user = future.get();
         Assert.assertNotNull(user);
+    }
+
+    @Test
+    public void testFindUsers() throws ExecutionException, InterruptedException {
+        Future<List<User>> future = restService.getUserService().findUsers(true, true, 1000, null, 0, ".");
+        List<User> users = future.get();
+        Assert.assertNotNull(users);
+        Assert.assertFalse(users.isEmpty());
     }
 }

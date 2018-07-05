@@ -15,6 +15,7 @@ import org.apache.commons.lang3.Validate;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.lang.reflect.Type;
+import java.net.HttpRetryException;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,17 +96,44 @@ public class UserServiveImpl extends BaseService implements UserService {
                 restApiCall.release();
                 return user;
             } else {
-                JiraRestException jiraRestException = restApiCall.buildException();
-                throw jiraRestException;
+                throw restApiCall.buildException();
             }
         });
     }
 
     @Override
-    public Future<UserResult> getUserBulk(String[] keys, int maxResults, int startAt, String[] usernames) {
-        return null;
+    public Future<List<User>> findUsers(boolean includeActive, boolean includeInactive, int maxResults, String property, int startAt, String username) {
+        return executorService.submit(() -> {
+            URIBuilder uriBuilder = buildPath(USER, SEARCH);
+            if(includeActive == true){
+                uriBuilder.addParameter(INCLUDE_ACTIVE, String.valueOf(includeActive));
+            }
+            if(includeInactive == true){
+                uriBuilder.addParameter(INCLUDE_INACTIVE, String.valueOf(includeInactive));
+            }
+            if(maxResults > 0){
+                uriBuilder.addParameter(MAX_RESULTS, String.valueOf(maxResults));
+            }
+            if(StringUtils.trimToNull(property) != null){
+                uriBuilder.addParameter(PROPERTY, property);
+            }
+            if(StringUtils.trimToNull(username) != null){
+                uriBuilder.addParameter(USERNAME, username);
+            }
+            RestApiCall restApiCall = doGet(uriBuilder.build());
+            int statusCode = restApiCall.getStatusCode();
+            if(statusCode == HttpURLConnection.HTTP_OK){
+                JsonReader jsonReader = restApiCall.getJsonReader();
+                Type listType = new TypeToken<ArrayList<User>>() {
+                }.getType();
+                List<User> users = gson.fromJson(jsonReader, listType);
+                restApiCall.release();
+                return users;
+            }else{
+                throw restApiCall.buildException();
+            }
+        });
     }
-
 
     private Future<List<User>> getAssignableSearch(final String username, final String issueKey, final String projectKey, final Integer startAt, final Integer maxResults) {
 

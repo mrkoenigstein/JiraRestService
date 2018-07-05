@@ -68,14 +68,20 @@ public interface UserService {
     Future<User> createUser(CreateUser user);
 
     /**
-     * Returns a list of users that match the query. This resource cannot be accessed anonymously.
+     * Returns a list of users that match the search string and property.
      *
-     * @param keys the keys of the users to be returned
-     * @param maxResults the maximum number of users to return (defaults to 10). The maximum allowed value is 200.
-     * @param startAt the index of the first user to return (0-based)
-     * @param usernames the usernames of the users to be returned
-     * @return
+     * Permissions required: Browse users and groups global permission. Users with permission to access Jira can call this method, but empty search results are returned.
+     *
+     * @param includeActive Include active users.
+     * @param includeInactive Include inactive users.
+     * @param maxResults The maximum number of items to return per page. Maximum is 1000.
+     * @param property A query string used to search properties. Property keys are specified by path, so property keys containing dot (.) or equals (=) characters cannot be used. The query string cannot be specified using a JSON object. Example: To search for the value of nested from {“something”:{“nested”:1,“other”:2}} use thepropertykey.something.nested=1.
+     * @param startAt The index of the first item to return in a page of results (page offset).
+     * @param username A query string used to search username, display name, and email address.
+     *                 The string is matched to the starting letters of any word in the searched fields.
+     *                 For example, ar matches to the username archie but not mark.
+     *                 If you want to get all users pass a "." as username.
+     * @return A {@link List} of {@link User}
      */
-    @Experimental
-    Future<UserResult> getUserBulk(String[] keys, int maxResults, int startAt, String[] usernames);
+    Future<List<User>> findUsers(boolean includeActive, boolean includeInactive, int maxResults, String property, int startAt, String username);
 }

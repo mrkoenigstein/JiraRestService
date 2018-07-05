@@ -5,6 +5,7 @@ import com.github.cschulc.jirarestservice.domain.Component;
 import com.github.cschulc.jirarestservice.domain.Project;
 import com.github.cschulc.jirarestservice.domain.Version;
 import com.github.cschulc.jirarestservice.domain.meta.Meta;
+import com.github.cschulc.jirarestservice.domain.project.CreateProject;
 import com.github.cschulc.jirarestservice.domain.project.ProjectCategory;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
 import com.google.gson.reflect.TypeToken;
@@ -27,7 +28,7 @@ public class ProjectServiceImpl extends BaseService implements ProjectService {
         this.executorService = executorService;
     }
 
-    public Future<Project> getProjectByKey(final String projectKey) {
+    public Future<Project> getProjectByKey(final String projectKey, String expand) {
         Validate.notNull(projectKey);
         return executorService.submit(() -> {
 
@@ -129,8 +130,21 @@ public class ProjectServiceImpl extends BaseService implements ProjectService {
     }
 
     @Override
-    public Future<Project> createProject(Project project) {
-        return null;
+    public Future<Project> createProject(CreateProject createProject) {
+        return executorService.submit(() -> {
+            URIBuilder uriBuilder = buildPath(PROJECT);
+            String body = createProject.toString();
+            RestApiCall restApiCall = doPost(uriBuilder.build(), body);
+            int statusCode = restApiCall.getStatusCode();
+            if (statusCode == HttpURLConnection.HTTP_CREATED) {
+                JsonReader jsonReader = restApiCall.getJsonReader();
+                Project project = gson.fromJson(jsonReader, Project.class);
+                restApiCall.release();
+                return project;
+            } else {
+                return null;
+            }
+        });
     }
 
     @Override
@@ -143,12 +157,12 @@ public class ProjectServiceImpl extends BaseService implements ProjectService {
             String body = projectCategory.toString();
             RestApiCall restApiCall = doPost(uriBuilder.build(), body);
             int statusCode = restApiCall.getStatusCode();
-            if(statusCode == HttpURLConnection.HTTP_OK){
+            if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
                 ProjectCategory category = gson.fromJson(jsonReader, ProjectCategory.class);
                 restApiCall.release();
                 return category;
-            }else{
+            } else {
                 throw restApiCall.buildException();
             }
         });
@@ -160,15 +174,14 @@ public class ProjectServiceImpl extends BaseService implements ProjectService {
             URIBuilder uriBuilder = buildPath(PROJECTCATEGORY);
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
-            if(statusCode == HttpURLConnection.HTTP_OK){
+            if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
                 Type listType = new TypeToken<ArrayList<ProjectCategory>>() {
                 }.getType();
                 List<ProjectCategory> projectCategories = gson.fromJson(jsonReader, listType);
                 restApiCall.release();
                 return projectCategories;
-            }
-            else{
+            } else {
                 throw restApiCall.buildException();
             }
         });

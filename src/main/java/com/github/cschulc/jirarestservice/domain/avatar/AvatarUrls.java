@@ -1,4 +1,4 @@
-package com.github.cschulc.jirarestservice.domain;
+package com.github.cschulc.jirarestservice.domain.avatar;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

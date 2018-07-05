@@ -4,6 +4,7 @@ import com.github.cschulc.jirarestservice.domain.Component;
 import com.github.cschulc.jirarestservice.domain.Project;
 import com.github.cschulc.jirarestservice.domain.Version;
 import com.github.cschulc.jirarestservice.domain.meta.Meta;
+import com.github.cschulc.jirarestservice.domain.project.CreateProject;
 import com.github.cschulc.jirarestservice.domain.project.ProjectCategory;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public interface ProjectService {
      * @param projectKey = the project key
      * @return all informations for the project
      */
-    Future<Project> getProjectByKey(final String projectKey);
+    Future<Project> getProjectByKey(final String projectKey, String expand);
 
     /**
      * Returns a list of all versions for a project.
@@ -59,7 +60,7 @@ public interface ProjectService {
      * @param project The Project to create
      * @return The new Project with the given Id
      */
-    Future<Project> createProject(Project project);
+    Future<Project> createProject(CreateProject project);
 
     /**
      * Create a project category via POST.

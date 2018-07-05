@@ -1,6 +1,6 @@
 package com.github.cschulc.jirarestservice.domain.user;
 
-import com.github.cschulc.jirarestservice.domain.AvatarUrls;
+import com.github.cschulc.jirarestservice.domain.avatar.AvatarUrls;
 import com.github.cschulc.jirarestservice.domain.Base;
 import com.google.gson.annotations.Expose;
 
