@@ -16,7 +16,7 @@ public class GroupServiceTest extends BaseTest {
 
     @Test
     public void testGetGroups() throws ExecutionException, InterruptedException {
-        Future<Groups> future = restService.getGroupService().getGroups(null, null, 0, null);
+        Future<Groups> future = restService.getGroupService().findGroups(null, null, 0, null);
         Groups groups = future.get();
         Assert.assertNotNull(groups);
     }

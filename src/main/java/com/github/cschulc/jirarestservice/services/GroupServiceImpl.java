@@ -26,7 +26,7 @@ public class GroupServiceImpl extends BaseService implements GroupService {
     }
 
     @Override
-    public Future<Groups> getGroups(String query, String exclude, int maxResults, String username) {
+    public Future<Groups> findGroups(String query, String exclude, int maxResults, String username) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(GROUPS, PICKER);
             if (StringUtils.trimToNull(query) != null) {

@@ -8,6 +8,7 @@ import com.github.cschulc.jirarestservice.gson.MetaDeserializer;
 import com.github.cschulc.jirarestservice.misc.RestParams;
 import com.github.cschulc.jirarestservice.misc.RestPaths;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
+import com.github.cschulc.jirarestservice.util.URIHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.commons.codec.CharEncoding;
@@ -89,17 +90,7 @@ public abstract class BaseService implements RestPaths, RestParams {
     }
 
     protected URIBuilder buildPath(String... paths) {
-        URIBuilder uriBuilder = new URIBuilder(baseUri);
-        String basePath = uriBuilder.getPath();
-        for (String path : paths) {
-            if (path.startsWith("/")) {
-                basePath = basePath.concat(path);
-            } else {
-                basePath = basePath.concat("/").concat(path);
-            }
-        }
-        uriBuilder.setPath(basePath);
-        return uriBuilder;
+        return URIHelper.buildPath(baseUri, paths);
     }
 
     private HttpGet createGetMethod(URI uri) {

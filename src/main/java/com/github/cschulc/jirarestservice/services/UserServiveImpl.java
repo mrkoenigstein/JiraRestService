@@ -105,40 +105,38 @@ public class UserServiveImpl extends BaseService implements UserService {
     public Future<List<User>> findUsers(boolean includeActive, boolean includeInactive, int maxResults, String property, int startAt, String username) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(USER, SEARCH);
-            if(includeActive == true){
+            if (includeActive == true) {
                 uriBuilder.addParameter(INCLUDE_ACTIVE, String.valueOf(includeActive));
             }
-            if(includeInactive == true){
+            if (includeInactive == true) {
                 uriBuilder.addParameter(INCLUDE_INACTIVE, String.valueOf(includeInactive));
             }
-            if(maxResults > 0){
+            if (maxResults > 0) {
                 uriBuilder.addParameter(MAX_RESULTS, String.valueOf(maxResults));
             }
-            if(StringUtils.trimToNull(property) != null){
+            if (StringUtils.trimToNull(property) != null) {
                 uriBuilder.addParameter(PROPERTY, property);
             }
-            if(StringUtils.trimToNull(username) != null){
+            if (StringUtils.trimToNull(username) != null) {
                 uriBuilder.addParameter(USERNAME, username);
             }
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
-            if(statusCode == HttpURLConnection.HTTP_OK){
+            if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
                 Type listType = new TypeToken<ArrayList<User>>() {
                 }.getType();
                 List<User> users = gson.fromJson(jsonReader, listType);
                 restApiCall.release();
                 return users;
-            }else{
+            } else {
                 throw restApiCall.buildException();
             }
         });
     }
 
     private Future<List<User>> getAssignableSearch(final String username, final String issueKey, final String projectKey, final Integer startAt, final Integer maxResults) {
-
         return executorService.submit(() -> {
-
             URIBuilder uriBuilder = buildPath(USER, ASSIGNABLE, SEARCH);
             if (StringUtils.trimToNull(username) != null) {
                 uriBuilder.addParameter(USERNAME, username);

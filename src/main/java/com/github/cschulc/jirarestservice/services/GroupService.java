@@ -12,7 +12,9 @@ import java.util.concurrent.Future;
  */
 public interface GroupService {
 
-    Future<Groups> getGroups(String query, String exclude, int maxResults, String username);
+    Future<Groups> findGroups(String query, String exclude, int maxResults, String username);
 
     Future<Group> addUserToGroup(String groupname, String username);
+
+
 }

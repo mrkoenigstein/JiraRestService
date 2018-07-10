@@ -1,9 +1,12 @@
 package com.github.cschulc.jirarestservice;
 
 import com.github.cschulc.jirarestservice.domain.field.Field;
+import com.github.cschulc.jirarestservice.misc.RestParams;
 import com.github.cschulc.jirarestservice.misc.RestPaths;
 import com.github.cschulc.jirarestservice.services.*;
+import com.github.cschulc.jirarestservice.util.URIHelper;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -17,7 +20,9 @@ import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.*;
+import org.apache.http.message.BasicHeader;
 
+import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -29,7 +34,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
-public class JiraRestService {
+public class JiraRestService implements RestPaths, RestParams {
 
     private static final String HTTP = "http";
     private static final String HTTPS = "https";
@@ -80,7 +85,7 @@ public class JiraRestService {
      * @param password = login password
      * @return 200 succees, 401 for wrong credentials and 403 for captcha is needed, you have to login at the jira website
      */
-    public int connect(URI uri, String username, String password, HttpHost proxyHost) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
+    public int connect(URI uri, String username, String password, HttpHost proxyHost) throws IOException, URISyntaxException {
         this.username = username;
         String host = uri.getHost();
         int port = getPort(uri.toURL());
@@ -108,7 +113,18 @@ public class JiraRestService {
             this.proxy = proxyHost;
             config = RequestConfig.custom().setProxy(proxyHost).build();
         }
-        return 200;
+        URIBuilder uriBuilder = URIHelper.buildPath(baseUri, USER);
+        uriBuilder.addParameter(USERNAME, username);
+        HttpGet method = new HttpGet(uriBuilder.build());
+        method.addHeader(new BasicHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON));
+        method.addHeader(new BasicHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON));
+        if(config != null){
+            method.setConfig(config);
+        }
+        CloseableHttpResponse response = client.execute(method, context);
+        int statusCode = response.getStatusLine().getStatusCode();
+        response.close();
+        return statusCode;
     }
 
     /**
