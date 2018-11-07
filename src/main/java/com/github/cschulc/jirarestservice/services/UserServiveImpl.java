@@ -1,12 +1,10 @@
 package com.github.cschulc.jirarestservice.services;
 
 import com.github.cschulc.jirarestservice.JiraRestService;
+import com.github.cschulc.jirarestservice.domain.permission.MyPermissions;
 import com.github.cschulc.jirarestservice.domain.user.CreateUser;
 import com.github.cschulc.jirarestservice.domain.user.User;
-import com.github.cschulc.jirarestservice.domain.permission.MyPermissions;
-import com.github.cschulc.jirarestservice.domain.user.UserResult;
 import com.github.cschulc.jirarestservice.misc.Experimental;
-import com.github.cschulc.jirarestservice.misc.JiraRestException;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -14,8 +12,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.http.client.utils.URIBuilder;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
-import java.net.HttpRetryException;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
@@ -123,12 +121,7 @@ public class UserServiveImpl extends BaseService implements UserService {
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
-                JsonReader jsonReader = restApiCall.getJsonReader();
-                Type listType = new TypeToken<ArrayList<User>>() {
-                }.getType();
-                List<User> users = gson.fromJson(jsonReader, listType);
-                restApiCall.release();
-                return users;
+                return getUserListFromJson(restApiCall);
             } else {
                 throw restApiCall.buildException();
             }
@@ -156,17 +149,21 @@ public class UserServiveImpl extends BaseService implements UserService {
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
-                JsonReader jsonReader = restApiCall.getJsonReader();
-                Type listType = new TypeToken<ArrayList<User>>() {
-                }.getType();
-                List<User> users = gson.fromJson(jsonReader, listType);
-                restApiCall.release();
-                return users;
+                return getUserListFromJson(restApiCall);
             } else if (statusCode == HttpURLConnection.HTTP_UNAUTHORIZED || statusCode == HttpURLConnection.HTTP_FORBIDDEN) {
                 return new ArrayList<>();
             } else {
                 throw restApiCall.buildException();
             }
         });
+    }
+
+    private List<User> getUserListFromJson(RestApiCall restApiCall) throws IOException {
+        JsonReader jsonReader = restApiCall.getJsonReader();
+        Type listType = new TypeToken<ArrayList<User>>() {
+        }.getType();
+        List<User> users = gson.fromJson(jsonReader, listType);
+        restApiCall.release();
+        return users;
     }
 }

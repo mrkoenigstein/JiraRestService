@@ -70,7 +70,7 @@ public class UserServiceTest extends BaseTest {
 
     @Test
     public void testFindUsers() throws ExecutionException, InterruptedException {
-        Future<List<User>> future = restService.getUserService().findUsers(true, true, 1000, null, 0, ".");
+        Future<List<User>> future = restService.getUserService().findUsers(true, false, 100, null, 0, ".");
         List<User> users = future.get();
         Assert.assertNotNull(users);
         Assert.assertFalse(users.isEmpty());
