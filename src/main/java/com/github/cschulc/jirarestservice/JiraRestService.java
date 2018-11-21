@@ -1,6 +1,6 @@
 package com.github.cschulc.jirarestservice;
 
-import com.github.cschulc.jirarestservice.domain.field.Field;
+import com.github.cschulc.jirarestservice.domain.field.FieldBean;
 import com.github.cschulc.jirarestservice.misc.RestParams;
 import com.github.cschulc.jirarestservice.misc.RestPaths;
 import com.github.cschulc.jirarestservice.services.*;
@@ -11,7 +11,6 @@ import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.AuthCache;
-import org.apache.http.client.CookieStore;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -28,11 +27,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
 
 public class JiraRestService implements RestPaths, RestParams {
 
@@ -47,7 +44,7 @@ public class JiraRestService implements RestPaths, RestParams {
     private HttpHost proxy;
     private HttpClientContext context;
 
-    private static Map<String, Field> customfields;
+    private static Map<String, FieldBean> customfields;
 
     private static RequestConfig config;
 
@@ -161,7 +158,7 @@ public class JiraRestService implements RestPaths, RestParams {
         return config;
     }
 
-    public static Map<String, Field> getCustomfields() {
+    public static Map<String, FieldBean> getCustomfields() {
         if (customfields == null) {
             customfields = new HashMap<>();
         }

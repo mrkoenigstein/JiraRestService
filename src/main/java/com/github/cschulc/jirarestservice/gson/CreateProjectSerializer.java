@@ -1,6 +1,6 @@
 package com.github.cschulc.jirarestservice.gson;
 
-import com.github.cschulc.jirarestservice.domain.project.CreateProject;
+import com.github.cschulc.jirarestservice.domain.project.CreateProjectBean;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
@@ -9,14 +9,14 @@ import com.google.gson.JsonSerializer;
 import java.lang.reflect.Type;
 
 /**
- * User: Christian Schulze (cschulc@outlook.com)
+ * UserBean: Christian Schulze (cschulc@outlook.com)
  * Date: 04.07.2018
  * Time: 15:51
  */
-public class CreateProjectSerializer implements JsonSerializer<CreateProject> {
+public class CreateProjectSerializer implements JsonSerializer<CreateProjectBean> {
 
     @Override
-    public JsonElement serialize(CreateProject createProject, Type type, JsonSerializationContext jsonSerializationContext) {
+    public JsonElement serialize(CreateProjectBean createProject, Type type, JsonSerializationContext jsonSerializationContext) {
         final JsonObject retval = new JsonObject();
         retval.addProperty("assigneeType", createProject.getAssigneeType());
         if(createProject.getAvatarId() > 0){

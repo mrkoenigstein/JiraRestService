@@ -1,7 +1,7 @@
 package com.github.cschulc.jirarestservice.test;
 
-import com.github.cschulc.jirarestservice.domain.permission.PermissionScheme;
-import com.github.cschulc.jirarestservice.domain.permission.PermissionSchemes;
+import com.github.cschulc.jirarestservice.domain.permission.PermissionSchemeBean;
+import com.github.cschulc.jirarestservice.domain.permission.PermissionSchemesBean;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,15 +15,15 @@ public class PermissionSchemeServiceTest extends BaseTest {
 
     @Test
     public void getPermissionSchemes() throws ExecutionException, InterruptedException {
-        Future<PermissionSchemes> future = restService.getPermissionSchemeService().getPermissionsSchemes();
-        PermissionSchemes permissionSchemes = future.get();
+        Future<PermissionSchemesBean> future = restService.getPermissionSchemeService().getPermissionsSchemes();
+        PermissionSchemesBean permissionSchemes = future.get();
         Assert.assertNotNull(permissionSchemes);
     }
 
     @Test
     public void getPermissionScheme() throws ExecutionException, InterruptedException {
-        Future<PermissionScheme> future = restService.getPermissionSchemeService().getPermissionScheme("0");
-        PermissionScheme permissionScheme = future.get();
+        Future<PermissionSchemeBean> future = restService.getPermissionSchemeService().getPermissionScheme("0");
+        PermissionSchemeBean permissionScheme = future.get();
         Assert.assertNotNull(permissionScheme);
     }
 }

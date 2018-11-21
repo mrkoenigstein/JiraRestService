@@ -1,9 +1,9 @@
 package com.github.cschulc.jirarestservice.services;
 
 import com.github.cschulc.jirarestservice.JiraRestService;
-import com.github.cschulc.jirarestservice.domain.permission.MyPermissions;
-import com.github.cschulc.jirarestservice.domain.user.CreateUser;
-import com.github.cschulc.jirarestservice.domain.user.User;
+import com.github.cschulc.jirarestservice.domain.permission.MyPermissionsBean;
+import com.github.cschulc.jirarestservice.domain.user.CreateUserBean;
+import com.github.cschulc.jirarestservice.domain.user.UserBean;
 import com.github.cschulc.jirarestservice.misc.Experimental;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
 import com.google.gson.reflect.TypeToken;
@@ -27,17 +27,17 @@ public class UserServiveImpl extends BaseService implements UserService {
         this.executorService = executorService;
     }
 
-    public Future<List<User>> getAssignableUserForProject(String projectKey, Integer startAt, Integer maxResults) {
+    public Future<List<UserBean>> getAssignableUserForProject(String projectKey, Integer startAt, Integer maxResults) {
         return getAssignableSearch(null, null, projectKey, startAt, maxResults);
     }
 
 
-    public Future<List<User>> getAssignableUsersForIssue(String issueKey, Integer startAt, Integer maxResults) {
+    public Future<List<UserBean>> getAssignableUsersForIssue(String issueKey, Integer startAt, Integer maxResults) {
         return getAssignableSearch(null, issueKey, null, startAt, maxResults);
     }
 
 
-    public Future<User> getUserByUsername(final String username) {
+    public Future<UserBean> getUserByUsername(final String username) {
         Validate.notNull(username);
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(USER);
@@ -46,7 +46,7 @@ public class UserServiveImpl extends BaseService implements UserService {
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                User user = gson.fromJson(jsonReader, User.class);
+                UserBean user = gson.fromJson(jsonReader, UserBean.class);
                 restApiCall.release();
                 return user;
             } else if (statusCode == HttpURLConnection.HTTP_UNAUTHORIZED || statusCode == HttpURLConnection.HTTP_FORBIDDEN) {
@@ -58,20 +58,20 @@ public class UserServiveImpl extends BaseService implements UserService {
     }
 
 
-    public Future<User> getLoggedInRemoteUser() {
+    public Future<UserBean> getLoggedInRemoteUser() {
         String username = restService.getUsername();
         return getUserByUsername(username);
     }
 
     @Override
-    public Future<MyPermissions> getMyPermissions() {
+    public Future<MyPermissionsBean> getMyPermissions() {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(MYPERMISSIONS);
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                MyPermissions permissionsBean = gson.fromJson(jsonReader, MyPermissions.class);
+                MyPermissionsBean permissionsBean = gson.fromJson(jsonReader, MyPermissionsBean.class);
                 restApiCall.release();
                 return permissionsBean;
             } else {
@@ -82,7 +82,7 @@ public class UserServiveImpl extends BaseService implements UserService {
 
     @Override
     @Experimental
-    public Future<User> createUser(CreateUser createUser) {
+    public Future<UserBean> createUser(CreateUserBean createUser) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(USER);
             String body = createUser.toString();
@@ -90,7 +90,7 @@ public class UserServiveImpl extends BaseService implements UserService {
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_CREATED) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                User user = gson.fromJson(jsonReader, User.class);
+                UserBean user = gson.fromJson(jsonReader, UserBean.class);
                 restApiCall.release();
                 return user;
             } else {
@@ -100,7 +100,7 @@ public class UserServiveImpl extends BaseService implements UserService {
     }
 
     @Override
-    public Future<List<User>> findUsers(boolean includeActive, boolean includeInactive, int maxResults, String property, int startAt, String username) {
+    public Future<List<UserBean>> findUsers(boolean includeActive, boolean includeInactive, int maxResults, String property, int startAt, String username) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(USER, SEARCH);
             if (includeActive == true) {
@@ -128,7 +128,7 @@ public class UserServiveImpl extends BaseService implements UserService {
         });
     }
 
-    private Future<List<User>> getAssignableSearch(final String username, final String issueKey, final String projectKey, final Integer startAt, final Integer maxResults) {
+    private Future<List<UserBean>> getAssignableSearch(final String username, final String issueKey, final String projectKey, final Integer startAt, final Integer maxResults) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(USER, ASSIGNABLE, SEARCH);
             if (StringUtils.trimToNull(username) != null) {
@@ -158,11 +158,11 @@ public class UserServiveImpl extends BaseService implements UserService {
         });
     }
 
-    private List<User> getUserListFromJson(RestApiCall restApiCall) throws IOException {
+    private List<UserBean> getUserListFromJson(RestApiCall restApiCall) throws IOException {
         JsonReader jsonReader = restApiCall.getJsonReader();
-        Type listType = new TypeToken<ArrayList<User>>() {
+        Type listType = new TypeToken<ArrayList<UserBean>>() {
         }.getType();
-        List<User> users = gson.fromJson(jsonReader, listType);
+        List<UserBean> users = gson.fromJson(jsonReader, listType);
         restApiCall.release();
         return users;
     }

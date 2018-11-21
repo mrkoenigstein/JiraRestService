@@ -1,35 +1,35 @@
 package com.github.cschulc.jirarestservice.gson;
 
-import com.github.cschulc.jirarestservice.domain.Project;
-import com.github.cschulc.jirarestservice.domain.Version;
+import com.github.cschulc.jirarestservice.domain.ProjectBean;
+import com.github.cschulc.jirarestservice.domain.VersionBean;
 import com.github.cschulc.jirarestservice.domain.customFields.CustomFieldType;
-import com.github.cschulc.jirarestservice.domain.meta.FieldsMeta;
-import com.github.cschulc.jirarestservice.domain.meta.IssueTypeMeta;
-import com.github.cschulc.jirarestservice.domain.meta.Meta;
-import com.github.cschulc.jirarestservice.domain.meta.ProjectMeta;
-import com.github.cschulc.jirarestservice.domain.meta.custom.ProjectCustomFieldMeta;
-import com.github.cschulc.jirarestservice.domain.meta.custom.ValueMeta;
-import com.github.cschulc.jirarestservice.domain.meta.custom.ValuesCustomFieldMeta;
-import com.github.cschulc.jirarestservice.domain.meta.custom.VersionCustomFieldMeta;
-import com.github.cschulc.jirarestservice.domain.meta.fields.FieldMeta;
+import com.github.cschulc.jirarestservice.domain.meta.FieldsMetaBean;
+import com.github.cschulc.jirarestservice.domain.meta.IssueTypeMetaBean;
+import com.github.cschulc.jirarestservice.domain.meta.MetaBean;
+import com.github.cschulc.jirarestservice.domain.meta.ProjectMetaBean;
+import com.github.cschulc.jirarestservice.domain.meta.custom.ProjectCustomFieldMetaBean;
+import com.github.cschulc.jirarestservice.domain.meta.custom.ValueMetaBean;
+import com.github.cschulc.jirarestservice.domain.meta.custom.ValuesCustomFieldMetaBean;
+import com.github.cschulc.jirarestservice.domain.meta.custom.VersionCustomFieldMetaBean;
+import com.github.cschulc.jirarestservice.domain.meta.fields.FieldMetaBean;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.*;
 
-public class MetaDeserializer extends BaseDeserializer implements JsonDeserializer<Meta>{
+public class MetaDeserializer extends BaseDeserializer implements JsonDeserializer<MetaBean>{
 
     public static final String ALLOWED_VALUES = "allowedValues";
-    private final Map<String, FieldMeta> customFieldsMetaCache = new HashMap<>();
+    private final Map<String, FieldMetaBean> customFieldsMetaCache = new HashMap<>();
 
     @Override
-    public Meta deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        Meta meta = gson.fromJson(json, Meta.class);
+    public MetaBean deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        MetaBean meta = gson.fromJson(json, MetaBean.class);
 
-        Map<String, ProjectMeta> projectsMetaMap = new HashMap<>();
-        List<ProjectMeta> projects = meta.getProjects();
-        for (ProjectMeta project : projects) {
+        Map<String, ProjectMetaBean> projectsMetaMap = new HashMap<>();
+        List<ProjectMetaBean> projects = meta.getProjects();
+        for (ProjectMetaBean project : projects) {
             projectsMetaMap.put(project.getKey(), project);
         }
         JsonObject jsonObject = json.getAsJsonObject();
@@ -40,17 +40,17 @@ public class MetaDeserializer extends BaseDeserializer implements JsonDeserializ
             JsonElement keyElement = projectObject.get("key");
             String key = keyElement.getAsString();
             if (projectsMetaMap.containsKey(key) == true) {
-                ProjectMeta projectMeta = projectsMetaMap.get(key);
+                ProjectMetaBean projectMeta = projectsMetaMap.get(key);
                 processProjectMeta(projectMeta, projectObject);
             }
         }
         return meta;
     }
 
-    private void processProjectMeta(ProjectMeta projectMeta, JsonObject projectObject) {
-        List<IssueTypeMeta> issuetypes = projectMeta.getIssuetypes();
-        Map<String, IssueTypeMeta> issueTypeMetaMap = new HashMap<>();
-        for (IssueTypeMeta issuetype : issuetypes) {
+    private void processProjectMeta(ProjectMetaBean projectMeta, JsonObject projectObject) {
+        List<IssueTypeMetaBean> issuetypes = projectMeta.getIssuetypes();
+        Map<String, IssueTypeMetaBean> issueTypeMetaMap = new HashMap<>();
+        for (IssueTypeMetaBean issuetype : issuetypes) {
             String name = issuetype.getName();
             issueTypeMetaMap.put(name, issuetype);
         }
@@ -62,15 +62,15 @@ public class MetaDeserializer extends BaseDeserializer implements JsonDeserializ
             JsonElement nameElement = issuetypeObject.get("name");
             String name = nameElement.getAsString();
             if (issueTypeMetaMap.containsKey(name) == true) {
-                IssueTypeMeta issueTypeMeta = issueTypeMetaMap.get(name);
+                IssueTypeMetaBean issueTypeMeta = issueTypeMetaMap.get(name);
                 processIssueType(issueTypeMeta, issuetypeObject);
             }
         }
     }
 
 
-    private void processIssueType(IssueTypeMeta issueTypeMeta, JsonObject issuetypeObject) {
-        FieldsMeta fields = issueTypeMeta.getFields();
+    private void processIssueType(IssueTypeMetaBean issueTypeMeta, JsonObject issuetypeObject) {
+        FieldsMetaBean fields = issueTypeMeta.getFields();
         JsonElement fieldsElement = issuetypeObject.get("fields");
         JsonObject fieldsObject = fieldsElement.getAsJsonObject();
         Set<Map.Entry<String, JsonElement>> entries = fieldsObject.entrySet();
@@ -78,10 +78,10 @@ public class MetaDeserializer extends BaseDeserializer implements JsonDeserializ
             String customFieldId = entry.getKey();
             if (customFieldId.startsWith("customfield_") == true) {
                 if(customFieldsMetaCache.containsKey(customFieldId) == true) {
-                    FieldMeta fieldMeta = customFieldsMetaCache.get(customFieldId);
+                    FieldMetaBean fieldMeta = customFieldsMetaCache.get(customFieldId);
                     fields.getCustom().add(fieldMeta);
                 }else{
-                    FieldMeta fieldMeta = extractCustomFieldMeta(customFieldId, entry.getValue());
+                    FieldMetaBean fieldMeta = extractCustomFieldMeta(customFieldId, entry.getValue());
                     customFieldsMetaCache.put(customFieldId, fieldMeta);
                     fields.getCustom().add(fieldMeta);
                 }
@@ -90,8 +90,8 @@ public class MetaDeserializer extends BaseDeserializer implements JsonDeserializ
 
     }
 
-    private FieldMeta extractCustomFieldMeta(String key, JsonElement json) {
-        FieldMeta fieldMeta = gson.fromJson(json, FieldMeta.class);
+    private FieldMetaBean extractCustomFieldMeta(String key, JsonElement json) {
+        FieldMetaBean fieldMeta = gson.fromJson(json, FieldMetaBean.class);
         CustomFieldType customFieldType = getCustomFieldType(key);
         if(customFieldType == null){
             return fieldMeta;
@@ -116,13 +116,13 @@ public class MetaDeserializer extends BaseDeserializer implements JsonDeserializ
             case USER:
                 return fieldMeta;
             case PROJECT:
-                ProjectCustomFieldMeta projectCustomFieldMeta = new ProjectCustomFieldMeta(fieldMeta);
+                ProjectCustomFieldMetaBean projectCustomFieldMeta = new ProjectCustomFieldMetaBean(fieldMeta);
                 JsonObject projectCustomFieldObject = json.getAsJsonObject();
                 JsonElement projectCustomAllowedValues = projectCustomFieldObject.get(ALLOWED_VALUES);
                 JsonArray projectCustomAllowedValuesArray = projectCustomAllowedValues.getAsJsonArray();
-                Type projectType = new TypeToken<ArrayList<Project>>() {
+                Type projectType = new TypeToken<ArrayList<ProjectBean>>() {
                 }.getType();
-                List<Project> projects = gson.fromJson(projectCustomAllowedValuesArray, projectType);
+                List<ProjectBean> projects = gson.fromJson(projectCustomAllowedValuesArray, projectType);
                 projectCustomFieldMeta.setAllowedValues(projects);
                 return projectCustomFieldMeta;
             case CASCADING:
@@ -148,24 +148,24 @@ public class MetaDeserializer extends BaseDeserializer implements JsonDeserializ
         }
     }
 
-    private FieldMeta getValueCustomFieldMeta(JsonElement json, FieldMeta fieldMeta) {
-        ValuesCustomFieldMeta valuesCustomFieldMeta = new ValuesCustomFieldMeta(fieldMeta);
+    private FieldMetaBean getValueCustomFieldMeta(JsonElement json, FieldMetaBean fieldMeta) {
+        ValuesCustomFieldMetaBean valuesCustomFieldMeta = new ValuesCustomFieldMetaBean(fieldMeta);
         JsonObject valuesFieldObject = json.getAsJsonObject();
         JsonElement valuesCustomFieldAllowedValues = valuesFieldObject.get(ALLOWED_VALUES);
         JsonArray valuesCustomFieldAllowedValuesArray = valuesCustomFieldAllowedValues.getAsJsonArray();
-        Type valueType = new TypeToken<ArrayList<ValueMeta>>(){}.getType();
-        List<ValueMeta> mutliSelectValues = gson.fromJson(valuesCustomFieldAllowedValuesArray, valueType);
+        Type valueType = new TypeToken<ArrayList<ValueMetaBean>>(){}.getType();
+        List<ValueMetaBean> mutliSelectValues = gson.fromJson(valuesCustomFieldAllowedValuesArray, valueType);
         valuesCustomFieldMeta.setAllowedValues(mutliSelectValues);
         return valuesCustomFieldMeta;
     }
 
-    private FieldMeta getVersionCustomFieldMeta(JsonElement json, FieldMeta fieldMeta) {
-        VersionCustomFieldMeta versionCustomFieldMeta = new VersionCustomFieldMeta(fieldMeta);
+    private FieldMetaBean getVersionCustomFieldMeta(JsonElement json, FieldMetaBean fieldMeta) {
+        VersionCustomFieldMetaBean versionCustomFieldMeta = new VersionCustomFieldMetaBean(fieldMeta);
         JsonObject versionCustomFieldObject = json.getAsJsonObject();
         JsonElement versionCustomFieldAllowedValues = versionCustomFieldObject.get(ALLOWED_VALUES);
         JsonArray versionCustomFieldAllowedValuesArray = versionCustomFieldAllowedValues.getAsJsonArray();
-        Type versionType = new TypeToken<ArrayList<Version>>(){}.getType();
-        List<Version> versions = gson.fromJson(versionCustomFieldAllowedValuesArray, versionType);
+        Type versionType = new TypeToken<ArrayList<VersionBean>>(){}.getType();
+        List<VersionBean> versions = gson.fromJson(versionCustomFieldAllowedValuesArray, versionType);
         versionCustomFieldMeta.setAllowedValues(versions);
         return versionCustomFieldMeta;
     }

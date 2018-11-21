@@ -2,7 +2,7 @@ package com.github.cschulc.jirarestservice.gson;
 
 import com.github.cschulc.jirarestservice.JiraRestService;
 import com.github.cschulc.jirarestservice.domain.customFields.CustomFieldType;
-import com.github.cschulc.jirarestservice.domain.field.Field;
+import com.github.cschulc.jirarestservice.domain.field.FieldBean;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -14,7 +14,7 @@ public abstract class BaseDeserializer {
             .create();
 
     protected CustomFieldType getCustomFieldType(String customFieldId) {
-        Field fieldBean = JiraRestService.getCustomfields().get(customFieldId);
+        FieldBean fieldBean = JiraRestService.getCustomfields().get(customFieldId);
         if(fieldBean == null){
             return null;
         }

@@ -1,8 +1,8 @@
 package com.github.cschulc.jirarestservice.services;
 
 import com.github.cschulc.jirarestservice.JiraRestService;
-import com.github.cschulc.jirarestservice.domain.notification.NotificationScheme;
-import com.github.cschulc.jirarestservice.domain.notification.NotifictaionSchemes;
+import com.github.cschulc.jirarestservice.domain.notification.NotificationSchemeBean;
+import com.github.cschulc.jirarestservice.domain.notification.NotifictaionSchemesBean;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
 import com.google.gson.stream.JsonReader;
 import org.apache.http.client.utils.URIBuilder;
@@ -23,14 +23,14 @@ public class NotificationSchemeServiceImpl extends BaseService implements Notifi
 
 
     @Override
-    public Future<NotifictaionSchemes> getNotificationSchemes(int startAt, int maxResults, String expand) {
+    public Future<NotifictaionSchemesBean> getNotificationSchemes(int startAt, int maxResults, String expand) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(NOTIFICATION_SCHEME);
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                NotifictaionSchemes notifictaionSchemes = gson.fromJson(jsonReader, NotifictaionSchemes.class);
+                NotifictaionSchemesBean notifictaionSchemes = gson.fromJson(jsonReader, NotifictaionSchemesBean.class);
                 restApiCall.release();
                 return notifictaionSchemes;
             } else {
@@ -40,7 +40,7 @@ public class NotificationSchemeServiceImpl extends BaseService implements Notifi
     }
 
     @Override
-    public Future<NotificationScheme> getNotificationScheme(String id, String expand) {
+    public Future<NotificationSchemeBean> getNotificationScheme(String id, String expand) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(NOTIFICATION_SCHEME, id);
             uriBuilder.addParameter(EXPAND, expand);
@@ -48,7 +48,7 @@ public class NotificationSchemeServiceImpl extends BaseService implements Notifi
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                NotificationScheme notifictaionSchemes = gson.fromJson(jsonReader, NotificationScheme.class);
+                NotificationSchemeBean notifictaionSchemes = gson.fromJson(jsonReader, NotificationSchemeBean.class);
                 restApiCall.release();
                 return notifictaionSchemes;
             } else {

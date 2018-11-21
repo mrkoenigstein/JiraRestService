@@ -1,15 +1,15 @@
 package com.github.cschulc.jirarestservice.services;
 
 import com.github.cschulc.jirarestservice.JiraRestService;
-import com.github.cschulc.jirarestservice.domain.AttachmentMeta;
-import com.github.cschulc.jirarestservice.domain.Issuetype;
-import com.github.cschulc.jirarestservice.domain.Priority;
-import com.github.cschulc.jirarestservice.domain.Status;
+import com.github.cschulc.jirarestservice.domain.AttachmentMetaBean;
+import com.github.cschulc.jirarestservice.domain.IssuetypeBean;
+import com.github.cschulc.jirarestservice.domain.PriorityBean;
+import com.github.cschulc.jirarestservice.domain.StatusBean;
 import com.github.cschulc.jirarestservice.domain.avatar.AvatarType;
-import com.github.cschulc.jirarestservice.domain.avatar.SystemAvatars;
-import com.github.cschulc.jirarestservice.domain.field.CreateField;
-import com.github.cschulc.jirarestservice.domain.field.Field;
-import com.github.cschulc.jirarestservice.domain.system.Configuration;
+import com.github.cschulc.jirarestservice.domain.avatar.SystemAvatarsBean;
+import com.github.cschulc.jirarestservice.domain.field.CreateFieldBean;
+import com.github.cschulc.jirarestservice.domain.field.FieldBean;
+import com.github.cschulc.jirarestservice.domain.system.ConfigurationBean;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -31,7 +31,7 @@ public class SystemServiceImpl extends BaseService implements SystemService {
     }
 
     @Override
-    public Future<Configuration> getConfiguration() {
+    public Future<ConfigurationBean> getConfiguration() {
         return executorService.submit(() -> {
 
             URIBuilder uriBuilder = buildPath(CONFIGURATION);
@@ -39,7 +39,7 @@ public class SystemServiceImpl extends BaseService implements SystemService {
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Configuration configuration = gson.fromJson(jsonReader, Configuration.class);
+                ConfigurationBean configuration = gson.fromJson(jsonReader, ConfigurationBean.class);
                 restApiCall.release();
                 return configuration;
             } else {
@@ -48,7 +48,7 @@ public class SystemServiceImpl extends BaseService implements SystemService {
         });
     }
 
-    public Future<List<Issuetype>> getIssueTypes() {
+    public Future<List<IssuetypeBean>> getIssueTypes() {
         return executorService.submit(() -> {
 
             URIBuilder uriBuilder = buildPath(ISSUETPYES);
@@ -56,9 +56,9 @@ public class SystemServiceImpl extends BaseService implements SystemService {
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Type listType = new TypeToken<ArrayList<Issuetype>>() {
+                Type listType = new TypeToken<ArrayList<IssuetypeBean>>() {
                 }.getType();
-                List<Issuetype> issuetypes = gson.fromJson(jsonReader, listType);
+                List<IssuetypeBean> issuetypes = gson.fromJson(jsonReader, listType);
                 restApiCall.release();
                 return issuetypes;
             } else {
@@ -69,7 +69,7 @@ public class SystemServiceImpl extends BaseService implements SystemService {
     }
 
 
-    public Future<List<Status>> getStates() {
+    public Future<List<StatusBean>> getStates() {
         return executorService.submit(() -> {
 
             URIBuilder uriBuilder = buildPath(STATUS);
@@ -77,9 +77,9 @@ public class SystemServiceImpl extends BaseService implements SystemService {
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Type listType = new TypeToken<ArrayList<Status>>() {
+                Type listType = new TypeToken<ArrayList<StatusBean>>() {
                 }.getType();
-                List<Status> states = gson.fromJson(jsonReader, listType);
+                List<StatusBean> states = gson.fromJson(jsonReader, listType);
                 restApiCall.release();
                 return states;
             } else {
@@ -90,7 +90,7 @@ public class SystemServiceImpl extends BaseService implements SystemService {
     }
 
 
-    public Future<List<Priority>> getPriorities() {
+    public Future<List<PriorityBean>> getPriorities() {
         return executorService.submit(() -> {
 
             URIBuilder uriBuilder = buildPath(PRIORITY);
@@ -98,9 +98,9 @@ public class SystemServiceImpl extends BaseService implements SystemService {
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Type listType = new TypeToken<ArrayList<Priority>>() {
+                Type listType = new TypeToken<ArrayList<PriorityBean>>() {
                 }.getType();
-                List<Priority> priorities = gson.fromJson(jsonReader, listType);
+                List<PriorityBean> priorities = gson.fromJson(jsonReader, listType);
                 restApiCall.release();
                 return priorities;
             } else {
@@ -110,16 +110,16 @@ public class SystemServiceImpl extends BaseService implements SystemService {
     }
 
 
-    public Future<List<Field>> getAllFields() {
+    public Future<List<FieldBean>> getAllFields() {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(FIELD);
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Type listType = new TypeToken<ArrayList<Field>>() {
+                Type listType = new TypeToken<ArrayList<FieldBean>>() {
                 }.getType();
-                List<Field> fields = gson.fromJson(jsonReader, listType);
+                List<FieldBean> fields = gson.fromJson(jsonReader, listType);
                 restApiCall.release();
                 return fields;
             } else {
@@ -129,12 +129,12 @@ public class SystemServiceImpl extends BaseService implements SystemService {
     }
 
 
-    public Future<List<Field>> getAllCustomFields() {
+    public Future<List<FieldBean>> getAllCustomFields() {
         return executorService.submit(() -> {
-            List<Field> retval = new ArrayList<>();
-            Future<List<Field>> allFields = getAllFields();
-            List<Field> fieldBeen = allFields.get();
-            for (Field fieldBean : fieldBeen) {
+            List<FieldBean> retval = new ArrayList<>();
+            Future<List<FieldBean>> allFields = getAllFields();
+            List<FieldBean> fieldBeen = allFields.get();
+            for (FieldBean fieldBean : fieldBeen) {
                 if (fieldBean.getCustom() == true) {
                     retval.add(fieldBean);
                 }
@@ -144,11 +144,11 @@ public class SystemServiceImpl extends BaseService implements SystemService {
     }
 
 
-    public Future<Field> getCustomFieldById(final String id) {
+    public Future<FieldBean> getCustomFieldById(final String id) {
         return executorService.submit(() -> {
-            Future<List<Field>> allFields = getAllFields();
-            List<Field> fieldBeen = allFields.get();
-            for (Field fieldBean : fieldBeen) {
+            Future<List<FieldBean>> allFields = getAllFields();
+            List<FieldBean> fieldBeen = allFields.get();
+            for (FieldBean fieldBean : fieldBeen) {
                 if (fieldBean.getCustom() == false) {
                     continue;
                 }
@@ -161,19 +161,19 @@ public class SystemServiceImpl extends BaseService implements SystemService {
     }
 
 
-    public Future<AttachmentMeta> getAttachmentMeta() {
+    public Future<AttachmentMetaBean> getAttachmentMeta() {
         return null;
     }
 
     @Override
-    public Future<Field> createCustomField(CreateField customField) {
+    public Future<FieldBean> createCustomField(CreateFieldBean customField) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(FIELD);
             RestApiCall restApiCall = doPost(uriBuilder.build(), customField.toString());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_CREATED) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Field fieldBean = gson.fromJson(jsonReader, Field.class);
+                FieldBean fieldBean = gson.fromJson(jsonReader, FieldBean.class);
                 restApiCall.release();
                 return fieldBean;
             } else {
@@ -183,14 +183,14 @@ public class SystemServiceImpl extends BaseService implements SystemService {
     }
 
     @Override
-    public Future<SystemAvatars> getAllSystemAvatars(AvatarType avatarType) {
+    public Future<SystemAvatarsBean> getAllSystemAvatars(AvatarType avatarType) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(AVATAR, avatarType.getName(), SYSTEM);
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if(statusCode == HttpURLConnection.HTTP_OK){
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                SystemAvatars systemAvatars = gson.fromJson(jsonReader, SystemAvatars.class);
+                SystemAvatarsBean systemAvatars = gson.fromJson(jsonReader, SystemAvatarsBean.class);
                 restApiCall.release();
                 return systemAvatars;
             }else {

@@ -1,7 +1,7 @@
 package com.github.cschulc.jirarestservice.test;
 
-import com.github.cschulc.jirarestservice.domain.notification.NotificationScheme;
-import com.github.cschulc.jirarestservice.domain.notification.NotifictaionSchemes;
+import com.github.cschulc.jirarestservice.domain.notification.NotificationSchemeBean;
+import com.github.cschulc.jirarestservice.domain.notification.NotifictaionSchemesBean;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,15 +16,15 @@ public class NotificationSchemeServiceTest extends BaseTest {
 
     @Test
     public void testGetNotificationSchemes() throws ExecutionException, InterruptedException {
-        Future<NotifictaionSchemes> future = restService.getNotificationSchemeService().getNotificationSchemes(0, 50, StringUtils.EMPTY);
-        NotifictaionSchemes notifictaionSchemes = future.get();
+        Future<NotifictaionSchemesBean> future = restService.getNotificationSchemeService().getNotificationSchemes(0, 50, StringUtils.EMPTY);
+        NotifictaionSchemesBean notifictaionSchemes = future.get();
         Assert.assertNotNull(notifictaionSchemes);
     }
 
     @Test
     public void testGetNotificationScheme() throws ExecutionException, InterruptedException {
-        Future<NotificationScheme> future = restService.getNotificationSchemeService().getNotificationScheme("10000", StringUtils.EMPTY);
-        NotificationScheme notificationScheme = future.get();
+        Future<NotificationSchemeBean> future = restService.getNotificationSchemeService().getNotificationScheme("10000", StringUtils.EMPTY);
+        NotificationSchemeBean notificationScheme = future.get();
         Assert.assertNotNull(notificationScheme);
     }
 }

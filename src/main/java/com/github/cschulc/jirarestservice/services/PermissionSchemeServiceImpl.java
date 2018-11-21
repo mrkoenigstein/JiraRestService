@@ -1,8 +1,8 @@
 package com.github.cschulc.jirarestservice.services;
 
 import com.github.cschulc.jirarestservice.JiraRestService;
-import com.github.cschulc.jirarestservice.domain.permission.PermissionScheme;
-import com.github.cschulc.jirarestservice.domain.permission.PermissionSchemes;
+import com.github.cschulc.jirarestservice.domain.permission.PermissionSchemeBean;
+import com.github.cschulc.jirarestservice.domain.permission.PermissionSchemesBean;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
 import com.google.gson.stream.JsonReader;
 import org.apache.http.client.utils.URIBuilder;
@@ -22,14 +22,14 @@ public class PermissionSchemeServiceImpl extends BaseService implements Permissi
     }
 
     @Override
-    public Future<PermissionSchemes> getPermissionsSchemes() {
+    public Future<PermissionSchemesBean> getPermissionsSchemes() {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(PERMISSION_SCHEME);
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                PermissionSchemes permissionScheme = gson.fromJson(jsonReader, PermissionSchemes.class);
+                PermissionSchemesBean permissionScheme = gson.fromJson(jsonReader, PermissionSchemesBean.class);
                 restApiCall.release();
                 return permissionScheme;
             } else {
@@ -39,7 +39,7 @@ public class PermissionSchemeServiceImpl extends BaseService implements Permissi
     }
 
     @Override
-    public Future<PermissionScheme> getPermissionScheme(String id) {
+    public Future<PermissionSchemeBean> getPermissionScheme(String id) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(PERMISSION_SCHEME, id);
             uriBuilder.addParameter(EXPAND, "all");
@@ -47,7 +47,7 @@ public class PermissionSchemeServiceImpl extends BaseService implements Permissi
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                PermissionScheme permissionScheme = gson.fromJson(jsonReader, PermissionScheme.class);
+                PermissionSchemeBean permissionScheme = gson.fromJson(jsonReader, PermissionSchemeBean.class);
                 restApiCall.release();
                 return permissionScheme;
             } else {

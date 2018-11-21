@@ -14,7 +14,7 @@ public interface Constants {
 
     String OR = "or";
 
-    // Issue FieldEnum Names für die JQL Suche
+    // IssueBean FieldEnum Names für die JQL Suche
 
     String FIELD_SUMMARY = "summary";
 
@@ -26,7 +26,7 @@ public interface Constants {
 
     String FIELD_PRIORITY = "priority";
 
-    //Issue Status für die JQL Suche
+    //IssueBean StatusBean für die JQL Suche
 
     String STATUS_OPEN = "open";
 
@@ -38,7 +38,7 @@ public interface Constants {
 
     String STATUS_REOPENED = "reopened";
 
-    //Issue Type für die JQL Suche
+    //IssueBean TypeBean für die JQL Suche
 
     String ISSUETYPE_IMPROVEMENT = "improvement";
 
@@ -50,7 +50,7 @@ public interface Constants {
 
     String ISSUETYPE_TASK = "task";
 
-    //Priority für die SQL Suche
+    //PriorityBean für die SQL Suche
 
     String PRIORITY_MAJOR = "major";
 

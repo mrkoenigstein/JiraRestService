@@ -1,7 +1,7 @@
 package com.github.cschulc.jirarestservice.services;
 
-import com.github.cschulc.jirarestservice.domain.notification.NotificationScheme;
-import com.github.cschulc.jirarestservice.domain.notification.NotifictaionSchemes;
+import com.github.cschulc.jirarestservice.domain.notification.NotificationSchemeBean;
+import com.github.cschulc.jirarestservice.domain.notification.NotifictaionSchemesBean;
 
 import java.util.concurrent.Future;
 
@@ -10,7 +10,7 @@ import java.util.concurrent.Future;
  */
 public interface NotificationSchemeService {
 
-    Future<NotifictaionSchemes> getNotificationSchemes(int startAt, int maxResults,String expand);
+    Future<NotifictaionSchemesBean> getNotificationSchemes(int startAt, int maxResults, String expand);
 
-    Future<NotificationScheme> getNotificationScheme(String id, String expand);
+    Future<NotificationSchemeBean> getNotificationScheme(String id, String expand);
 }

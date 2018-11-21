@@ -1,8 +1,8 @@
 package com.github.cschulc.jirarestservice.services;
 
 import com.github.cschulc.jirarestservice.JiraRestService;
-import com.github.cschulc.jirarestservice.domain.Issue;
-import com.github.cschulc.jirarestservice.domain.meta.Meta;
+import com.github.cschulc.jirarestservice.domain.IssueBean;
+import com.github.cschulc.jirarestservice.domain.meta.MetaBean;
 import com.github.cschulc.jirarestservice.gson.IssueDeserializer;
 import com.github.cschulc.jirarestservice.gson.MetaDeserializer;
 import com.github.cschulc.jirarestservice.misc.RestParams;
@@ -41,8 +41,8 @@ public abstract class BaseService implements RestPaths, RestParams {
 
     protected final Gson gson = new GsonBuilder()
             .excludeFieldsWithoutExposeAnnotation()
-            .registerTypeAdapter(Issue.class, new IssueDeserializer())
-            .registerTypeAdapter(Meta.class, new MetaDeserializer())
+            .registerTypeAdapter(IssueBean.class, new IssueDeserializer())
+            .registerTypeAdapter(MetaBean.class, new MetaDeserializer())
             .create();
 
     public BaseService(JiraRestService restService) {

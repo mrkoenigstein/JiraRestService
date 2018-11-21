@@ -1,8 +1,8 @@
 package com.github.cschulc.jirarestservice.services;
 
 import com.github.cschulc.jirarestservice.JiraRestService;
-import com.github.cschulc.jirarestservice.domain.JqlSearchResult;
-import com.github.cschulc.jirarestservice.domain.filter.Filter;
+import com.github.cschulc.jirarestservice.domain.JqlSearchResultBean;
+import com.github.cschulc.jirarestservice.domain.filter.FilterBean;
 import com.github.cschulc.jirarestservice.jql.SearchBean;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
 import com.google.gson.reflect.TypeToken;
@@ -24,7 +24,7 @@ public class SearchServiceImpl extends BaseService implements SearchService {
         this.executorService = executorService;
     }
 
-    public Future<JqlSearchResult> searchIssues(final SearchBean jsb) {
+    public Future<JqlSearchResultBean> searchIssues(final SearchBean jsb) {
         Validate.notNull(jsb);
         return executorService.submit(() -> {
             String body = gson.toJson(jsb);
@@ -33,7 +33,7 @@ public class SearchServiceImpl extends BaseService implements SearchService {
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                JqlSearchResult jqlSearchResult = gson.fromJson(jsonReader, JqlSearchResult.class);
+                JqlSearchResultBean jqlSearchResult = gson.fromJson(jsonReader, JqlSearchResultBean.class);
                 restApiCall.release();
                 return jqlSearchResult;
             } else {
@@ -44,14 +44,14 @@ public class SearchServiceImpl extends BaseService implements SearchService {
     }
 
 
-    public Future<Filter> createSearchFilter(Filter create) {
+    public Future<FilterBean> createSearchFilter(FilterBean create) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(FILTER);
             RestApiCall restApiCall = doPost(uriBuilder.build(), create.toString());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Filter filter = gson.fromJson(jsonReader, Filter.class);
+                FilterBean filter = gson.fromJson(jsonReader, FilterBean.class);
                 restApiCall.release();
                 return filter;
             } else {
@@ -61,16 +61,16 @@ public class SearchServiceImpl extends BaseService implements SearchService {
     }
 
 
-    public Future<List<Filter>> getFavoriteFilter() {
+    public Future<List<FilterBean>> getFavoriteFilter() {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(FILTER, FAVORITE);
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Type listType = new TypeToken<ArrayList<Filter>>() {
+                Type listType = new TypeToken<ArrayList<FilterBean>>() {
                 }.getType();
-                List<Filter> filters = gson.fromJson(jsonReader, listType);
+                List<FilterBean> filters = gson.fromJson(jsonReader, listType);
                 restApiCall.release();
                 return filters;
             } else {
@@ -80,14 +80,14 @@ public class SearchServiceImpl extends BaseService implements SearchService {
     }
 
 
-    public Future<Filter> getFilterById(String id) {
+    public Future<FilterBean> getFilterById(String id) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(FILTER, id);
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Filter filter = gson.fromJson(jsonReader, Filter.class);
+                FilterBean filter = gson.fromJson(jsonReader, FilterBean.class);
                 restApiCall.release();
                 return filter;
             } else {

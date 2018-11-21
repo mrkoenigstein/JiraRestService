@@ -71,7 +71,7 @@ public enum OperatorEnum {
      * <li>Summary</li>
      * <li>Description</li>
      * <li>Environment</li>
-     * <li>Comments</li>
+     * <li>CommentsBean</li>
      */
     CONTAINS("~"),
 
@@ -81,7 +81,7 @@ public enum OperatorEnum {
      * <li>Summary</li>
      * <li>Description</li>
      * <li>Environment</li>
-     * <li>Comments</li>
+     * <li>CommentsBean</li>
      */
     DOES_NOT_CONTAIN("!~"),
 
@@ -108,7 +108,7 @@ public enum OperatorEnum {
      * <br>
      * This operator will match the value name (e.g. "Resolved"), which was configured in your system at the time that the field was changed.
      * This operator will also match the value ID associated with that value name too — that is, it will match "4" as well as "Resolved".
-     * (Note: This operator can be used with the Assignee, Fix Version, Priority,  Reporter, Resolution and Status fields only.)
+     * (Note: This operator can be used with the Assignee, Fix VersionBean, PriorityBean,  Reporter, ResolutionBean and StatusBean fields only.)
      */
     WAS("was"),
 
@@ -124,14 +124,14 @@ public enum OperatorEnum {
      * <br>
      * This operator will match the value name (e.g. "Resolved"), which was configured in your system at the time that the field was changed. This
      * operator will also match the value ID associated with that value name too — that is, it will match "4" as well as "Resolved". (Note: This
-     * operator can be used with the Assignee, Fix Version, Priority,  Reporter, Resolution and Status fields only.)
+     * operator can be used with the Assignee, Fix VersionBean, PriorityBean,  Reporter, ResolutionBean and StatusBean fields only.)
      */
     WAS_IN("was in"),
 
     /**
      * The "WAS NOT IN" operator is used to search for issues where the value of the specified field has never been one of multiple specified values.
      * Using "WAS NOT IN" is equivalent to using multiple WAS_NOT statements, but is shorter and more convenient. That is, typing status
-     * WAS NOT IN ("Resolved","In Progress") is the same as typing status WAS NOT "Resolved" AND status WAS NOT "In Progress".
+     * WAS NOT IN ("Resolved","In ProgressBean") is the same as typing status WAS NOT "Resolved" AND status WAS NOT "In ProgressBean".
      * This operator has the following optional predicates:
      * <li>AFTER "date"</li>
      * <li>BEFORE "date"</li>
@@ -141,7 +141,7 @@ public enum OperatorEnum {
      * <br>
      * This operator will match the value name (e.g. "Resolved"), which was configured in your system at the time that the field was changed.
      * This operator will also match the value ID associated with that value name too — that is, it will match "4" as well as "Resolved".
-     * (Note: This operator can be used with the Assignee, Fix Version, Priority,  Reporter, Resolution and Status fields only.)
+     * (Note: This operator can be used with the Assignee, Fix VersionBean, PriorityBean,  Reporter, ResolutionBean and StatusBean fields only.)
      */
     WAS_NOT_IN("was not in"),
 
@@ -156,7 +156,7 @@ public enum OperatorEnum {
      * <br>
      * This operator will match the value name (e.g. "Resolved"), which was configured in your system at the time that the field was changed.
      * This operator will also match the value ID associated with that value name too — that is, it will match "4" as well as "Resolved".
-     * (Note: This operator can be used with the Assignee, Fix Version, Priority,  Reporter, Resolution and Status fields only.)
+     * (Note: This operator can be used with the Assignee, Fix VersionBean, PriorityBean,  Reporter, ResolutionBean and StatusBean fields only.)
      */
     WAS_NOT("was not"),
 
@@ -171,7 +171,7 @@ public enum OperatorEnum {
      * <li>FROM "oldvalue"</li>
      * <li>TO "newvalue"</li>
      * <br>
-     * (Note: This operator can be used with the Assignee, Fix Version, Priority, Reporter, Resolution and Status fields only.)
+     * (Note: This operator can be used with the Assignee, Fix VersionBean, PriorityBean, Reporter, ResolutionBean and StatusBean fields only.)
      */
     CHANGED("changed"),
     AFTER("after"),

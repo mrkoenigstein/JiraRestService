@@ -1,20 +1,20 @@
 package com.github.cschulc.jirarestservice.services;
 
-import com.github.cschulc.jirarestservice.domain.groups.Group;
-import com.github.cschulc.jirarestservice.domain.groups.Groups;
+import com.github.cschulc.jirarestservice.domain.groups.GroupBean;
+import com.github.cschulc.jirarestservice.domain.groups.GroupsBean;
 
 import java.util.concurrent.Future;
 
 /**
- * User: Christian Schulze (cschulc@outlook.com)
+ * UserBean: Christian Schulze (cschulc@outlook.com)
  * Date: 25.06.2018
  * Time: 16:44
  */
 public interface GroupService {
 
-    Future<Groups> findGroups(String query, String exclude, int maxResults, String username);
+    Future<GroupsBean> findGroups(String query, String exclude, int maxResults, String username);
 
-    Future<Group> addUserToGroup(String groupname, String username);
+    Future<GroupBean> addUserToGroup(String groupname, String username);
 
 
 }

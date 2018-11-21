@@ -2,7 +2,7 @@ package com.github.cschulc.jirarestservice.domain.customFields;
 
 public enum CustomFieldType {
 
-    // String Value Custom Fields
+    // String ValueBean Custom FieldsBean
     URL("com.atlassian.jira.plugin.system.customfieldtypes:url", false),
     DATE("com.atlassian.jira.plugin.system.customfieldtypes:datepicker", false),
     DATETIME("com.atlassian.jira.plugin.system.customfieldtypes:datetime", false),
@@ -10,11 +10,11 @@ public enum CustomFieldType {
     TEXTAREA("com.atlassian.jira.plugin.system.customfieldtypes:textarea", false),
     FLOAT("com.atlassian.jira.plugin.system.customfieldtypes:float", false),
 
-    // Single Value Custom Fields
+    // Single ValueBean Custom FieldsBean
     SELECT("com.atlassian.jira.plugin.system.customfieldtypes:select", true),
     RADIO("com.atlassian.jira.plugin.system.customfieldtypes:radiobuttons", true),
 
-    // Multi Value Custom Fields
+    // Multi ValueBean Custom FieldsBean
     MULTISELECT("com.atlassian.jira.plugin.system.customfieldtypes:multiselect", true),
     CHECKBOX("com.atlassian.jira.plugin.system.customfieldtypes:multicheckboxes", true),
     LABELS("com.atlassian.jira.plugin.system.customfieldtypes:labels", false),

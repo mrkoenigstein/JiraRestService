@@ -4,7 +4,7 @@ package com.github.cschulc.jirarestservice.domain.project;
  * A prebuilt configuration for a project. The type of the projectTemplateKey must match with the type of the projectTypeKey.
  * Required when creating a project. Not applicable for the Update project resource.
  *
- * User: Christian Schulze (cschulc@outlook.com)
+ * UserBean: Christian Schulze (cschulc@outlook.com)
  * Date: 29.06.2018
  * Time: 12:28
  */

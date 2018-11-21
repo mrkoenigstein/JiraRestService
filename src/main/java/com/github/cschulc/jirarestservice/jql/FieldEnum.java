@@ -7,7 +7,7 @@ public enum FieldEnum {
     NAVIGABLE("*naviagble", null),
 
     /**
-     * Issues that are assigned to a particular Affects Version(s).
+     * Issues that are assigned to a particular Affects VersionBean(s).
      * <p/>
      * <p>Examples:
      * <li>affectedVersion = "3.14"
@@ -35,7 +35,7 @@ public enum FieldEnum {
     CATEGORY("category", FieldTypeEnum.CATEGORY),
 
     /**
-     * Issues that have a Comment which contains particular text.
+     * Issues that have a CommentBean which contains particular text.
      * <p>Examples:
      * <li>comment ~ "My PC is quite old"
      * <li>comment ~ "\"My PC is quite old\""
@@ -117,13 +117,13 @@ public enum FieldEnum {
      * filter ID (i.e. the number that JIRA automatically allocates to a saved filter).
      * <p>Alias <b>request</b>, <b>savedFilter</b>, <b>searchRequest</b>.
      * <p>Examples:
-     * <li>filter = "My Saved Filter" and assignee = jsmith
+     * <li>filter = "My Saved FilterBean" and assignee = jsmith
      * <li>filter = 12000 and assignee = jsmith
      */
     FILTER("filter", FieldTypeEnum.FILTER),
 
     /**
-     * Issues that are assigned to a particular Fix Version.
+     * Issues that are assigned to a particular Fix VersionBean.
      * <p>Examples:
      * <li>fixVersion in ("3.14", "4.2")
      * <li>fixVersion = "Little Ted"
@@ -132,7 +132,7 @@ public enum FieldEnum {
     FIX_VERSION("fixVersion", FieldTypeEnum.VERSION),
 
     /**
-     * Issues with a particular Issue Key or Issue ID (i.e. the number that JIRA automatically allocates to an Issue).
+     * Issues with a particular IssueBean Key or IssueBean ID (i.e. the number that JIRA automatically allocates to an IssueBean).
      * <p>Alias <b>id</b>, <b>issue</b>, <b>key</b>.
      * <p>Examples:
      * <li>issueKey = ABC-123
@@ -157,8 +157,8 @@ public enum FieldEnum {
     LAST_VIEWED("lastViewed", FieldTypeEnum.DATE),
 
     /**
-     * <i>Only available if Issue Level Security has been enabled by your JIRA administrator.</i>
-     * <p>Issues with a particular Security Level.
+     * <i>Only available if IssueBean LevelBean Security has been enabled by your JIRA administrator.</i>
+     * <p>Issues with a particular Security LevelBean.
      * <p>Examples:
      * <li>level in ("Really High", level1)
      * <li>level = 123
@@ -184,7 +184,7 @@ public enum FieldEnum {
     PARENT("parent", FieldTypeEnum.ISSUE),
 
     /**
-     * Issues with a particular Priority.
+     * Issues with a particular PriorityBean.
      * <p>Examples:
      * <li>priority = High
      * <li>priority = 10000
@@ -192,9 +192,9 @@ public enum FieldEnum {
     PRIORITY("priority", FieldTypeEnum.PRIORITY),
 
     /**
-     * Issues that belong to a particular Project.
+     * Issues that belong to a particular ProjectBean.
      * <p>Examples:
-     * <li>project = "ABC Project"
+     * <li>project = "ABC ProjectBean"
      * <li>project = "ABC"
      * <li>project = 1234
      */
@@ -219,7 +219,7 @@ public enum FieldEnum {
     REPORTER("reporter", FieldTypeEnum.USER),
 
     /**
-     * Issues that have a particular Resolution.
+     * Issues that have a particular ResolutionBean.
      * <p>Examples:
      * <li>resolution in ("Cannot Reproduce", "Won't Fix")
      * <li>resolution = 5
@@ -257,7 +257,7 @@ public enum FieldEnum {
     SPRINT("sprint", FieldTypeEnum.NUMBER),
 
     /**
-     * Issues that have a particular Status.
+     * Issues that have a particular StatusBean.
      * <p>Examples:
      * <li>status = Open
      * <li>status = 1
@@ -268,8 +268,8 @@ public enum FieldEnum {
     /**
      * Issues where the Summary contains particular text.
      * <p>Examples:
-     * <li>summary ~ "Error saving file"
-     * <li>summary ~ "\"Error saving file\""
+     * <li>summary ~ "ErrorBean saving file"
+     * <li>summary ~ "\"ErrorBean saving file\""
      */
     SUMMARY("summary", FieldTypeEnum.TEXT),
 
@@ -278,7 +278,7 @@ public enum FieldEnum {
      * <li>Summary</li>
      * <li>Description</li>
      * <li>Environment</li>
-     * <li>Comments</li>
+     * <li>CommentsBean</li>
      * <p>Examples:
      * <li>text ~ "Fred"
      * <li>text ~ Fred
@@ -287,7 +287,7 @@ public enum FieldEnum {
     TEXT("text", FieldTypeEnum.TEXT_MASTER),
 
     /**
-     * Issues that have a particular Issue Type.
+     * Issues that have a particular IssueBean TypeBean.
      * <p>Alias <b>issueType</b>
      * <p>Examples:
      * <li>type = Bug
@@ -359,13 +359,13 @@ public enum FieldEnum {
      */
     WORK_RATIO("workRatio", FieldTypeEnum.NUMBER),
 
-    /** <i>Avaiable Transitions for the Issue</i>
-     *  <p>an Issue has several Transition to which the status can change.</p>
+    /** <i>Avaiable Transitions for the IssueBean</i>
+     *  <p>an IssueBean has several TransitionBean to which the status can change.</p>
      */
     TRANSITIONS("transitions", FieldTypeEnum.CUSTOM_TYPE),
 
 
-    /** <i>Avaiable changelog for an Issue</i>
+    /** <i>Avaiable changelog for an IssueBean</i>
      */
     CHANGELOG("changelog", FieldTypeEnum.CUSTOM_TYPE),
 
@@ -374,7 +374,7 @@ public enum FieldEnum {
     RENDEREDFIELDS("renderedFields", FieldTypeEnum.CUSTOM_TYPE),
 
     /**
-     * <i>Attachment Informations</i>
+     * <i>AttachmentBean Informations</i>
      */
     ATTACHMENT("attachment", FieldTypeEnum.CUSTOM_TYPE);
 

@@ -1,7 +1,7 @@
 package com.github.cschulc.jirarestservice.services;
 
-import com.github.cschulc.jirarestservice.domain.JqlSearchResult;
-import com.github.cschulc.jirarestservice.domain.filter.Filter;
+import com.github.cschulc.jirarestservice.domain.JqlSearchResultBean;
+import com.github.cschulc.jirarestservice.domain.filter.FilterBean;
 import com.github.cschulc.jirarestservice.jql.SearchBean;
 
 import java.util.List;
@@ -14,29 +14,29 @@ public interface SearchService {
      *
      * @return list of issues
      */
-    Future<JqlSearchResult> searchIssues(SearchBean jsb);
+    Future<JqlSearchResultBean> searchIssues(SearchBean jsb);
 
     /**
-     * Create a new Search Filter for the logged in User
+     * Create a new Search FilterBean for the logged in UserBean
      *
      * @param filter
      * @return
      */
-    Future<Filter> createSearchFilter(Filter filter);
+    Future<FilterBean> createSearchFilter(FilterBean filter);
 
 
     /**
-     * Get favorite Filter for JqlSearch for the logged in User
+     * Get favorite FilterBean for JqlSearch for the logged in UserBean
      *
      * @return List of Filters
      */
-    Future<List<Filter>> getFavoriteFilter();
+    Future<List<FilterBean>> getFavoriteFilter();
 
     /**
-     * Get Filter by Id
+     * Get FilterBean by Id
      *
      * @param id the id of the filter
-     * @return Filter
+     * @return FilterBean
      */
-    Future<Filter> getFilterById(String id);
+    Future<FilterBean> getFilterById(String id);
 }

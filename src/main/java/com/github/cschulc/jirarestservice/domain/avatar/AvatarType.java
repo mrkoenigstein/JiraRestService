@@ -1,7 +1,7 @@
 package com.github.cschulc.jirarestservice.domain.avatar;
 
 /**
- * User: Christian Schulze (cschulc@outlook.com)
+ * UserBean: Christian Schulze (cschulc@outlook.com)
  * Date: 04.07.2018
  * Time: 10:23
  */

@@ -1,7 +1,7 @@
 package com.github.cschulc.jirarestservice.services;
 
-import com.github.cschulc.jirarestservice.domain.permission.PermissionScheme;
-import com.github.cschulc.jirarestservice.domain.permission.PermissionSchemes;
+import com.github.cschulc.jirarestservice.domain.permission.PermissionSchemeBean;
+import com.github.cschulc.jirarestservice.domain.permission.PermissionSchemesBean;
 
 import java.util.concurrent.Future;
 
@@ -10,7 +10,7 @@ import java.util.concurrent.Future;
  */
 public interface PermissionSchemeService {
 
-    Future<PermissionSchemes> getPermissionsSchemes();
+    Future<PermissionSchemesBean> getPermissionsSchemes();
 
-    Future<PermissionScheme> getPermissionScheme(String id);
+    Future<PermissionSchemeBean> getPermissionScheme(String id);
 }

@@ -1,9 +1,8 @@
 package com.github.cschulc.jirarestservice.services;
 
-import com.github.cschulc.jirarestservice.domain.user.CreateUser;
-import com.github.cschulc.jirarestservice.domain.user.User;
-import com.github.cschulc.jirarestservice.domain.permission.MyPermissions;
-import com.github.cschulc.jirarestservice.domain.user.UserResult;
+import com.github.cschulc.jirarestservice.domain.user.CreateUserBean;
+import com.github.cschulc.jirarestservice.domain.user.UserBean;
+import com.github.cschulc.jirarestservice.domain.permission.MyPermissionsBean;
 import com.github.cschulc.jirarestservice.misc.Experimental;
 import com.github.cschulc.jirarestservice.misc.JiraRestException;
 
@@ -14,33 +13,33 @@ import java.util.concurrent.Future;
 public interface UserService {
 
     /**
-     * Returns a List of User which are assignable to Issue in a Project
+     * Returns a List of UserBean which are assignable to IssueBean in a ProjectBean
      *
      * @param projectKey the projectkey
      * @param startAt start at position (0-based) can be null the default (0)
      * @param maxResults Number of Results (default 50) can be null then default (50)
-     * @return The List of a assignable Users, or an Empty List if the logged in User has no permission to get assign Issues
+     * @return The List of a assignable Users, or an Empty List if the logged in UserBean has no permission to get assign Issues
      */
-    Future<List<User>> getAssignableUserForProject(String projectKey, Integer startAt, Integer maxResults) throws JiraRestException, IOException;
+    Future<List<UserBean>> getAssignableUserForProject(String projectKey, Integer startAt, Integer maxResults) throws JiraRestException, IOException;
 
 
     /**
-     * Returns a List of User which are assignable to an Issue
+     * Returns a List of UserBean which are assignable to an IssueBean
      *
      * @param issueKey The Issuekey
      * @param startAt start at position (0-based) can be null the default (0)
      * @param maxResults Number of Results (default 50) can be null then default (50)
-     * @return The List of a assignable Users, or an Empty List if the logged in User has no permission to get assign Issues
+     * @return The List of a assignable Users, or an Empty List if the logged in UserBean has no permission to get assign Issues
      */
-    Future<List<User>> getAssignableUsersForIssue(String issueKey, Integer startAt, Integer maxResults) throws JiraRestException, IOException;
+    Future<List<UserBean>> getAssignableUsersForIssue(String issueKey, Integer startAt, Integer maxResults) throws JiraRestException, IOException;
 
     /**
-     * Returns a User by his username
+     * Returns a UserBean by his username
      *
-     * @param username The username of the User
-     * @return The User for the username or null if the logged in User has no permission to get another user
+     * @param username The username of the UserBean
+     * @return The UserBean for the username or null if the logged in UserBean has no permission to get another user
      */
-    Future<User> getUserByUsername(String username);
+    Future<UserBean> getUserByUsername(String username);
 
     /**
      * Returns the logged in remote user.
@@ -48,29 +47,29 @@ public interface UserService {
      * @return logged in user
      * @throws JiraRestException
      */
-    Future<User> getLoggedInRemoteUser() throws JiraRestException, IOException;
+    Future<UserBean> getLoggedInRemoteUser() throws JiraRestException, IOException;
 
     /**
-     * Get the Permissions for the logged in User.
+     * Get the PermissionsBean for the logged in UserBean.
      * This contains all Permissons, every permission has a flag if it is set or unset.
      *
-     * @return Permissions with all Permission,
+     * @return PermissionsBean with all PermissionBean,
      */
-    Future<MyPermissions> getMyPermissions();
+    Future<MyPermissionsBean> getMyPermissions();
 
     /**
      * Create user. By default created user will not be notified with email. If password field is not set then password will be randomly generated.
      *
-     * @param user The User to create
-     * @return The created User or Null
+     * @param user The UserBean to create
+     * @return The created UserBean or Null
      */
     @Experimental
-    Future<User> createUser(CreateUser user);
+    Future<UserBean> createUser(CreateUserBean user);
 
     /**
      * Returns a list of users that match the search string and property.
      *
-     * Permissions required: Browse users and groups global permission. Users with permission to access Jira can call this method, but empty search results are returned.
+     * PermissionsBean required: Browse users and groups global permission. Users with permission to access Jira can call this method, but empty search results are returned.
      *
      * @param includeActive Include active users.
      * @param includeInactive Include inactive users.
@@ -81,7 +80,7 @@ public interface UserService {
      *                 The string is matched to the starting letters of any word in the searched fields.
      *                 For example, ar matches to the username archie but not mark.
      *                 If you want to get all users pass a "." as username.
-     * @return A {@link List} of {@link User}
+     * @return A {@link List} of {@link UserBean}
      */
-    Future<List<User>> findUsers(boolean includeActive, boolean includeInactive, int maxResults, String property, int startAt, String username);
+    Future<List<UserBean>> findUsers(boolean includeActive, boolean includeInactive, int maxResults, String property, int startAt, String username);
 }

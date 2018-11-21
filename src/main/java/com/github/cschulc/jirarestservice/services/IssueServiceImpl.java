@@ -2,8 +2,8 @@ package com.github.cschulc.jirarestservice.services;
 
 import com.github.cschulc.jirarestservice.JiraRestService;
 import com.github.cschulc.jirarestservice.domain.*;
-import com.github.cschulc.jirarestservice.domain.Error;
-import com.github.cschulc.jirarestservice.domain.update.IssueUpdate;
+import com.github.cschulc.jirarestservice.domain.ErrorBean;
+import com.github.cschulc.jirarestservice.domain.update.IssueUpdateBean;
 import com.github.cschulc.jirarestservice.misc.JiraRestException;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
 import com.google.gson.reflect.TypeToken;
@@ -40,7 +40,7 @@ public class IssueServiceImpl extends BaseService implements IssueService {
     }
 
     @Override
-    public Future<IssueResponse> createIssue(Issue issue) {
+    public Future<IssueResponseBean> createIssue(IssueBean issue) {
         Validate.notNull(issue);
         return executorService.submit(() -> {
             String json = gson.toJson(issue);
@@ -50,16 +50,16 @@ public class IssueServiceImpl extends BaseService implements IssueService {
             if (statusCode == HttpURLConnection.HTTP_OK
                     || statusCode == HttpURLConnection.HTTP_CREATED) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Issue issueBean = gson.fromJson(jsonReader,
-                        Issue.class);
+                IssueBean issueBean = gson.fromJson(jsonReader,
+                        IssueBean.class);
                 restApiCall.release();
-                return new IssueResponse(issueBean.getKey());
+                return new IssueResponseBean(issueBean.getKey());
             } else if (statusCode == HttpURLConnection.HTTP_BAD_REQUEST) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Error error = gson
-                        .fromJson(jsonReader, Error.class);
+                ErrorBean error = gson
+                        .fromJson(jsonReader, ErrorBean.class);
                 restApiCall.release();
-                return new IssueResponse(error);
+                return new IssueResponseBean(error);
             } else {
                 throw restApiCall.buildException();
             }
@@ -67,7 +67,7 @@ public class IssueServiceImpl extends BaseService implements IssueService {
     }
 
     @Override
-    public Future<Issue> getIssueByKey(String issueKey) {
+    public Future<IssueBean> getIssueByKey(String issueKey) {
         Validate.notNull(issueKey);
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(ISSUE, issueKey);
@@ -75,8 +75,8 @@ public class IssueServiceImpl extends BaseService implements IssueService {
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                final Issue issueBean = gson.fromJson(jsonReader,
-                        Issue.class);
+                final IssueBean issueBean = gson.fromJson(jsonReader,
+                        IssueBean.class);
                 restApiCall.release();
                 return issueBean;
             } else if (statusCode == HttpURLConnection.HTTP_NOT_FOUND) {
@@ -89,7 +89,7 @@ public class IssueServiceImpl extends BaseService implements IssueService {
     }
 
     @Override
-    public Future<Issue> updateIssue(String issueKey, IssueUpdate issueUpdate) {
+    public Future<IssueBean> updateIssue(String issueKey, IssueUpdateBean issueUpdate) {
         Validate.notNull(issueKey);
         Validate.notNull(issueUpdate);
         return executorService.submit(() -> {
@@ -99,7 +99,7 @@ public class IssueServiceImpl extends BaseService implements IssueService {
             RestApiCall restApiCall = doPut(uriBuilder.build(), body);
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_NO_CONTENT) {
-                final Future<Issue> issueByKey = getIssueByKey(issueKey);
+                final Future<IssueBean> issueByKey = getIssueByKey(issueKey);
                 restApiCall.release();
                 return issueByKey.get();
             } else {
@@ -109,7 +109,7 @@ public class IssueServiceImpl extends BaseService implements IssueService {
     }
 
     @Override
-    public Future<Issue> getIssueByKey(String issueKey, List<String> fields, List<String> expand) {
+    public Future<IssueBean> getIssueByKey(String issueKey, List<String> fields, List<String> expand) {
         return executorService.submit(() -> {
 
             URIBuilder uriBuilder = buildPath(ISSUE, issueKey);
@@ -124,7 +124,7 @@ public class IssueServiceImpl extends BaseService implements IssueService {
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
-                Issue issue = extractIssueBean(restApiCall);
+                IssueBean issue = extractIssueBean(restApiCall);
                 restApiCall.release();
                 return issue;
             } else {
@@ -152,15 +152,15 @@ public class IssueServiceImpl extends BaseService implements IssueService {
     }
 
     @Override
-    public Future<Attachment> getAttachment(String id) {
+    public Future<AttachmentBean> getAttachment(String id) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(ATTACHMENT, id);
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Attachment attachment = gson.fromJson(jsonReader,
-                        Attachment.class);
+                AttachmentBean attachment = gson.fromJson(jsonReader,
+                        AttachmentBean.class);
                 restApiCall.release();
                 return attachment;
             } else {
@@ -170,7 +170,7 @@ public class IssueServiceImpl extends BaseService implements IssueService {
     }
 
     @Override
-    public Future<List<Attachment>> saveAttachmentToIssue(String issuekey, File... files) {
+    public Future<List<AttachmentBean>> saveAttachmentToIssue(String issuekey, File... files) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(ISSUE, issuekey, ATTACHMENTS);
             MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
@@ -183,9 +183,9 @@ public class IssueServiceImpl extends BaseService implements IssueService {
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Type listType = new TypeToken<ArrayList<Attachment>>() {
+                Type listType = new TypeToken<ArrayList<AttachmentBean>>() {
                 }.getType();
-                List<Attachment> attachments = gson.fromJson(jsonReader, listType);
+                List<AttachmentBean> attachments = gson.fromJson(jsonReader, listType);
                 restApiCall.release();
                 return attachments;
             } else {
@@ -195,7 +195,7 @@ public class IssueServiceImpl extends BaseService implements IssueService {
     }
 
     @Override
-    public boolean transferWorklogInIssue(String issueKey, Worklog worklog) throws JiraRestException, IOException, URISyntaxException {
+    public boolean transferWorklogInIssue(String issueKey, WorklogBean worklog) throws JiraRestException, IOException, URISyntaxException {
         Validate.notNull(issueKey);
         Validate.notNull(worklog);
 
@@ -214,8 +214,8 @@ public class IssueServiceImpl extends BaseService implements IssueService {
     @Override
     public boolean updateIssueTransitionByKey(String issueKey, int transitionId) throws JiraRestException, IOException, URISyntaxException {
         Validate.notNull(issueKey);
-        UpdateTransition updateTransition = new UpdateTransition();
-        Transition transition = new Transition();
+        UpdateTransitionBean updateTransition = new UpdateTransitionBean();
+        TransitionBean transition = new TransitionBean();
         transition.setId(String.valueOf(transitionId));
         updateTransition.setTransition(transition);
         URIBuilder uriBuilder = buildPath(ISSUE, issueKey, TRANSITIONS);
@@ -231,7 +231,7 @@ public class IssueServiceImpl extends BaseService implements IssueService {
     }
 
     @Override
-    public Future<List<Transition>> getIssueTransitionsByKey(String issueKey) {
+    public Future<List<TransitionBean>> getIssueTransitionsByKey(String issueKey) {
         Validate.notNull(issueKey);
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(ISSUE, issueKey, TRANSITIONS);
@@ -239,7 +239,7 @@ public class IssueServiceImpl extends BaseService implements IssueService {
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
-                final Issue issue = extractIssueBean(restApiCall);
+                final IssueBean issue = extractIssueBean(restApiCall);
                 restApiCall.release();
                 return issue.getTransitions();
             } else {
@@ -249,7 +249,7 @@ public class IssueServiceImpl extends BaseService implements IssueService {
     }
 
     @Override
-    public Future<Comments> getCommentsByIssue(String issueKey) {
+    public Future<CommentsBean> getCommentsByIssue(String issueKey) {
         Validate.notNull(issueKey);
         return executorService.submit(() -> {
 
@@ -258,8 +258,8 @@ public class IssueServiceImpl extends BaseService implements IssueService {
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                Comments comments = gson.fromJson(jsonReader,
-                        Comments.class);
+                CommentsBean comments = gson.fromJson(jsonReader,
+                        CommentsBean.class);
                 restApiCall.release();
                 return comments;
             } else {
@@ -269,7 +269,7 @@ public class IssueServiceImpl extends BaseService implements IssueService {
     }
 
     @Override
-    public Future<Boolean> addCommentToIssue(String issueKey, Comment comment) {
+    public Future<Boolean> addCommentToIssue(String issueKey, CommentBean comment) {
         Validate.notNull(issueKey);
         Validate.notNull(comment);
         return executorService.submit(() -> {
@@ -287,8 +287,8 @@ public class IssueServiceImpl extends BaseService implements IssueService {
     }
 
 
-    private Issue extractIssueBean(RestApiCall restApiCall) throws IOException {
+    private IssueBean extractIssueBean(RestApiCall restApiCall) throws IOException {
         JsonReader jsonReader = restApiCall.getJsonReader();
-        return gson.fromJson(jsonReader, Issue.class);
+        return gson.fromJson(jsonReader, IssueBean.class);
     }
 }

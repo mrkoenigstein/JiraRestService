@@ -1,9 +1,9 @@
 package com.github.cschulc.jirarestservice.services;
 
 import com.github.cschulc.jirarestservice.JiraRestService;
-import com.github.cschulc.jirarestservice.domain.groups.Group;
-import com.github.cschulc.jirarestservice.domain.groups.Groups;
-import com.github.cschulc.jirarestservice.domain.user.User;
+import com.github.cschulc.jirarestservice.domain.groups.GroupBean;
+import com.github.cschulc.jirarestservice.domain.groups.GroupsBean;
+import com.github.cschulc.jirarestservice.domain.user.UserBean;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
 import com.google.gson.stream.JsonReader;
 import org.apache.commons.lang3.StringUtils;
@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
 /**
- * User: Christian Schulze (cschulc@outlook.com)
+ * UserBean: Christian Schulze (cschulc@outlook.com)
  * Date: 26.06.2018
  * Time: 09:26
  */
@@ -26,7 +26,7 @@ public class GroupServiceImpl extends BaseService implements GroupService {
     }
 
     @Override
-    public Future<Groups> findGroups(String query, String exclude, int maxResults, String username) {
+    public Future<GroupsBean> findGroups(String query, String exclude, int maxResults, String username) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(GROUPS, PICKER);
             if (StringUtils.trimToNull(query) != null) {
@@ -45,8 +45,8 @@ public class GroupServiceImpl extends BaseService implements GroupService {
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                final Groups groups = gson.fromJson(jsonReader,
-                        Groups.class);
+                final GroupsBean groups = gson.fromJson(jsonReader,
+                        GroupsBean.class);
                 restApiCall.release();
                 return groups;
             } else {
@@ -56,18 +56,18 @@ public class GroupServiceImpl extends BaseService implements GroupService {
     }
 
     @Override
-    public Future<Group> addUserToGroup(String groupname, String username) {
+    public Future<GroupBean> addUserToGroup(String groupname, String username) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(GROUP, USER);
             uriBuilder.addParameter(GROUPNAME, groupname);
-            User user = new User();
+            UserBean user = new UserBean();
             user.setName(username);
             RestApiCall restApiCall = doPost(uriBuilder.build(), user.toString());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                final Group groups = gson.fromJson(jsonReader,
-                        Group.class);
+                final GroupBean groups = gson.fromJson(jsonReader,
+                        GroupBean.class);
                 restApiCall.release();
                 return groups;
             } else {

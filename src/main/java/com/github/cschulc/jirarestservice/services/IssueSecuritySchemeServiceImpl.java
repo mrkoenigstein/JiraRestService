@@ -1,8 +1,8 @@
 package com.github.cschulc.jirarestservice.services;
 
 import com.github.cschulc.jirarestservice.JiraRestService;
-import com.github.cschulc.jirarestservice.domain.security.IssueSecurityScheme;
-import com.github.cschulc.jirarestservice.domain.security.IssueSecuritySchemes;
+import com.github.cschulc.jirarestservice.domain.security.IssueSecuritySchemeBean;
+import com.github.cschulc.jirarestservice.domain.security.IssueSecuritySchemesBean;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
 import com.google.gson.stream.JsonReader;
 import org.apache.http.client.utils.URIBuilder;
@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
 /**
- * User: Christian Schulze (cschulc@outlook.com)
+ * UserBean: Christian Schulze (cschulc@outlook.com)
  * Date: 03.07.2018
  * Time: 09:00
  */
@@ -25,14 +25,14 @@ public class IssueSecuritySchemeServiceImpl extends BaseService implements Issue
     }
 
     @Override
-    public Future<IssueSecuritySchemes> getIssueSecuritySchemes() {
+    public Future<IssueSecuritySchemesBean> getIssueSecuritySchemes() {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(ISSUESECURITYSCHEMES);
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if(statusCode == HttpURLConnection.HTTP_OK){
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                IssueSecuritySchemes issueSecuritySchemes = gson.fromJson(jsonReader, IssueSecuritySchemes.class);
+                IssueSecuritySchemesBean issueSecuritySchemes = gson.fromJson(jsonReader, IssueSecuritySchemesBean.class);
                 restApiCall.release();
                 return issueSecuritySchemes;
             }
@@ -43,14 +43,14 @@ public class IssueSecuritySchemeServiceImpl extends BaseService implements Issue
     }
 
     @Override
-    public Future<IssueSecurityScheme> getIssueSecurityScheme(String id) {
+    public Future<IssueSecuritySchemeBean> getIssueSecurityScheme(String id) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(ISSUESECURITYSCHEMES, id);
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if(statusCode == HttpURLConnection.HTTP_OK){
                 JsonReader jsonReader = restApiCall.getJsonReader();
-                IssueSecurityScheme issueSecurityScheme = gson.fromJson(jsonReader, IssueSecurityScheme.class);
+                IssueSecuritySchemeBean issueSecurityScheme = gson.fromJson(jsonReader, IssueSecuritySchemeBean.class);
                 restApiCall.release();
                 return issueSecurityScheme;
             }

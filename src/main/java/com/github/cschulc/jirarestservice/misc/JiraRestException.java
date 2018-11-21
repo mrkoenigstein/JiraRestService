@@ -1,6 +1,6 @@
 package com.github.cschulc.jirarestservice.misc;
 
-import com.github.cschulc.jirarestservice.domain.Error;
+import com.github.cschulc.jirarestservice.domain.ErrorBean;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import org.apache.http.HttpEntity;
@@ -17,9 +17,9 @@ public class JiraRestException extends Exception{
 
     private String reasonPhrase;
 
-    private Error restErrorMessage;
+    private ErrorBean restErrorMessage;
 
-    public JiraRestException(int statusCode, String reasonPhrase, Error restErrorMessage) {
+    public JiraRestException(int statusCode, String reasonPhrase, ErrorBean restErrorMessage) {
         super(statusCode + " " + reasonPhrase + " " + restErrorMessage);
         this.statusCode = statusCode;
         this.reasonPhrase = reasonPhrase;
@@ -38,7 +38,7 @@ public class JiraRestException extends Exception{
                 JsonReader jsonReader = new JsonReader(reader);
                 jsonReader.setLenient(true);
                 Gson gson = new Gson();
-                restErrorMessage = gson.fromJson(jsonReader, Error.class);
+                restErrorMessage = gson.fromJson(jsonReader, ErrorBean.class);
             }
         } catch (IOException e) {
             // nothing to say
@@ -64,11 +64,11 @@ public class JiraRestException extends Exception{
         this.reasonPhrase = reasonPhrase;
     }
 
-    public Error getRestErrorMessage() {
+    public ErrorBean getRestErrorMessage() {
         return restErrorMessage;
     }
 
-    public void setRestErrorMessage(Error restErrorMessage) {
+    public void setRestErrorMessage(ErrorBean restErrorMessage) {
         this.restErrorMessage = restErrorMessage;
     }
 }

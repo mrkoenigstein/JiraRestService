@@ -1,14 +1,15 @@
 package com.github.cschulc.jirarestservice.services;
 
-import com.github.cschulc.jirarestservice.domain.AttachmentMeta;
-import com.github.cschulc.jirarestservice.domain.Issuetype;
-import com.github.cschulc.jirarestservice.domain.Priority;
-import com.github.cschulc.jirarestservice.domain.Status;
+import com.github.cschulc.jirarestservice.domain.AttachmentMetaBean;
+import com.github.cschulc.jirarestservice.domain.IssuetypeBean;
+import com.github.cschulc.jirarestservice.domain.PriorityBean;
+import com.github.cschulc.jirarestservice.domain.StatusBean;
+import com.github.cschulc.jirarestservice.domain.avatar.AvatarBean;
 import com.github.cschulc.jirarestservice.domain.avatar.AvatarType;
-import com.github.cschulc.jirarestservice.domain.avatar.SystemAvatars;
-import com.github.cschulc.jirarestservice.domain.field.CreateField;
-import com.github.cschulc.jirarestservice.domain.field.Field;
-import com.github.cschulc.jirarestservice.domain.system.Configuration;
+import com.github.cschulc.jirarestservice.domain.avatar.SystemAvatarsBean;
+import com.github.cschulc.jirarestservice.domain.field.CreateFieldBean;
+import com.github.cschulc.jirarestservice.domain.field.FieldBean;
+import com.github.cschulc.jirarestservice.domain.system.ConfigurationBean;
 
 import java.util.List;
 import java.util.concurrent.Future;
@@ -16,33 +17,33 @@ import java.util.concurrent.Future;
 public interface SystemService {
 
     /**
-     * Return the Configuration of the remote Jira Instanz
+     * Return the ConfigurationBean of the remote Jira Instanz
      *
-     * @return Configuration
+     * @return ConfigurationBean
      */
-    Future<Configuration> getConfiguration();
+    Future<ConfigurationBean> getConfiguration();
 
     /**
      * Returns a list of all issue types visible to the connected client.
      *
      * @return list of issue types
      */
-    Future<List<Issuetype>> getIssueTypes();
+    Future<List<IssuetypeBean>> getIssueTypes();
 
     /**
      * Returns a list of all statuses.
      *
      * @return list of statuses
      */
-    Future<List<Status>> getStates();
+    Future<List<StatusBean>> getStates();
 
 
     /**
-     * Returns a List of all Priority Object from the Remote Jira.
+     * Returns a List of all PriorityBean Object from the Remote Jira.
      *
      * @return
      */
-    Future<List<Priority>> getPriorities();
+    Future<List<PriorityBean>> getPriorities();
 
 
     /**
@@ -50,7 +51,7 @@ public interface SystemService {
      *
      * @return a List of FieldEnum
      */
-    Future<List<Field>> getAllFields();
+    Future<List<FieldBean>> getAllFields();
 
 
     /**
@@ -58,35 +59,35 @@ public interface SystemService {
      *
      * @return a List of FieldEnum
      */
-    Future<List<Field>> getAllCustomFields();
+    Future<List<FieldBean>> getAllCustomFields();
 
     /**
      * Return a Custom FieldEnum by Id
      *
      */
-    Future<Field> getCustomFieldById(String id);
+    Future<FieldBean> getCustomFieldById(String id);
 
 
     /**
-     * Get the Attachment Meta Information for the jira instanz
+     * Get the AttachmentBean MetaBean Information for the jira instanz
      *
-     * @return AttachmentMeta
+     * @return AttachmentMetaBean
      */
-    Future<AttachmentMeta> getAttachmentMeta();
+    Future<AttachmentMetaBean> getAttachmentMeta();
 
     /**
      * Creates a Custom FieldEnum
      *
-     * @param fieldBean The CreateField with the create Informations
+     * @param fieldBean The CreateFieldBean with the create Informations
      * @return The created FieldEnum as FieldEnum
      */
-    Future<Field> createCustomField(CreateField fieldBean);
+    Future<FieldBean> createCustomField(CreateFieldBean fieldBean);
 
     /**
      * Returns all system avatars of the given type.
      *
      * @param avatarType The {@link AvatarType}
-     * @return SystemAvatars with a List of {@link com.github.cschulc.jirarestservice.domain.avatar.Avatar}
+     * @return SystemAvatarsBean with a List of {@link AvatarBean}
      */
-    Future<SystemAvatars> getAllSystemAvatars(AvatarType avatarType);
+    Future<SystemAvatarsBean> getAllSystemAvatars(AvatarType avatarType);
 }
