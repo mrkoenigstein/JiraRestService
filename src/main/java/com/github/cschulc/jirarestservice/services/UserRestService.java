@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Future;
 
-public interface UserService {
+public interface UserRestService {
 
     /**
      * Returns a List of UserBean which are assignable to IssueBean in a ProjectBean

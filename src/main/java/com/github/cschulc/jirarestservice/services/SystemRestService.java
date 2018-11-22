@@ -14,7 +14,7 @@ import com.github.cschulc.jirarestservice.domain.system.ConfigurationBean;
 import java.util.List;
 import java.util.concurrent.Future;
 
-public interface SystemService {
+public interface SystemRestService {
 
     /**
      * Return the ConfigurationBean of the remote Jira Instanz

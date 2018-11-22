@@ -20,9 +20,9 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
-public class UserServiveImpl extends BaseService implements UserService {
+public class UserRestServiveImpl extends BaseRestService implements UserRestService {
 
-    public UserServiveImpl(JiraRestService service, ExecutorService executorService) {
+    public UserRestServiveImpl(JiraRestService service, ExecutorService executorService) {
         super(service);
         this.executorService = executorService;
     }

@@ -12,11 +12,11 @@ import java.util.concurrent.Future;
  * Date: 26.06.2018
  * Time: 09:47
  */
-public class GroupServiceTest extends BaseTest {
+public class GroupRestServiceTest extends BaseTest {
 
     @Test
     public void testGetGroups() throws ExecutionException, InterruptedException {
-        Future<GroupsBean> future = restService.getGroupService().findGroups(null, null, 0, null);
+        Future<GroupsBean> future = restService.getGroupRestService().findGroups(null, null, 0, null);
         GroupsBean groups = future.get();
         Assert.assertNotNull(groups);
     }

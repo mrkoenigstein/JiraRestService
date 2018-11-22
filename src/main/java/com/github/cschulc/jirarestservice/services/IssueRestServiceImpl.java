@@ -30,11 +30,11 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
-public class IssueServiceImpl extends BaseService implements IssueService {
+public class IssueRestServiceImpl extends BaseRestService implements IssueRestService {
 
     private static final String SEPARATOR = ",";
 
-    public IssueServiceImpl(JiraRestService service, ExecutorService executorService) {
+    public IssueRestServiceImpl(JiraRestService service, ExecutorService executorService) {
         super(service);
         this.executorService = executorService;
     }

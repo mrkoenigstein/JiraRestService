@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.concurrent.Future;
 
 /**
- * The IssueService provides all RestService-Actions for Jira Issues
+ * The IssueRestService provides all RestService-Actions for Jira Issues
  */
-public interface IssueService {
+public interface IssueRestService {
 
     /**
      * Create a new issue

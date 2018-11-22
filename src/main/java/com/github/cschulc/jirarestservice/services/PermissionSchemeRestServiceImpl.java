@@ -14,9 +14,9 @@ import java.util.concurrent.Future;
 /**
  * @author Christian Schulze
  */
-public class PermissionSchemeServiceImpl extends BaseService implements PermissionSchemeService {
+public class PermissionSchemeRestServiceImpl extends BaseRestService implements PermissionSchemeRestService {
 
-    public PermissionSchemeServiceImpl(JiraRestService restService, ExecutorService executorService) {
+    public PermissionSchemeRestServiceImpl(JiraRestService restService, ExecutorService executorService) {
         super(restService);
         this.executorService = executorService;
     }

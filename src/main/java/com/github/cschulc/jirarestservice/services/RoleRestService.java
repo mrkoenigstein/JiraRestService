@@ -10,7 +10,7 @@ import java.util.concurrent.Future;
  * Date: 05.07.2018
  * Time: 17:22
  */
-public interface RoleService {
+public interface RoleRestService {
 
     /**
      * Get all the ProjectRoles available in Jira. Currently this list is global.

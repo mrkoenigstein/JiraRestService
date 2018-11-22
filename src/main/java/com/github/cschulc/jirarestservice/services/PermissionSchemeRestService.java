@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 /**
  * @author Christian Schulze
  */
-public interface PermissionSchemeService {
+public interface PermissionSchemeRestService {
 
     Future<PermissionSchemesBean> getPermissionsSchemes();
 

@@ -16,10 +16,10 @@ import java.util.concurrent.Future;
  * Date: 03.07.2018
  * Time: 09:00
  */
-public class IssueSecuritySchemeServiceImpl extends BaseService implements IssueSecuritySchemeService {
+public class IssueSecuritySchemeRestServiceImpl extends BaseRestService implements IssueSecuritySchemeRestService {
 
 
-    public IssueSecuritySchemeServiceImpl(JiraRestService restService, ExecutorService executorService) {
+    public IssueSecuritySchemeRestServiceImpl(JiraRestService restService, ExecutorService executorService) {
         super(restService);
         this.executorService = executorService;
     }

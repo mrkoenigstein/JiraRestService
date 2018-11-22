@@ -14,11 +14,11 @@ import java.util.concurrent.Future;
 /**
  * @author Christian Schulze
  */
-public class ProjectServiceTest extends BaseTest {
+public class ProjectRestServiceTest extends BaseTest {
 
     @Test
     public void testGetProjectByKey() throws ExecutionException, InterruptedException {
-        final Future<ProjectBean> future = restService.getProjectService().getProjectByKey(PROJECT_TO_SEARCH, "type");
+        final Future<ProjectBean> future = restService.getProjectRestService().getProjectByKey(PROJECT_TO_SEARCH, "type");
         final ProjectBean project = future.get();
         Assert.assertNotNull(project);
         Assert.assertEquals(PROJECT_TO_SEARCH, project.getKey());
@@ -26,7 +26,7 @@ public class ProjectServiceTest extends BaseTest {
 
     @Test
     public void testGetAllProjects() throws  ExecutionException, InterruptedException {
-        final Future<List<ProjectBean>> future = restService.getProjectService().getAllProjects();
+        final Future<List<ProjectBean>> future = restService.getProjectRestService().getAllProjects();
         final List<ProjectBean> projects = future.get();
         Assert.assertNotNull(projects);
         Assert.assertFalse(projects.isEmpty());
@@ -34,7 +34,7 @@ public class ProjectServiceTest extends BaseTest {
 
     @Test
     public void testGetProjectVersions() throws  ExecutionException, InterruptedException {
-        final Future<List<VersionBean>> future = restService.getProjectService().getProjectVersions(PROJECT_TO_SEARCH);
+        final Future<List<VersionBean>> future = restService.getProjectRestService().getProjectVersions(PROJECT_TO_SEARCH);
         final List<VersionBean> versions = future.get();
         Assert.assertNotNull(versions);
         Assert.assertTrue(versions.isEmpty());
@@ -42,7 +42,7 @@ public class ProjectServiceTest extends BaseTest {
 
     @Test
     public void testGetProjectComponents() throws ExecutionException, InterruptedException {
-        final Future<List<ComponentBean>> future = restService.getProjectService().getProjectComponents(PROJECT_TO_SEARCH);
+        final Future<List<ComponentBean>> future = restService.getProjectRestService().getProjectComponents(PROJECT_TO_SEARCH);
         final List<ComponentBean> components = future.get();
         Assert.assertNotNull(components);
         Assert.assertTrue(components.isEmpty());
@@ -50,7 +50,7 @@ public class ProjectServiceTest extends BaseTest {
 
     @Test
     public void testGetIssueTypesMetaForProject() throws ExecutionException, InterruptedException {
-        Future<MetaBean> future = restService.getProjectService().getIssueTypesMetaForProject(PROJECT_TO_SEARCH);
+        Future<MetaBean> future = restService.getProjectRestService().getIssueTypesMetaForProject(PROJECT_TO_SEARCH);
         MetaBean meta = future.get();
         Assert.assertNotNull(meta);
     }

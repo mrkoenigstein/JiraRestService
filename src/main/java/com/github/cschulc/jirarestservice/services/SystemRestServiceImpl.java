@@ -22,10 +22,10 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
-public class SystemServiceImpl extends BaseService implements SystemService {
+public class SystemRestServiceImpl extends BaseRestService implements SystemRestService {
 
 
-    public SystemServiceImpl(JiraRestService restService, ExecutorService executorService) {
+    public SystemRestServiceImpl(JiraRestService restService, ExecutorService executorService) {
         super(restService);
         this.executorService = executorService;
     }

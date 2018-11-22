@@ -10,7 +10,7 @@ import com.github.cschulc.jirarestservice.domain.project.ProjectCategoryBean;
 import java.util.List;
 import java.util.concurrent.Future;
 
-public interface ProjectService {
+public interface ProjectRestService {
 
     /**
      * Returns a list of all projects the logged in UserBean can see..

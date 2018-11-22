@@ -30,13 +30,13 @@ import java.util.concurrent.Future;
 /**
  * @author Christian Schulze
  */
-public class IssueServiceTest extends BaseTest {
+public class IssueRestServiceTest extends BaseTest {
 
     private static final String NEW_LINE = System.getProperty("line.separator");
 
     @Test
     public void testGetIssueByKey() throws ExecutionException, InterruptedException {
-        Future<IssueBean> future = restService.getIssueService().getIssueByKey(ISSUEKEY_TO_SEARCH);
+        Future<IssueBean> future = restService.getIssueRestService().getIssueByKey(ISSUEKEY_TO_SEARCH);
         final IssueBean issue = future.get();
         Assert.assertNotNull(issue);
         Assert.assertEquals(ISSUEKEY_TO_SEARCH, issue.getKey());
@@ -51,7 +51,7 @@ public class IssueServiceTest extends BaseTest {
         expand.add(FieldEnum.RENDEREDFIELDS.getField());
         expand.add(FieldEnum.TRANSITIONS.getField());
         expand.add(FieldEnum.CHANGELOG.getField());
-        final Future<IssueBean> future = restService.getIssueService().getIssueByKey(ISSUEKEY_TO_SEARCH, field, expand);
+        final Future<IssueBean> future = restService.getIssueRestService().getIssueByKey(ISSUEKEY_TO_SEARCH, field, expand);
         IssueBean issue = future.get();
         Assert.assertNotNull(issue);
         Assert.assertNotNull(issue.getFields().getSummary());
@@ -62,7 +62,7 @@ public class IssueServiceTest extends BaseTest {
 
     @Test
     public void testGetAttachment() throws IOException, ExecutionException, InterruptedException {
-        final Future<IssueBean> future = restService.getIssueService().getIssueByKey(ISSUEKEY_TO_SEARCH);
+        final Future<IssueBean> future = restService.getIssueRestService().getIssueByKey(ISSUEKEY_TO_SEARCH);
         final IssueBean issue = future.get();
         List<AttachmentBean> attachments = issue.getFields().getAttachment();
         Assert.assertNotNull(attachments);
@@ -71,7 +71,7 @@ public class IssueServiceTest extends BaseTest {
         String fileName = attachment.getFilename();
         String contentURI = attachment.getContent();
         URI uri = URIHelper.parseStringToURI(contentURI);
-        final Future<Byte[]> future1 = restService.getIssueService().getAttachment(uri);
+        final Future<Byte[]> future1 = restService.getIssueRestService().getAttachment(uri);
         final Byte[] attachmentBytes = future1.get();
         Assert.assertNotNull(attachmentBytes);
         OutputStream output = new FileOutputStream(fileName);
@@ -126,7 +126,7 @@ public class IssueServiceTest extends BaseTest {
         fields.setLabels(labels);
         issue.setFields(fields);
 
-        final Future<IssueResponseBean> future = restService.getIssueService().createIssue(issue);
+        final Future<IssueResponseBean> future = restService.getIssueRestService().createIssue(issue);
         final IssueResponseBean issueResponse = future.get();
         if (issueResponse != null) {
             String issueKey = issueResponse.getKey();
@@ -143,7 +143,7 @@ public class IssueServiceTest extends BaseTest {
     @Test
     @Ignore
     public void testSetLinkInEviroment() throws ExecutionException, InterruptedException {
-        final Future<IssueBean> future = restService.getIssueService().getIssueByKey(ISSUEKEY_TO_SEARCH);
+        final Future<IssueBean> future = restService.getIssueRestService().getIssueByKey(ISSUEKEY_TO_SEARCH);
         final IssueBean issue = future.get();
         Assert.assertNotNull(issue);
         Assert.assertEquals(ISSUEKEY_TO_SEARCH, issue.getKey());
@@ -154,7 +154,7 @@ public class IssueServiceTest extends BaseTest {
         List<FieldOperationBean> operations = new ArrayList<>();
         operations.add(new FieldOperationBean(Operation.SET.getName(), newEnviroment));
         update.put("environment", operations);
-        final Future<IssueBean> updateFuture = restService.getIssueService().updateIssue(ISSUEKEY_TO_SEARCH, issueUpdate);
+        final Future<IssueBean> updateFuture = restService.getIssueRestService().updateIssue(ISSUEKEY_TO_SEARCH, issueUpdate);
         final IssueBean updateIssue = updateFuture.get();
         String updateIssueEnvironment = updateIssue.getFields().getEnvironment();
         Assert.assertEquals(newEnviroment, updateIssueEnvironment);
@@ -162,7 +162,7 @@ public class IssueServiceTest extends BaseTest {
 
     @Test
     public void testGetTransitions() throws ExecutionException, InterruptedException {
-        final Future<List<TransitionBean>> future = restService.getIssueService().getIssueTransitionsByKey(ISSUEKEY_TO_SEARCH);
+        final Future<List<TransitionBean>> future = restService.getIssueRestService().getIssueTransitionsByKey(ISSUEKEY_TO_SEARCH);
         final List<TransitionBean> transitions = future.get();
         Assert.assertNotNull(transitions);
         Assert.assertFalse(transitions.isEmpty());
@@ -174,7 +174,7 @@ public class IssueServiceTest extends BaseTest {
         File file = new File(Objects.requireNonNull(classLoader.getResource("fields.json")).getFile());
         File file2 = new File(Objects.requireNonNull(classLoader.getResource("customfields.json")).getFile());
         if (file.exists() == true) {
-            Future<List<AttachmentBean>> listFuture = restService.getIssueService().saveAttachmentToIssue(ISSUEKEY_TO_SEARCH, file, file2);
+            Future<List<AttachmentBean>> listFuture = restService.getIssueRestService().saveAttachmentToIssue(ISSUEKEY_TO_SEARCH, file, file2);
             List<AttachmentBean> attachmentBeen = listFuture.get();
             Assert.assertFalse(attachmentBeen.isEmpty());
         }
@@ -184,7 +184,7 @@ public class IssueServiceTest extends BaseTest {
     public void testAddCommentToIssue() throws URISyntaxException, IOException, JiraRestException, ExecutionException, InterruptedException {
         CommentBean comment = new CommentBean();
         comment.setBody("This is a new comment via restService.");
-        Future<Boolean> future = restService.getIssueService().addCommentToIssue(ISSUEKEY_TO_SEARCH, comment);
+        Future<Boolean> future = restService.getIssueRestService().addCommentToIssue(ISSUEKEY_TO_SEARCH, comment);
         Boolean aBoolean = future.get();
         Assert.assertTrue(aBoolean);
     }

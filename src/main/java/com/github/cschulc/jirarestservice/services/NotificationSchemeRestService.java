@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 /**
  * @author Christian Schulze
  */
-public interface NotificationSchemeService {
+public interface NotificationSchemeRestService {
 
     Future<NotifictaionSchemesBean> getNotificationSchemes(int startAt, int maxResults, String expand);
 

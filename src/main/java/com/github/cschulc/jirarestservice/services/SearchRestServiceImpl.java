@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
-public class SearchServiceImpl extends BaseService implements SearchService {
+public class SearchRestServiceImpl extends BaseRestService implements SearchRestService {
 
-    public SearchServiceImpl(JiraRestService restService, ExecutorService executorService) {
+    public SearchRestServiceImpl(JiraRestService restService, ExecutorService executorService) {
         super(restService);
         this.executorService = executorService;
     }

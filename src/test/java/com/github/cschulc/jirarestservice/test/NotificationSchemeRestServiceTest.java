@@ -12,18 +12,18 @@ import java.util.concurrent.Future;
 /**
  * @author Christian Schulze
  */
-public class NotificationSchemeServiceTest extends BaseTest {
+public class NotificationSchemeRestServiceTest extends BaseTest {
 
     @Test
     public void testGetNotificationSchemes() throws ExecutionException, InterruptedException {
-        Future<NotifictaionSchemesBean> future = restService.getNotificationSchemeService().getNotificationSchemes(0, 50, StringUtils.EMPTY);
+        Future<NotifictaionSchemesBean> future = restService.getNotificationSchemeRestService().getNotificationSchemes(0, 50, StringUtils.EMPTY);
         NotifictaionSchemesBean notifictaionSchemes = future.get();
         Assert.assertNotNull(notifictaionSchemes);
     }
 
     @Test
     public void testGetNotificationScheme() throws ExecutionException, InterruptedException {
-        Future<NotificationSchemeBean> future = restService.getNotificationSchemeService().getNotificationScheme("10000", StringUtils.EMPTY);
+        Future<NotificationSchemeBean> future = restService.getNotificationSchemeRestService().getNotificationScheme("10000", StringUtils.EMPTY);
         NotificationSchemeBean notificationScheme = future.get();
         Assert.assertNotNull(notificationScheme);
     }

@@ -14,9 +14,9 @@ import java.util.concurrent.Future;
 /**
  * @author Christian Schulze
  */
-public class NotificationSchemeServiceImpl extends BaseService implements NotificationSchemeService {
+public class NotificationSchemeRestServiceImpl extends BaseRestService implements NotificationSchemeRestService {
 
-    public NotificationSchemeServiceImpl(JiraRestService restService, ExecutorService executorService) {
+    public NotificationSchemeRestServiceImpl(JiraRestService restService, ExecutorService executorService) {
         super(restService);
         this.executorService = executorService;
     }

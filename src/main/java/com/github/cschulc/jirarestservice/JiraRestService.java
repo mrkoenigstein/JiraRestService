@@ -48,23 +48,23 @@ public class JiraRestService implements RestPaths, RestParams {
 
     private static RequestConfig config;
 
-    private IssueService issueService;
+    private IssueRestService issueRestService;
 
-    private UserService userService;
+    private UserRestService userRestService;
 
-    private GroupService groupService;
+    private GroupRestService groupRestService;
 
-    private ProjectService projectService;
+    private ProjectRestService projectRestService;
 
-    private SystemService systemService;
+    private SystemRestService systemRestService;
 
-    private SearchService searchService;
+    private SearchRestService searchRestService;
 
-    private NotificationSchemeService notificationSchemeService;
+    private NotificationSchemeRestService notificationSchemeRestService;
 
-    private PermissionSchemeService permissionSchemeService;
+    private PermissionSchemeRestService permissionSchemeRestService;
 
-    private IssueSecuritySchemeService issueSecuritySchemeService;
+    private IssueSecuritySchemeRestService issueSecuritySchemeRestService;
 
     public JiraRestService(ExecutorService executorService) {
         this.executorService = executorService;
@@ -181,66 +181,70 @@ public class JiraRestService implements RestPaths, RestParams {
         return username;
     }
 
-    public IssueService getIssueService() {
-        if (issueService == null) {
-            issueService = new IssueServiceImpl(this, executorService);
+    public IssueRestService getIssueRestService() {
+        if (issueRestService == null) {
+            issueRestService = new IssueRestServiceImpl(this, executorService);
         }
-        return issueService;
+        return issueRestService;
     }
 
-    public UserService getUserService() {
-        if (userService == null) {
-            userService = new UserServiveImpl(this, executorService);
+    public UserRestService getUserRestService() {
+        if (userRestService == null) {
+            userRestService = new UserRestServiveImpl(this, executorService);
         }
-        return userService;
+        return userRestService;
     }
 
-    public GroupService getGroupService() {
-        if(groupService == null){
-            groupService = new GroupServiceImpl(this, executorService);
+    public GroupRestService getGroupRestService() {
+        if(groupRestService == null){
+            groupRestService = new GroupRestServiceImpl(this, executorService);
         }
-        return groupService;
+        return groupRestService;
     }
 
-    public ProjectService getProjectService() {
-        if (projectService == null) {
-            projectService = new ProjectServiceImpl(this, executorService);
+    public ProjectRestService getProjectRestService() {
+        if (projectRestService == null) {
+            projectRestService = new ProjectRestServiceImpl(this, executorService);
         }
-        return projectService;
+        return projectRestService;
     }
 
-    public SystemService getSystemService() {
-        if (systemService == null) {
-            systemService = new SystemServiceImpl(this, executorService);
+    public SystemRestService getSystemRestService() {
+        if (systemRestService == null) {
+            systemRestService = new SystemRestServiceImpl(this, executorService);
         }
-        return systemService;
+        return systemRestService;
     }
 
-    public SearchService getSearchService() {
-        if (searchService == null) {
-            searchService = new SearchServiceImpl(this, executorService);
+    public SearchRestService getSearchRestService() {
+        if (searchRestService == null) {
+            searchRestService = new SearchRestServiceImpl(this, executorService);
         }
-        return searchService;
+        return searchRestService;
     }
 
-    public PermissionSchemeService getPermissionSchemeService() {
-        if (permissionSchemeService == null) {
-            permissionSchemeService = new PermissionSchemeServiceImpl(this, executorService);
+    public PermissionSchemeRestService getPermissionSchemeRestService() {
+        if (permissionSchemeRestService == null) {
+            permissionSchemeRestService = new PermissionSchemeRestServiceImpl(this, executorService);
         }
-        return permissionSchemeService;
+        return permissionSchemeRestService;
     }
 
-    public NotificationSchemeService getNotificationSchemeService() {
-        if (notificationSchemeService == null) {
-            notificationSchemeService = new NotificationSchemeServiceImpl(this, executorService);
+    public NotificationSchemeRestService getNotificationSchemeRestService() {
+        if (notificationSchemeRestService == null) {
+            notificationSchemeRestService = new NotificationSchemeRestServiceImpl(this, executorService);
         }
-        return notificationSchemeService;
+        return notificationSchemeRestService;
     }
 
-    public IssueSecuritySchemeService getIssueSecuritySchemeService() {
-        if(issueSecuritySchemeService == null){
-            issueSecuritySchemeService = new IssueSecuritySchemeServiceImpl(this, executorService);
+    public IssueSecuritySchemeRestService getIssueSecuritySchemeRestService() {
+        if(issueSecuritySchemeRestService == null){
+            issueSecuritySchemeRestService = new IssueSecuritySchemeRestServiceImpl(this, executorService);
         }
-        return issueSecuritySchemeService;
+        return issueSecuritySchemeRestService;
+    }
+
+    public HttpHost getProxy() {
+        return proxy;
     }
 }

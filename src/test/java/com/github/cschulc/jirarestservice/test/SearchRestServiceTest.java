@@ -14,7 +14,7 @@ import java.util.concurrent.Future;
 /**
  * @author Christian Schulze
  */
-public class SearchServiceTest  extends BaseTest{
+public class SearchRestServiceTest extends BaseTest{
 
     @Test
     public void testSearchIssues() throws ExecutionException, InterruptedException {
@@ -26,7 +26,7 @@ public class SearchServiceTest  extends BaseTest{
         jsb.setJql(jql);
         jsb.addField(FieldEnum.ISSUE_KEY, FieldEnum.STATUS, FieldEnum.DUE, FieldEnum.SUMMARY, FieldEnum.ISSUE_TYPE, FieldEnum.PRIORITY, FieldEnum.UPDATED, FieldEnum.TRANSITIONS);
         jsb.addExpand(FieldEnum.TRANSITIONS);
-        Future<JqlSearchResultBean> future = restService.getSearchService().searchIssues(jsb);
+        Future<JqlSearchResultBean> future = restService.getSearchRestService().searchIssues(jsb);
         JqlSearchResultBean jqlSearchResult = future.get();
         Assert.assertNotNull(jqlSearchResult);
         Assert.assertEquals(jqlSearchResult.getIssues().size(), jqlSearchResult.getTotal());
@@ -43,7 +43,7 @@ public class SearchServiceTest  extends BaseTest{
         jsb.setJql(jql);
         jsb.addField(FieldEnum.ISSUE_KEY, FieldEnum.STATUS, FieldEnum.DUE, FieldEnum.SUMMARY, FieldEnum.ISSUE_TYPE, FieldEnum.PRIORITY, FieldEnum.UPDATED, FieldEnum.TRANSITIONS);
         jsb.addExpand(FieldEnum.TRANSITIONS);
-        Future<JqlSearchResultBean> future = restService.getSearchService().searchIssues(jsb);
+        Future<JqlSearchResultBean> future = restService.getSearchRestService().searchIssues(jsb);
         JqlSearchResultBean jqlSearchResult = future.get();
         Assert.assertNotNull(jqlSearchResult);
         Assert.assertEquals(jqlSearchResult.getIssues().size(), jqlSearchResult.getTotal());
@@ -58,7 +58,7 @@ public class SearchServiceTest  extends BaseTest{
         String jql = builder.addCondition(FieldEnum.PROJECT, OperatorEnum.EQUALS, "DEMO").build();
         jsb.setJql(jql);
         jsb.addField(FieldEnum.ISSUE_KEY, FieldEnum.STATUS, FieldEnum.DUE, FieldEnum.ISSUE_TYPE);
-        Future<JqlSearchResultBean> future = restService.getSearchService().searchIssues(jsb);
+        Future<JqlSearchResultBean> future = restService.getSearchRestService().searchIssues(jsb);
         JqlSearchResultBean jqlSearchResult = future.get();
         Assert.assertNotNull(jqlSearchResult);
         Assert.assertEquals(jqlSearchResult.getIssues().size(), jqlSearchResult.getTotal());
@@ -74,7 +74,7 @@ public class SearchServiceTest  extends BaseTest{
         filter.setDescription("A FilterBean for the Demo ProjectBean");
         filter.setFavourite(Boolean.TRUE);
         filter.setJql("project = DEMO");
-        final Future<FilterBean> future = restService.getSearchService().createSearchFilter(filter);
+        final Future<FilterBean> future = restService.getSearchRestService().createSearchFilter(filter);
         final FilterBean createdFilter;
         try {
             createdFilter = future.get();
@@ -91,7 +91,7 @@ public class SearchServiceTest  extends BaseTest{
 
     @Test
     public void testGetFilterForLoggedInUser() throws ExecutionException, InterruptedException {
-        final Future<List<FilterBean>> future = restService.getSearchService().getFavoriteFilter();
+        final Future<List<FilterBean>> future = restService.getSearchRestService().getFavoriteFilter();
         final List<FilterBean> filters = future.get();
         Assert.assertNotNull(filters);
         Assert.assertFalse(filters.isEmpty());
@@ -99,7 +99,7 @@ public class SearchServiceTest  extends BaseTest{
 
     @Test
     public void testGetFilterById() throws ExecutionException, InterruptedException {
-        Future<FilterBean> future = restService.getSearchService().getFilterById("10000");
+        Future<FilterBean> future = restService.getSearchRestService().getFilterById("10000");
         FilterBean filter = future.get();
         Assert.assertNotNull(filter);
     }

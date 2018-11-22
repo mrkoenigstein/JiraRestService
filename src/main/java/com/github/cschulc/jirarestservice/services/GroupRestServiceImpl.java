@@ -18,9 +18,9 @@ import java.util.concurrent.Future;
  * Date: 26.06.2018
  * Time: 09:26
  */
-public class GroupServiceImpl extends BaseService implements GroupService {
+public class GroupRestServiceImpl extends BaseRestService implements GroupRestService {
 
-    public GroupServiceImpl(JiraRestService restService, ExecutorService executorService) {
+    public GroupRestServiceImpl(JiraRestService restService, ExecutorService executorService) {
         super(restService);
         this.executorService = executorService;
     }

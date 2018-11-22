@@ -10,7 +10,7 @@ import java.util.concurrent.Future;
  * Date: 03.07.2018
  * Time: 08:54
  */
-public interface IssueSecuritySchemeService {
+public interface IssueSecuritySchemeRestService {
 
     /**
      * Returns all issue security schemes that are defined.

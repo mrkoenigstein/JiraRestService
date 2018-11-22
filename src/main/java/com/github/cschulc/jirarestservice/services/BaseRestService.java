@@ -31,7 +31,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.concurrent.ExecutorService;
 
-public abstract class BaseService implements RestPaths, RestParams {
+public abstract class BaseRestService implements RestPaths, RestParams {
 
     protected JiraRestService restService;
     protected final CloseableHttpClient client;
@@ -45,7 +45,7 @@ public abstract class BaseService implements RestPaths, RestParams {
             .registerTypeAdapter(MetaBean.class, new MetaDeserializer())
             .create();
 
-    public BaseService(JiraRestService restService) {
+    public BaseRestService(JiraRestService restService) {
         this.restService = restService;
         this.client = restService.getClient();
         this.context = restService.getContext();

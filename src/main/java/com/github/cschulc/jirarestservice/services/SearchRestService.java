@@ -7,7 +7,7 @@ import com.github.cschulc.jirarestservice.jql.SearchBean;
 import java.util.List;
 import java.util.concurrent.Future;
 
-public interface SearchService {
+public interface SearchRestService {
 
     /**
      * Performs an extended search for issues given by the project.

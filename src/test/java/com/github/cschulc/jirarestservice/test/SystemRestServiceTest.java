@@ -19,7 +19,7 @@ import java.util.concurrent.Future;
 /**
  * @author Christian Schulze
  */
-public class SystemServiceTest extends BaseTest {
+public class SystemRestServiceTest extends BaseTest {
 
     private static final int DEFAULT_NUMBER_OF_ISSUETYPES = 4;
     private static final int DEFAULT_NUMBER_OF_STATES = 3;
@@ -30,7 +30,7 @@ public class SystemServiceTest extends BaseTest {
 
     @Test
     public void testGetConfiguration() throws InterruptedException, ExecutionException {
-        Future<ConfigurationBean> future = restService.getSystemService().getConfiguration();
+        Future<ConfigurationBean> future = restService.getSystemRestService().getConfiguration();
         ConfigurationBean configuration = future.get();
         Assert.assertNotNull(configuration);
         Assert.assertNotNull(configuration.getTimeTrackingConfiguration());
@@ -39,7 +39,7 @@ public class SystemServiceTest extends BaseTest {
 
     @Test
     public void testGetIssueType() throws InterruptedException, ExecutionException {
-        final Future<List<IssuetypeBean>> future = restService.getSystemService().getIssueTypes();
+        final Future<List<IssuetypeBean>> future = restService.getSystemRestService().getIssueTypes();
         final List<IssuetypeBean> issuetypes = future.get();
         Assert.assertNotNull(issuetypes);
         Assert.assertFalse(issuetypes.isEmpty());
@@ -48,7 +48,7 @@ public class SystemServiceTest extends BaseTest {
 
     @Test
     public void testGetPriorities() throws InterruptedException, ExecutionException {
-        final Future<List<PriorityBean>> future = restService.getSystemService().getPriorities();
+        final Future<List<PriorityBean>> future = restService.getSystemRestService().getPriorities();
         final List<PriorityBean> priorities = future.get();
         Assert.assertNotNull(priorities);
         Assert.assertFalse(priorities.isEmpty());
@@ -57,7 +57,7 @@ public class SystemServiceTest extends BaseTest {
 
     @Test
     public void testGetStates() throws InterruptedException, ExecutionException {
-        final Future<List<StatusBean>> future = restService.getSystemService().getStates();
+        final Future<List<StatusBean>> future = restService.getSystemRestService().getStates();
         final List<StatusBean> statuss = future.get();
         Assert.assertNotNull(statuss);
         Assert.assertFalse(statuss.isEmpty());
@@ -67,7 +67,7 @@ public class SystemServiceTest extends BaseTest {
 
     @Test
     public void testGetFields() throws InterruptedException, ExecutionException {
-        final Future<List<FieldBean>> future = restService.getSystemService().getAllFields();
+        final Future<List<FieldBean>> future = restService.getSystemRestService().getAllFields();
         final List<FieldBean> fields = future.get();
         Assert.assertNotNull(fields);
         Assert.assertFalse(fields.isEmpty());
@@ -83,14 +83,14 @@ public class SystemServiceTest extends BaseTest {
 
     @Test
     public void testGetCustomFields() throws InterruptedException, ExecutionException {
-        final Future<List<FieldBean>> future = restService.getSystemService().getAllCustomFields();
+        final Future<List<FieldBean>> future = restService.getSystemRestService().getAllCustomFields();
         final List<FieldBean> fields = future.get();
         Assert.assertNotNull(fields);
     }
 
     @Test
     public void testGetCustomFieldById() throws InterruptedException, ExecutionException {
-        Future<FieldBean> future = restService.getSystemService().getCustomFieldById("10000");
+        Future<FieldBean> future = restService.getSystemRestService().getCustomFieldById("10000");
         FieldBean field = future.get();
         Assert.assertNotNull(field);
     }
@@ -101,7 +101,7 @@ public class SystemServiceTest extends BaseTest {
         createField.setName("New Custom FieldBean");
         createField.setDescription("Custom field for picking groups");
         createField.setType(CustomFieldType.GROUP.getJiraName());
-        Future<FieldBean> future = restService.getSystemService().createCustomField(createField);
+        Future<FieldBean> future = restService.getSystemRestService().createCustomField(createField);
         FieldBean field = future.get();
         Assert.assertNotNull(field);
         Assert.assertEquals(createField.getName(), field.getName());
@@ -110,7 +110,7 @@ public class SystemServiceTest extends BaseTest {
     @Test
     @Ignore
     public void testGetAttachmentMeta() throws InterruptedException, ExecutionException {
-        final Future<AttachmentMetaBean> future = restService.getSystemService().getAttachmentMeta();
+        final Future<AttachmentMetaBean> future = restService.getSystemRestService().getAttachmentMeta();
         final AttachmentMetaBean attachmentMeta = future.get();
         Assert.assertNotNull(attachmentMeta);
         Assert.assertEquals(DEFAULT_UPLOAD_LIMIT, attachmentMeta.getUploadLimit());

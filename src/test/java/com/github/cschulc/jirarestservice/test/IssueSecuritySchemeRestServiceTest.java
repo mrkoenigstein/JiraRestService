@@ -13,11 +13,11 @@ import java.util.concurrent.Future;
  * Date: 03.07.2018
  * Time: 09:13
  */
-public class IssueSecuritySchemeServiceTest extends BaseTest {
+public class IssueSecuritySchemeRestServiceTest extends BaseTest {
 
     @Test
     public void testGetIssueSecuritySchemes() throws ExecutionException, InterruptedException {
-        Future<IssueSecuritySchemesBean> future = restService.getIssueSecuritySchemeService().getIssueSecuritySchemes();
+        Future<IssueSecuritySchemesBean> future = restService.getIssueSecuritySchemeRestService().getIssueSecuritySchemes();
         IssueSecuritySchemesBean issueSecuritySchemes = future.get();
         Assert.assertNotNull(issueSecuritySchemes);
         Assert.assertFalse(issueSecuritySchemes.getIssueSecuritySchemes().isEmpty());
@@ -25,7 +25,7 @@ public class IssueSecuritySchemeServiceTest extends BaseTest {
 
     @Test
     public void testGetIssueSecurityScheme() throws ExecutionException, InterruptedException {
-        Future<IssueSecuritySchemeBean> future = restService.getIssueSecuritySchemeService().getIssueSecurityScheme("10000");
+        Future<IssueSecuritySchemeBean> future = restService.getIssueSecuritySchemeRestService().getIssueSecurityScheme("10000");
         IssueSecuritySchemeBean issueSecurityScheme = future.get();
         Assert.assertNotNull(issueSecurityScheme);
         Assert.assertFalse(issueSecurityScheme.getLevels().isEmpty());

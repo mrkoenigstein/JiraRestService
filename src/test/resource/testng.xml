@@ -2,13 +2,13 @@
 <suite name="JiraRestService Tests">
     <test name="Complete Read Test">
         <classes>
-            <class name="com.github.cschulc.jirarestservice.test.IssueServiceTest"></class>
-            <class name="com.github.cschulc.jirarestservice.test.SystemServiceTest"></class>
-            <class name="com.github.cschulc.jirarestservice.test.SearchServiceTest"></class>
-            <class name="com.github.cschulc.jirarestservice.test.UserServiceTest"></class>
-            <class name="com.github.cschulc.jirarestservice.test.ProjectServiceTest"></class>
-            <class name="com.github.cschulc.jirarestservice.test.PermissionSchemeServiceTest"></class>
-            <class name="com.github.cschulc.jirarestservice.test.NotificationSchemeServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.IssueRestServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.SystemRestServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.SearchRestServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.UserRestServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.ProjectRestServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.PermissionSchemeRestServiceTest"></class>
+            <class name="com.github.cschulc.jirarestservice.test.NotificationSchemeRestServiceTest"></class>
         </classes>
     </test>
 </suite>
