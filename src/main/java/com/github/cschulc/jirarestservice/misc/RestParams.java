@@ -1,38 +1,40 @@
 package com.github.cschulc.jirarestservice.misc;
 
-public interface RestParams {
+public class RestParams {
 
-    String USERNAME = "username";
+    public static final String USERNAME = "username";
 
-    String EXPAND = "expand";
+    public static final String EXPAND = "expand";
 
-    String TRANSITIONS_FIELDS = "transitions.fields";
+    public static final String TRANSITIONS_FIELDS = "transitions.fields";
 
-    String RENDERED_FIELDS = "renderedFields";
+    public static final String RENDERED_FIELDS = "renderedFields";
 
-    String ISSUEKEY = "issueKey";
+    public static final String ISSUEKEY = "issueKey";
 
-    String START_AT = "startAt";
+    public static final String START_AT = "startAt";
 
-    String MAX_RESULTS = "maxResults";
+    public static final String MAX_RESULTS = "maxResults";
 
-    String PROJECTKEY = "project";
+    public static final String PROJECTKEY = "project";
 
-    String FIELDS = "fields";
+    public static final String FIELDS = "fields";
 
-    String PROJECTKEYS = "projectKeys";
+    public static final String PROJECTKEYS = "projectKeys";
 
-    String QUERY = "query";
+    public static final String QUERY = "query";
 
-    String EXCLUDE = "exclude";
+    public static final String EXCLUDE = "exclude";
 
-    String USER_NAME = "userName";
+    public static final String USER_NAME = "userName";
 
-    String GROUPNAME = "groupname";
+    public static final String GROUPNAME = "groupname";
 
-    String INCLUDE_ACTIVE = "includeActive";
+    public static final String INCLUDE_ACTIVE = "includeActive";
 
-    String INCLUDE_INACTIVE = "includeInactive";
+    public static final String INCLUDE_INACTIVE = "includeInactive";
 
-    String PROPERTY = "property";
+    public static final String PROPERTY = "property";
+
+    public static final String INCLUDEINACTIVEUSERS = "includeInactiveUsers";
 }

@@ -20,6 +20,10 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+
+import static com.github.cschulc.jirarestservice.misc.RestParams.*;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.*;
+
 public class ProjectRestServiceImpl extends BaseRestService implements ProjectRestService {
 
 
@@ -33,6 +37,7 @@ public class ProjectRestServiceImpl extends BaseRestService implements ProjectRe
         return executorService.submit(() -> {
 
             URIBuilder uriBuilder = buildPath(PROJECT, projectKey);
+            uriBuilder.addParameter(EXPAND, expand);
             RestApiCall restApiCall = doGet(uriBuilder.build());
             int statusCode = restApiCall.getStatusCode();
             if (statusCode == HttpURLConnection.HTTP_OK) {
@@ -142,7 +147,7 @@ public class ProjectRestServiceImpl extends BaseRestService implements ProjectRe
                 restApiCall.release();
                 return project;
             } else {
-                return null;
+                throw restApiCall.buildException();
             }
         });
     }

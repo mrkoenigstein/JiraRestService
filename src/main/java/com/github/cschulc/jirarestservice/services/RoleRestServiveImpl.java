@@ -5,6 +5,7 @@ import com.github.cschulc.jirarestservice.domain.project.ProjectRoleBean;
 import java.util.List;
 import java.util.concurrent.Future;
 
+
 /**
  * UserBean: Christian Schulze (cschulc@outlook.com)
  * Date: 05.07.2018

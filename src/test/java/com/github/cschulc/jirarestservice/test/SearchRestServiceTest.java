@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import static com.github.cschulc.jirarestservice.jql.Constants.STATUS_IN_PROGRESS;
+import static com.github.cschulc.jirarestservice.jql.Constants.STATUS_OPEN;
+
 /**
  * @author Christian Schulze
  */
@@ -30,7 +33,7 @@ public class SearchRestServiceTest extends BaseTest{
         JqlSearchResultBean jqlSearchResult = future.get();
         Assert.assertNotNull(jqlSearchResult);
         Assert.assertEquals(jqlSearchResult.getIssues().size(), jqlSearchResult.getTotal());
-        Assert.assertTrue(jqlSearchResult.getTotal() == 0);
+        Assert.assertEquals(jqlSearchResult.getTotal(), 0);
     }
 
     @Test
@@ -47,7 +50,7 @@ public class SearchRestServiceTest extends BaseTest{
         JqlSearchResultBean jqlSearchResult = future.get();
         Assert.assertNotNull(jqlSearchResult);
         Assert.assertEquals(jqlSearchResult.getIssues().size(), jqlSearchResult.getTotal());
-        Assert.assertTrue(jqlSearchResult.getTotal() == 0);
+        Assert.assertEquals(jqlSearchResult.getTotal(), 0);
 
     }
 

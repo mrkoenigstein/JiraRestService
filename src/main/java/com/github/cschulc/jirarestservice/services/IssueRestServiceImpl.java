@@ -30,6 +30,10 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+
+import static com.github.cschulc.jirarestservice.misc.RestParams.*;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.*;
+
 public class IssueRestServiceImpl extends BaseRestService implements IssueRestService {
 
     private static final String SEPARATOR = ",";
@@ -113,11 +117,11 @@ public class IssueRestServiceImpl extends BaseRestService implements IssueRestSe
         return executorService.submit(() -> {
 
             URIBuilder uriBuilder = buildPath(ISSUE, issueKey);
-            if (fields != null && fields.isEmpty() == false) {
+            if (fields != null && !fields.isEmpty()) {
                 String fieldsParam = StringUtils.join(fields, SEPARATOR);
                 uriBuilder.addParameter(FIELDS, fieldsParam);
             }
-            if (expand != null && expand.isEmpty() == false) {
+            if (expand != null && !expand.isEmpty()) {
                 String expandParam = StringUtils.join(expand, SEPARATOR);
                 uriBuilder.addParameter(EXPAND, expandParam);
             }

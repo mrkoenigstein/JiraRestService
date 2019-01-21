@@ -10,6 +10,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 public class JiraRestException extends Exception{
 
@@ -34,7 +35,7 @@ public class JiraRestException extends Exception{
             HttpEntity entity = response.getEntity();
             InputStream inputStream = entity.getContent();
             if(inputStream != null) {
-                InputStreamReader reader = new InputStreamReader(inputStream, "UTF-8");
+                InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
                 JsonReader jsonReader = new JsonReader(reader);
                 jsonReader.setLenient(true);
                 Gson gson = new Gson();

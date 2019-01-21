@@ -2,9 +2,7 @@ package com.github.cschulc.jirarestservice.test;
 
 
 import com.github.cschulc.jirarestservice.JiraRestService;
-import com.github.cschulc.jirarestservice.jql.Constants;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,7 +13,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class BaseTest implements Constants {
+public class BaseTest {
 
     static final String CONFIGFILENAME = "config.properties";
 

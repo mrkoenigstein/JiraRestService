@@ -29,6 +29,12 @@ public class ErrorsBean {
     private String components;
     @Expose
     private String email;
+    @Expose
+    private String projectType;
+    @Expose
+    private String projectKey;
+    @Expose
+    private String projectName;
 
     public String getProject() {
         return project;
@@ -124,5 +130,29 @@ public class ErrorsBean {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getProjectType() {
+        return projectType;
+    }
+
+    public void setProjectType(String projectType) {
+        this.projectType = projectType;
+    }
+
+    public String getProjectKey() {
+        return projectKey;
+    }
+
+    public void setProjectKey(String projectKey) {
+        this.projectKey = projectKey;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 }

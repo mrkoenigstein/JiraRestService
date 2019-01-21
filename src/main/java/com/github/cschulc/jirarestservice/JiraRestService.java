@@ -1,9 +1,24 @@
 package com.github.cschulc.jirarestservice;
 
 import com.github.cschulc.jirarestservice.domain.field.FieldBean;
-import com.github.cschulc.jirarestservice.misc.RestParams;
-import com.github.cschulc.jirarestservice.misc.RestPaths;
-import com.github.cschulc.jirarestservice.services.*;
+import com.github.cschulc.jirarestservice.services.GroupRestService;
+import com.github.cschulc.jirarestservice.services.GroupRestServiceImpl;
+import com.github.cschulc.jirarestservice.services.IssueRestService;
+import com.github.cschulc.jirarestservice.services.IssueRestServiceImpl;
+import com.github.cschulc.jirarestservice.services.IssueSecuritySchemeRestService;
+import com.github.cschulc.jirarestservice.services.IssueSecuritySchemeRestServiceImpl;
+import com.github.cschulc.jirarestservice.services.NotificationSchemeRestService;
+import com.github.cschulc.jirarestservice.services.NotificationSchemeRestServiceImpl;
+import com.github.cschulc.jirarestservice.services.PermissionSchemeRestService;
+import com.github.cschulc.jirarestservice.services.PermissionSchemeRestServiceImpl;
+import com.github.cschulc.jirarestservice.services.ProjectRestService;
+import com.github.cschulc.jirarestservice.services.ProjectRestServiceImpl;
+import com.github.cschulc.jirarestservice.services.SearchRestService;
+import com.github.cschulc.jirarestservice.services.SearchRestServiceImpl;
+import com.github.cschulc.jirarestservice.services.SystemRestService;
+import com.github.cschulc.jirarestservice.services.SystemRestServiceImpl;
+import com.github.cschulc.jirarestservice.services.UserRestService;
+import com.github.cschulc.jirarestservice.services.UserRestServiveImpl;
 import com.github.cschulc.jirarestservice.util.URIHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpHeaders;
@@ -18,7 +33,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.auth.BasicScheme;
-import org.apache.http.impl.client.*;
+import org.apache.http.impl.client.BasicAuthCache;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
 
 import javax.ws.rs.core.MediaType;
@@ -31,7 +49,10 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
-public class JiraRestService implements RestPaths, RestParams {
+import static com.github.cschulc.jirarestservice.misc.RestParams.*;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.*;
+
+public class JiraRestService {
 
     private static final String HTTP = "http";
     private static final String HTTPS = "https";
@@ -127,8 +148,8 @@ public class JiraRestService implements RestPaths, RestParams {
     /**
      * Extract port from URL
      *
-     * @param endpointUrl
-     * @return
+     * @param endpointUrl The Url from which to extract the port
+     * @return The Port from the URL. http Port 80 or https port 443
      */
     private int getPort(URL endpointUrl) {
         int port = (endpointUrl.getPort() != -1 ? endpointUrl.getPort() : endpointUrl.getDefaultPort());
@@ -143,13 +164,13 @@ public class JiraRestService implements RestPaths, RestParams {
 
     private URI buildBaseURI(URI uri) throws URISyntaxException {
         String path = uri.getPath();
-        if (path.isEmpty() == false) {
+        if (!path.isEmpty()) {
             if (path.endsWith("/")) {
                 path = path.substring(0, path.length() - 1);
             }
-            path = path.concat(RestPaths.BASE_REST_PATH);
+            path = path.concat(BASE_REST_PATH);
         } else {
-            path = RestPaths.BASE_REST_PATH;
+            path = BASE_REST_PATH;
         }
         return new URIBuilder(uri).setPath(path).build();
     }

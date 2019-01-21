@@ -20,6 +20,10 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+
+import static com.github.cschulc.jirarestservice.misc.RestParams.*;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.*;
+
 public class UserRestServiveImpl extends BaseRestService implements UserRestService {
 
     public UserRestServiveImpl(JiraRestService service, ExecutorService executorService) {
@@ -49,7 +53,7 @@ public class UserRestServiveImpl extends BaseRestService implements UserRestServ
                 UserBean user = gson.fromJson(jsonReader, UserBean.class);
                 restApiCall.release();
                 return user;
-            } else if (statusCode == HttpURLConnection.HTTP_UNAUTHORIZED || statusCode == HttpURLConnection.HTTP_FORBIDDEN) {
+            } else if (statusCode == HttpURLConnection.HTTP_UNAUTHORIZED || statusCode == HttpURLConnection.HTTP_FORBIDDEN || statusCode == HttpURLConnection.HTTP_NOT_FOUND) {
                 return null;
             } else {
                 throw restApiCall.buildException();
@@ -103,10 +107,10 @@ public class UserRestServiveImpl extends BaseRestService implements UserRestServ
     public Future<List<UserBean>> findUsers(boolean includeActive, boolean includeInactive, int maxResults, String property, int startAt, String username) {
         return executorService.submit(() -> {
             URIBuilder uriBuilder = buildPath(USER, SEARCH);
-            if (includeActive == true) {
+            if (includeActive) {
                 uriBuilder.addParameter(INCLUDE_ACTIVE, String.valueOf(includeActive));
             }
-            if (includeInactive == true) {
+            if (includeInactive) {
                 uriBuilder.addParameter(INCLUDE_INACTIVE, String.valueOf(includeInactive));
             }
             if (maxResults > 0) {

@@ -1,6 +1,7 @@
 package com.github.cschulc.jirarestservice.services;
 
 import com.github.cschulc.jirarestservice.domain.groups.GroupBean;
+import com.github.cschulc.jirarestservice.domain.groups.GroupUsersBean;
 import com.github.cschulc.jirarestservice.domain.groups.GroupsBean;
 
 import java.util.concurrent.Future;
@@ -16,5 +17,5 @@ public interface GroupRestService {
 
     Future<GroupBean> addUserToGroup(String groupname, String username);
 
-
+    Future<GroupUsersBean> getUsersFromGroup(String groupname, boolean includeInactiveUsers, long startAt, int maxResults);
 }

@@ -19,8 +19,8 @@ public interface SearchRestService {
     /**
      * Create a new Search FilterBean for the logged in UserBean
      *
-     * @param filter
-     * @return
+     * @param filter The filter to create
+     * @return The created Filter
      */
     Future<FilterBean> createSearchFilter(FilterBean filter);
 

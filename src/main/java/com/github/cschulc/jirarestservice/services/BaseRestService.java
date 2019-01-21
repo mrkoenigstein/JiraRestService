@@ -5,8 +5,6 @@ import com.github.cschulc.jirarestservice.domain.IssueBean;
 import com.github.cschulc.jirarestservice.domain.meta.MetaBean;
 import com.github.cschulc.jirarestservice.gson.IssueDeserializer;
 import com.github.cschulc.jirarestservice.gson.MetaDeserializer;
-import com.github.cschulc.jirarestservice.misc.RestParams;
-import com.github.cschulc.jirarestservice.misc.RestPaths;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
 import com.github.cschulc.jirarestservice.util.URIHelper;
 import com.google.gson.Gson;
@@ -31,7 +29,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.concurrent.ExecutorService;
 
-public abstract class BaseRestService implements RestPaths, RestParams {
+public abstract class BaseRestService {
 
     protected JiraRestService restService;
     protected final CloseableHttpClient client;

@@ -41,7 +41,7 @@ public interface SystemRestService {
     /**
      * Returns a List of all PriorityBean Object from the Remote Jira.
      *
-     * @return
+     * @return A {@link List} of {@link PriorityBean}
      */
     Future<List<PriorityBean>> getPriorities();
 

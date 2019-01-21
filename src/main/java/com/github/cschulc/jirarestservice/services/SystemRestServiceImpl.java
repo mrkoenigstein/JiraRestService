@@ -22,6 +22,14 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+import static com.github.cschulc.jirarestservice.misc.RestPaths.AVATAR;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.CONFIGURATION;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.FIELD;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.ISSUETPYES;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.PRIORITY;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.STATUS;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.SYSTEM;
+
 public class SystemRestServiceImpl extends BaseRestService implements SystemRestService {
 
 
@@ -135,7 +143,7 @@ public class SystemRestServiceImpl extends BaseRestService implements SystemRest
             Future<List<FieldBean>> allFields = getAllFields();
             List<FieldBean> fieldBeen = allFields.get();
             for (FieldBean fieldBean : fieldBeen) {
-                if (fieldBean.getCustom() == true) {
+                if (fieldBean.getCustom()) {
                     retval.add(fieldBean);
                 }
             }
@@ -149,10 +157,10 @@ public class SystemRestServiceImpl extends BaseRestService implements SystemRest
             Future<List<FieldBean>> allFields = getAllFields();
             List<FieldBean> fieldBeen = allFields.get();
             for (FieldBean fieldBean : fieldBeen) {
-                if (fieldBean.getCustom() == false) {
+                if (!fieldBean.getCustom()) {
                     continue;
                 }
-                if (fieldBean.getId().contains(id) == true) {
+                if (fieldBean.getId().contains(id)) {
                     return fieldBean;
                 }
             }

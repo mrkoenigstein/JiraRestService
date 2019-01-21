@@ -1,9 +1,12 @@
 package com.github.cschulc.jirarestservice.test;
 
+import com.github.cschulc.jirarestservice.domain.groups.GroupUsersBean;
 import com.github.cschulc.jirarestservice.domain.groups.GroupsBean;
+import com.github.cschulc.jirarestservice.domain.user.UserBean;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -19,5 +22,14 @@ public class GroupRestServiceTest extends BaseTest {
         Future<GroupsBean> future = restService.getGroupRestService().findGroups(null, null, 0, null);
         GroupsBean groups = future.get();
         Assert.assertNotNull(groups);
+    }
+
+    @Test
+    public void testGetUserFromGroup() throws ExecutionException, InterruptedException {
+        Future<GroupUsersBean> future = restService.getGroupRestService().getUsersFromGroup("jira-software-users", true, 0, 50);
+        GroupUsersBean groupUsersBean = future.get();
+        Assert.assertNotNull(groupUsersBean);
+        List<UserBean> users = groupUsersBean.getUsers();
+        Assert.assertFalse(users.isEmpty());
     }
 }

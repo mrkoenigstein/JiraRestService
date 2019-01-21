@@ -173,7 +173,7 @@ public class IssueRestServiceTest extends BaseTest {
         ClassLoader classLoader = this.getClass().getClassLoader();
         File file = new File(Objects.requireNonNull(classLoader.getResource("fields.json")).getFile());
         File file2 = new File(Objects.requireNonNull(classLoader.getResource("customfields.json")).getFile());
-        if (file.exists() == true) {
+        if (file.exists()) {
             Future<List<AttachmentBean>> listFuture = restService.getIssueRestService().saveAttachmentToIssue(ISSUEKEY_TO_SEARCH, file, file2);
             List<AttachmentBean> attachmentBeen = listFuture.get();
             Assert.assertFalse(attachmentBeen.isEmpty());

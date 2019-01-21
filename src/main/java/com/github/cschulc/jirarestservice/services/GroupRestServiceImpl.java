@@ -2,6 +2,7 @@ package com.github.cschulc.jirarestservice.services;
 
 import com.github.cschulc.jirarestservice.JiraRestService;
 import com.github.cschulc.jirarestservice.domain.groups.GroupBean;
+import com.github.cschulc.jirarestservice.domain.groups.GroupUsersBean;
 import com.github.cschulc.jirarestservice.domain.groups.GroupsBean;
 import com.github.cschulc.jirarestservice.domain.user.UserBean;
 import com.github.cschulc.jirarestservice.util.RestApiCall;
@@ -12,6 +13,9 @@ import org.apache.http.client.utils.URIBuilder;
 import java.net.HttpURLConnection;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
+
+import static com.github.cschulc.jirarestservice.misc.RestParams.*;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.*;
 
 /**
  * UserBean: Christian Schulze (cschulc@outlook.com)
@@ -68,6 +72,36 @@ public class GroupRestServiceImpl extends BaseRestService implements GroupRestSe
                 JsonReader jsonReader = restApiCall.getJsonReader();
                 final GroupBean groups = gson.fromJson(jsonReader,
                         GroupBean.class);
+                restApiCall.release();
+                return groups;
+            } else {
+                throw restApiCall.buildException();
+            }
+        });
+    }
+
+    @Override
+    public Future<GroupUsersBean> getUsersFromGroup(String groupname, boolean includeInactiveUsers, long startAt, int maxResults) {
+        return executorService.submit(() -> {
+            URIBuilder uriBuilder = buildPath(GROUP, MEMBER);
+            if (StringUtils.trimToNull(groupname) != null) {
+                uriBuilder.addParameter(GROUPNAME, groupname);
+            }
+            if (includeInactiveUsers) {
+                uriBuilder.addParameter(INCLUDEINACTIVEUSERS, String.valueOf(includeInactiveUsers));
+            }
+            if (maxResults > 0) {
+                uriBuilder.addParameter(MAX_RESULTS, String.valueOf(maxResults));
+            }
+            if (startAt > 0) {
+                uriBuilder.addParameter(START_AT, String.valueOf(startAt));
+            }
+            RestApiCall restApiCall = doGet(uriBuilder.build());
+            int statusCode = restApiCall.getStatusCode();
+            if (statusCode == HttpURLConnection.HTTP_OK) {
+                JsonReader jsonReader = restApiCall.getJsonReader();
+                final GroupUsersBean groups = gson.fromJson(jsonReader,
+                        GroupUsersBean.class);
                 restApiCall.release();
                 return groups;
             } else {

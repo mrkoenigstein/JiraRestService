@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+import static com.github.cschulc.jirarestservice.misc.RestPaths.ISSUESECURITYSCHEMES;
 /**
  * UserBean: Christian Schulze (cschulc@outlook.com)
  * Date: 03.07.2018

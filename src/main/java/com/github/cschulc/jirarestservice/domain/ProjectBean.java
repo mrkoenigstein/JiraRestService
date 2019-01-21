@@ -2,6 +2,7 @@ package com.github.cschulc.jirarestservice.domain;
 
 import com.github.cschulc.jirarestservice.domain.avatar.AvatarUrlsBean;
 import com.github.cschulc.jirarestservice.domain.system.AssigneeTypeEnum;
+import com.github.cschulc.jirarestservice.domain.user.UserBean;
 import com.google.gson.annotations.Expose;
 
 import java.util.List;
@@ -9,9 +10,15 @@ import java.util.List;
 public class ProjectBean extends BaseBean {
 
     @Expose
+    private String description;
+    @Expose
+    private UserBean lead;
+    @Expose
     private AvatarUrlsBean avatarUrls;
     @Expose
     private String key;
+    @Expose
+    private String projectTypeKey;
     @Expose
     private List<ComponentBean> components;
     @Expose
@@ -20,6 +27,22 @@ public class ProjectBean extends BaseBean {
     private List<IssuetypeBean> issueTypes;
     @Expose
     private AssigneeTypeEnum assigneeType;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public UserBean getLead() {
+        return lead;
+    }
+
+    public void setLead(UserBean lead) {
+        this.lead = lead;
+    }
 
     public AvatarUrlsBean getAvatarUrls() {
         return avatarUrls;
@@ -35,6 +58,14 @@ public class ProjectBean extends BaseBean {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getProjectTypeKey() {
+        return projectTypeKey;
+    }
+
+    public void setProjectTypeKey(String projectTypeKey) {
+        this.projectTypeKey = projectTypeKey;
     }
 
     public List<ComponentBean> getComponents() {

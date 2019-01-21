@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+import static com.github.cschulc.jirarestservice.misc.RestPaths.FAVORITE;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.FILTER;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.SEARCH;
+
 public class SearchRestServiceImpl extends BaseRestService implements SearchRestService {
 
     public SearchRestServiceImpl(JiraRestService restService, ExecutorService executorService) {

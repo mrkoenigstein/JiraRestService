@@ -38,31 +38,28 @@ public class IssueDeserializer extends BaseDeserializer  implements JsonDeserial
         Set<Map.Entry<String, JsonElement>> entries = fieldsObj.entrySet();
         for (Map.Entry<String, JsonElement> entry : entries) {
             String key = entry.getKey();
-            if (key.startsWith("customfield_") == true) {
+            if (key.startsWith("customfield_")) {
                 JsonElement value = entry.getValue();
-                if (value.isJsonPrimitive() == true) {
+                if (value.isJsonPrimitive()) {
                     CustomFieldBaseBean customField = getPrimitiveCustomField(key, value);
                     if(customField != null) {
                         customField.setId(key);
                         retval.add(customField);
                     }
                 }
-                else if (value.isJsonObject() == true) {
+                else if (value.isJsonObject()) {
                     CustomFieldBaseBean customField = getObjectCustomField(key, value);
                     if(customField != null){
                         customField.setId(key);
                         retval.add(customField);
                     }
                 }
-                else if (value.isJsonArray() == true) {
+                else if (value.isJsonArray()) {
                     CustomFieldBaseBean arrayCustomField = getArrayCustomField(key, value);
                     if(arrayCustomField != null){
                         arrayCustomField.setId(key);
                         retval.add(arrayCustomField);
                     }
-                }
-                else if (value.isJsonNull() == true) {
-
                 }
             }
         }

@@ -45,7 +45,7 @@ public interface UserRestService {
      * Returns the logged in remote user.
      *
      * @return logged in user
-     * @throws JiraRestException
+     * @throws JiraRestException throw if a errors occurs, details inside {@link JiraRestException}
      */
     Future<UserBean> getLoggedInRemoteUser() throws JiraRestException, IOException;
 

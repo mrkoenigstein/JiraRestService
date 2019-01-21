@@ -73,7 +73,7 @@ public class SystemRestServiceTest extends BaseTest {
         Assert.assertFalse(fields.isEmpty());
         int numberOfFields = 0;
         for (FieldBean field : fields) {
-            if(field.getCustom() == false){
+            if(!field.getCustom()){
                 numberOfFields = numberOfFields + 1;
             }
         }

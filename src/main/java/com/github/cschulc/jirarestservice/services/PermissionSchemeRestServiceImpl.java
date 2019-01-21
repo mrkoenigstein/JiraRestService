@@ -11,6 +11,9 @@ import java.net.HttpURLConnection;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+
+import static com.github.cschulc.jirarestservice.misc.RestParams.*;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.*;
 /**
  * @author Christian Schulze
  */

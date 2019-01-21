@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class RestApiCall {
 
@@ -55,7 +56,7 @@ public class RestApiCall {
 
     private JsonReader getJsonReader(InputStream inputStream)
             throws UnsupportedEncodingException {
-        InputStreamReader reader = new InputStreamReader(inputStream, "UTF-8");
+        InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
         JsonReader jsonReader = new JsonReader(reader);
         jsonReader.setLenient(true);
         return jsonReader;

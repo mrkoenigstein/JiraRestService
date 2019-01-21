@@ -39,7 +39,7 @@ public class MetaDeserializer extends BaseDeserializer implements JsonDeserializ
             JsonObject projectObject = jsonElement.getAsJsonObject();
             JsonElement keyElement = projectObject.get("key");
             String key = keyElement.getAsString();
-            if (projectsMetaMap.containsKey(key) == true) {
+            if (projectsMetaMap.containsKey(key)) {
                 ProjectMetaBean projectMeta = projectsMetaMap.get(key);
                 processProjectMeta(projectMeta, projectObject);
             }
@@ -61,7 +61,7 @@ public class MetaDeserializer extends BaseDeserializer implements JsonDeserializ
             JsonObject issuetypeObject = jsonElement.getAsJsonObject();
             JsonElement nameElement = issuetypeObject.get("name");
             String name = nameElement.getAsString();
-            if (issueTypeMetaMap.containsKey(name) == true) {
+            if (issueTypeMetaMap.containsKey(name)) {
                 IssueTypeMetaBean issueTypeMeta = issueTypeMetaMap.get(name);
                 processIssueType(issueTypeMeta, issuetypeObject);
             }
@@ -76,8 +76,8 @@ public class MetaDeserializer extends BaseDeserializer implements JsonDeserializ
         Set<Map.Entry<String, JsonElement>> entries = fieldsObject.entrySet();
         for (Map.Entry<String, JsonElement> entry : entries) {
             String customFieldId = entry.getKey();
-            if (customFieldId.startsWith("customfield_") == true) {
-                if(customFieldsMetaCache.containsKey(customFieldId) == true) {
+            if (customFieldId.startsWith("customfield_")) {
+                if(customFieldsMetaCache.containsKey(customFieldId)) {
                     FieldMetaBean fieldMeta = customFieldsMetaCache.get(customFieldId);
                     fields.getCustom().add(fieldMeta);
                 }else{
