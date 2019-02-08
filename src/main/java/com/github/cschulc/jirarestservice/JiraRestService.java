@@ -19,7 +19,10 @@ import com.github.cschulc.jirarestservice.services.SystemRestService;
 import com.github.cschulc.jirarestservice.services.SystemRestServiceImpl;
 import com.github.cschulc.jirarestservice.services.UserRestService;
 import com.github.cschulc.jirarestservice.services.UserRestServiveImpl;
+import com.github.cschulc.jirarestservice.util.HttpClientFactory;
 import com.github.cschulc.jirarestservice.util.URIHelper;
+import com.github.cschulc.jirarestservice.util.HttpClientFactory.TrustReductionStrategy;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpHost;
@@ -44,6 +47,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -91,10 +97,17 @@ public class JiraRestService {
         this.executorService = executorService;
     }
 
-    public int connect(URI uri, String username, String password) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
-        return connect(uri, username, password, null);
+    public int connect(URI uri, String username, String password) throws IOException, URISyntaxException, ExecutionException, InterruptedException, KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
+        return connect(uri, username, password, null, null);
     }
 
+    public int connect(URI uri, String username, String password, TrustReductionStrategy certTrustStrategy) throws IOException, URISyntaxException, ExecutionException, InterruptedException, KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
+        return connect(uri, username, password, null, certTrustStrategy);
+    }
+    
+    public int connect(URI uri, String username, String password, HttpHost proxyHost) throws IOException, URISyntaxException, KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
+    	return connect(uri, username, password, proxyHost, null);
+    }
     /**
      * Builds and configures a new client connection to JIRA.
      *
@@ -102,8 +115,11 @@ public class JiraRestService {
      * @param username = login name
      * @param password = login password
      * @return 200 succees, 401 for wrong credentials and 403 for captcha is needed, you have to login at the jira website
+     * @throws KeyStoreException 
+     * @throws NoSuchAlgorithmException 
+     * @throws KeyManagementException 
      */
-    public int connect(URI uri, String username, String password, HttpHost proxyHost) throws IOException, URISyntaxException {
+    public int connect(URI uri, String username, String password, HttpHost proxyHost, TrustReductionStrategy certTrustStrategy) throws IOException, URISyntaxException, KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
         this.username = username;
         String host = uri.getHost();
         int port = getPort(uri.toURL());
@@ -114,9 +130,20 @@ public class JiraRestService {
         credsProvider.setCredentials(
                 new AuthScope(target.getHostName(), target.getPort()),
                 new UsernamePasswordCredentials(username, password));
-        client = HttpClients.custom()
-                .setDefaultCredentialsProvider(credsProvider)
-                .build();
+        
+        if(null == certTrustStrategy) {
+            client = HttpClientFactory.getDefaultClient(credsProvider);
+        } else {
+            switch (certTrustStrategy) {
+            case TRUST_SELFSIGNED:
+                client = HttpClientFactory.getTrustSelfsignedClient(credsProvider);
+                break;
+            case TRUST_ALL:
+                client = HttpClientFactory.getTrustAllClient(credsProvider);
+                break;
+            }
+        }
+
         // Create AuthCache instance
         AuthCache authCache = new BasicAuthCache();
         // Generate BASIC scheme object and add it to the local
@@ -192,6 +219,10 @@ public class JiraRestService {
 
     public CloseableHttpClient getClient() {
         return client;
+    }
+
+    public void setClient(CloseableHttpClient client) {
+        this.client = client;
     }
 
     public HttpClientContext getContext() {

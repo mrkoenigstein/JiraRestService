@@ -2,12 +2,19 @@ package com.github.cschulc.jirarestservice.test;
 
 
 import com.github.cschulc.jirarestservice.JiraRestService;
+import com.github.cschulc.jirarestservice.util.HttpClientFactory;
+import com.github.cschulc.jirarestservice.util.HttpClientFactory.HostnameVerificationStrategy;
+import com.github.cschulc.jirarestservice.util.HttpClientFactory.TrustReductionStrategy;
+
 import org.testng.annotations.BeforeClass;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -29,6 +36,8 @@ public class BaseTest {
     static final String ISSUEKEY_TO_SEARCH = "DEMO-1";
     static final String PROJECT_TO_SEARCH = "DEMO";
 
+    static final TrustReductionStrategy sslCertTrustStrategy = HttpClientFactory.TrustReductionStrategy.TRUST_SELFSIGNED;
+    static final HostnameVerificationStrategy hostnameVerificationStrategy = HttpClientFactory.HostnameVerificationStrategy.VERIFY_HOSTNAMES; 
 
     String testSystemUrl;
     String login;
@@ -37,13 +46,13 @@ public class BaseTest {
     JiraRestService restService;
 
     @BeforeClass
-    public void connect() throws URISyntaxException, IOException, ExecutionException, InterruptedException {
+    public void connect() throws URISyntaxException, IOException, ExecutionException, InterruptedException, KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
         loadConfig();
         ExecutorService executorService = Executors.newFixedThreadPool(100);
 //        ProxyHost proxy = new ProxyHost("proxy", 3128);
         URI uri = new URI(testSystemUrl);
         restService = new JiraRestService(executorService);
-        restService.connect(uri, login, password);
+        restService.connect(uri, login, password, sslCertTrustStrategy);
     }
 
     private void loadConfig() throws IOException {
