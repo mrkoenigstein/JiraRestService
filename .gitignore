@@ -1,5 +1,15 @@
 
+# ignore local test config
 /src/test/resource/config.properties
-/.idea/
+
+# ignore maven artifacts
 /target/
+
+# ignore ide stuff: idea 
+/.idea/
 /*.iml
+
+# ignore ide stuff: eclipse 
+/.settings/
+.classpath
+.project
