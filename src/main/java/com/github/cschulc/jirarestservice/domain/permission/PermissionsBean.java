@@ -1,7 +1,20 @@
+/*
+ * Copyright (c) 2019. cschulc (https://github.com/cschulc)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ */
+
 package com.github.cschulc.jirarestservice.domain.permission;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Objects;
 
 public class PermissionsBean {
 
@@ -771,5 +784,81 @@ public class PermissionsBean {
 
     public void setLinkIssues(UserPermissionBean linkIssues) {
         this.linkIssues = linkIssues;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PermissionsBean)) return false;
+        PermissionsBean that = (PermissionsBean) o;
+        return Objects.equals(viewWorkflowReadonly, that.viewWorkflowReadonly) &&
+                Objects.equals(createIssues, that.createIssues) &&
+                Objects.equals(bulkChange, that.bulkChange) &&
+                Objects.equals(createAttachment, that.createAttachment) &&
+                Objects.equals(deleteOwnComments, that.deleteOwnComments) &&
+                Objects.equals(workOnIssues, that.workOnIssues) &&
+                Objects.equals(projectAdmin, that.projectAdmin) &&
+                Objects.equals(commentEditAll, that.commentEditAll) &&
+                Objects.equals(attachmentDeleteOwn, that.attachmentDeleteOwn) &&
+                Objects.equals(worklogDeleteOwn, that.worklogDeleteOwn) &&
+                Objects.equals(closeIssue, that.closeIssue) &&
+                Objects.equals(manageWatcherList, that.manageWatcherList) &&
+                Objects.equals(viewVotersAndWatchers, that.viewVotersAndWatchers) &&
+                Objects.equals(addComments, that.addComments) &&
+                Objects.equals(commentDeleteAll, that.commentDeleteAll) &&
+                Objects.equals(createIssue, that.createIssue) &&
+                Objects.equals(deleteOwnAttachments, that.deleteOwnAttachments) &&
+                Objects.equals(assignIssue, that.assignIssue) &&
+                Objects.equals(linkIssue, that.linkIssue) &&
+                Objects.equals(editOwnWorklogs, that.editOwnWorklogs) &&
+                Objects.equals(createAttachments, that.createAttachments) &&
+                Objects.equals(editAllWorklogs, that.editAllWorklogs) &&
+                Objects.equals(scheduleIssue, that.scheduleIssue) &&
+                Objects.equals(closeIssues, that.closeIssues) &&
+                Objects.equals(setIssueSecurity, that.setIssueSecurity) &&
+                Objects.equals(scheduleIssues, that.scheduleIssues) &&
+                Objects.equals(worklogDeleteAll, that.worklogDeleteAll) &&
+                Objects.equals(commentDeleteOwn, that.commentDeleteOwn) &&
+                Objects.equals(administerProjects, that.administerProjects) &&
+                Objects.equals(deleteAllComments, that.deleteAllComments) &&
+                Objects.equals(resolveIssues, that.resolveIssues) &&
+                Objects.equals(viewReadonlyWorkflow, that.viewReadonlyWorkflow) &&
+                Objects.equals(administer, that.administer) &&
+                Objects.equals(moveIssues, that.moveIssues) &&
+                Objects.equals(transitionIssues, that.transitionIssues) &&
+                Objects.equals(systemAdmin, that.systemAdmin) &&
+                Objects.equals(deleteOwnWorklogs, that.deleteOwnWorklogs) &&
+                Objects.equals(brwose, that.brwose) &&
+                Objects.equals(editIssue, that.editIssue) &&
+                Objects.equals(modifyReporter, that.modifyReporter) &&
+                Objects.equals(editIssues, that.editIssues) &&
+                Objects.equals(manageWatchers, that.manageWatchers) &&
+                Objects.equals(editOwnComments, that.editOwnComments) &&
+                Objects.equals(assignIssues, that.assignIssues) &&
+                Objects.equals(browseProjects, that.browseProjects) &&
+                Objects.equals(viewVersionControl, that.viewVersionControl) &&
+                Objects.equals(workIssue, that.workIssue) &&
+                Objects.equals(commentIssue, that.commentIssue) &&
+                Objects.equals(worklogEditAll, that.worklogEditAll) &&
+                Objects.equals(editAllComments, that.editAllComments) &&
+                Objects.equals(deleteIssue, that.deleteIssue) &&
+                Objects.equals(userPicker, that.userPicker) &&
+                Objects.equals(createSharedObjects, that.createSharedObjects) &&
+                Objects.equals(attachmentDeleteAll, that.attachmentDeleteAll) &&
+                Objects.equals(deleteIssues, that.deleteIssues) &&
+                Objects.equals(manageGroupFilterSubscriptions, that.manageGroupFilterSubscriptions) &&
+                Objects.equals(resolveIssue, that.resolveIssue) &&
+                Objects.equals(assignableUser, that.assignableUser) &&
+                Objects.equals(transitionIssue, that.transitionIssue) &&
+                Objects.equals(commentEditOwn, that.commentEditOwn) &&
+                Objects.equals(moveIssue, that.moveIssue) &&
+                Objects.equals(worklogEditOwn, that.worklogEditOwn) &&
+                Objects.equals(deleteAllWorklogs, that.deleteAllWorklogs) &&
+                Objects.equals(linkIssues, that.linkIssues);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(viewWorkflowReadonly, createIssues, bulkChange, createAttachment, deleteOwnComments, workOnIssues, projectAdmin, commentEditAll, attachmentDeleteOwn, worklogDeleteOwn, closeIssue, manageWatcherList, viewVotersAndWatchers, addComments, commentDeleteAll, createIssue, deleteOwnAttachments, assignIssue, linkIssue, editOwnWorklogs, createAttachments, editAllWorklogs, scheduleIssue, closeIssues, setIssueSecurity, scheduleIssues, worklogDeleteAll, commentDeleteOwn, administerProjects, deleteAllComments, resolveIssues, viewReadonlyWorkflow, administer, moveIssues, transitionIssues, systemAdmin, deleteOwnWorklogs, brwose, editIssue, modifyReporter, editIssues, manageWatchers, editOwnComments, assignIssues, browseProjects, viewVersionControl, workIssue, commentIssue, worklogEditAll, editAllComments, deleteIssue, userPicker, createSharedObjects, attachmentDeleteAll, deleteIssues, manageGroupFilterSubscriptions, resolveIssue, assignableUser, transitionIssue, commentEditOwn, moveIssue, worklogEditOwn, deleteAllWorklogs, linkIssues);
     }
 }

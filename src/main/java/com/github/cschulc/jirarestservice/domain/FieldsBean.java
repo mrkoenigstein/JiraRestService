@@ -1,10 +1,22 @@
+/*
+ * Copyright (c) 2019. cschulc (https://github.com/cschulc)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ */
+
 package com.github.cschulc.jirarestservice.domain;
 
-import com.github.cschulc.jirarestservice.domain.customFields.CustomFieldBaseBean;
+import com.github.cschulc.jirarestservice.domain.custom.CustomFieldBaseBean;
 import com.github.cschulc.jirarestservice.domain.user.UserBean;
 import com.google.gson.annotations.Expose;
 
 import java.util.List;
+import java.util.Objects;
 
 public class FieldsBean {
 
@@ -397,5 +409,56 @@ public class FieldsBean {
 
     public void setCustomFields(List<CustomFieldBaseBean> customFields) {
         this.customFields = customFields;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FieldsBean)) return false;
+        FieldsBean that = (FieldsBean) o;
+        return Objects.equals(aggregateprogress, that.aggregateprogress) &&
+                Objects.equals(aggregatetimeestimate, that.aggregatetimeestimate) &&
+                Objects.equals(aggregatetimeoriginalestimate, that.aggregatetimeoriginalestimate) &&
+                Objects.equals(aggregatetimespent, that.aggregatetimespent) &&
+                Objects.equals(assignee, that.assignee) &&
+                Objects.equals(attachment, that.attachment) &&
+                Objects.equals(comment, that.comment) &&
+                Objects.equals(components, that.components) &&
+                Objects.equals(created, that.created) &&
+                Objects.equals(creator, that.creator) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(duedate, that.duedate) &&
+                Objects.equals(environment, that.environment) &&
+                Objects.equals(fixVersions, that.fixVersions) &&
+                Objects.equals(issuelinks, that.issuelinks) &&
+                Objects.equals(issuetype, that.issuetype) &&
+                Objects.equals(parent, that.parent) &&
+                Objects.equals(labels, that.labels) &&
+                Objects.equals(lastViewed, that.lastViewed) &&
+                Objects.equals(priority, that.priority) &&
+                Objects.equals(progress, that.progress) &&
+                Objects.equals(project, that.project) &&
+                Objects.equals(reporter, that.reporter) &&
+                Objects.equals(resolution, that.resolution) &&
+                Objects.equals(resolutiondate, that.resolutiondate) &&
+                Objects.equals(status, that.status) &&
+                Objects.equals(subtasks, that.subtasks) &&
+                Objects.equals(summary, that.summary) &&
+                Objects.equals(timeestimate, that.timeestimate) &&
+                Objects.equals(timeoriginalestimate, that.timeoriginalestimate) &&
+                Objects.equals(timespent, that.timespent) &&
+                Objects.equals(timetracking, that.timetracking) &&
+                Objects.equals(updated, that.updated) &&
+                Objects.equals(versions, that.versions) &&
+                Objects.equals(votes, that.votes) &&
+                Objects.equals(watches, that.watches) &&
+                Objects.equals(worklog, that.worklog) &&
+                Objects.equals(workratio, that.workratio) &&
+                Objects.equals(customFields, that.customFields);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(aggregateprogress, aggregatetimeestimate, aggregatetimeoriginalestimate, aggregatetimespent, assignee, attachment, comment, components, created, creator, description, duedate, environment, fixVersions, issuelinks, issuetype, parent, labels, lastViewed, priority, progress, project, reporter, resolution, resolutiondate, status, subtasks, summary, timeestimate, timeoriginalestimate, timespent, timetracking, updated, versions, votes, watches, worklog, workratio, customFields);
     }
 }

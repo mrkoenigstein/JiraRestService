@@ -1,7 +1,18 @@
+/*
+ * Copyright (c) 2019. cschulc (https://github.com/cschulc)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ */
+
 package com.github.cschulc.jirarestservice.gson;
 
 import com.github.cschulc.jirarestservice.domain.*;
-import com.github.cschulc.jirarestservice.domain.customFields.*;
+import com.github.cschulc.jirarestservice.domain.custom.*;
 import com.github.cschulc.jirarestservice.domain.user.UserBean;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
@@ -12,13 +23,13 @@ import java.util.*;
 /**
  * Created by cschulc on 18.02.16.
  */
-public class IssueDeserializer extends BaseDeserializer  implements JsonDeserializer<IssueBean> {
+public class IssueDeserializer extends BaseDeserializer implements JsonDeserializer<IssueBean> {
 
     @Override
-    public IssueBean deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public IssueBean deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         IssueBean issue = gson.fromJson(json, IssueBean.class);
         FieldsBean fields = issue.getFields();
-        if(fields == null){
+        if (fields == null) {
             return issue;
         }
         List<CustomFieldBaseBean> customField = extractCustomFields(json);
@@ -31,7 +42,7 @@ public class IssueDeserializer extends BaseDeserializer  implements JsonDeserial
         List<CustomFieldBaseBean> retval = new ArrayList<>();
         JsonObject issueObj = json.getAsJsonObject();
         JsonElement fields = issueObj.get("fields");
-        if(fields == null){
+        if (fields == null) {
             return retval;
         }
         JsonObject fieldsObj = fields.getAsJsonObject();
@@ -42,21 +53,19 @@ public class IssueDeserializer extends BaseDeserializer  implements JsonDeserial
                 JsonElement value = entry.getValue();
                 if (value.isJsonPrimitive()) {
                     CustomFieldBaseBean customField = getPrimitiveCustomField(key, value);
-                    if(customField != null) {
+                    if (customField != null) {
                         customField.setId(key);
                         retval.add(customField);
                     }
-                }
-                else if (value.isJsonObject()) {
+                } else if (value.isJsonObject()) {
                     CustomFieldBaseBean customField = getObjectCustomField(key, value);
-                    if(customField != null){
+                    if (customField != null) {
                         customField.setId(key);
                         retval.add(customField);
                     }
-                }
-                else if (value.isJsonArray()) {
+                } else if (value.isJsonArray()) {
                     CustomFieldBaseBean arrayCustomField = getArrayCustomField(key, value);
-                    if(arrayCustomField != null){
+                    if (arrayCustomField != null) {
                         arrayCustomField.setId(key);
                         retval.add(arrayCustomField);
                     }
@@ -67,8 +76,6 @@ public class IssueDeserializer extends BaseDeserializer  implements JsonDeserial
     }
 
 
-
-
     private CustomFieldBaseBean getPrimitiveCustomField(String key, JsonElement jsonElement) {
         SingleValueBean retval = new SingleValueBean();
         String string = jsonElement.getAsString();
@@ -76,7 +83,7 @@ public class IssueDeserializer extends BaseDeserializer  implements JsonDeserial
         value.setValue(string);
         retval.setValue(value);
         CustomFieldType customFieldType = getCustomFieldType(key);
-        if(customFieldType == null){
+        if (customFieldType == null) {
             return null;
         }
         retval.setType(customFieldType);
@@ -85,10 +92,10 @@ public class IssueDeserializer extends BaseDeserializer  implements JsonDeserial
 
     private CustomFieldBaseBean getObjectCustomField(String id, JsonElement jsonElement) {
         CustomFieldType customFieldType = getCustomFieldType(id);
-        if(customFieldType == null){
+        if (customFieldType == null) {
             return null;
         }
-        switch (customFieldType){
+        switch (customFieldType) {
             case SELECT:
                 ValueBean value = gson.fromJson(jsonElement, ValueBean.class);
                 SingleValueBean singleValue = new SingleValueBean();
@@ -138,13 +145,15 @@ public class IssueDeserializer extends BaseDeserializer  implements JsonDeserial
 
     private CustomFieldBaseBean getArrayCustomField(String id, JsonElement json) {
         CustomFieldType customFieldType = getCustomFieldType(id);
-        if(customFieldType == null){
+        if (customFieldType == null) {
             return null;
         }
-        Type valueType = new TypeToken<Collection<ValueBean>>(){}.getType();
-        switch (customFieldType){
+        Type valueType = new TypeToken<Collection<ValueBean>>() {
+        }.getType();
+        switch (customFieldType) {
             case LABELS:
-                Type type = new TypeToken<Collection<String>>(){}.getType();
+                Type type = new TypeToken<Collection<String>>() {
+                }.getType();
                 List<String> labelsList = gson.fromJson(json, type);
                 MultiValueBean labels = new MultiValueBean();
                 labels.setType(CustomFieldType.LABELS);
@@ -167,14 +176,16 @@ public class IssueDeserializer extends BaseDeserializer  implements JsonDeserial
                 checkbox.setValues(checkboxValues);
                 return checkbox;
             case MULTIUSER:
-                Type userType = new TypeToken<Collection<UserBean>>(){}.getType();
+                Type userType = new TypeToken<Collection<UserBean>>() {
+                }.getType();
                 List<UserBean> userSelectValues = gson.fromJson(json, userType);
                 UserSelectBean userSelect = new UserSelectBean();
                 userSelect.setType(CustomFieldType.MULTIUSER);
                 userSelect.setUsers(userSelectValues);
                 return userSelect;
             case MULTIVERSION:
-                Type versionType = new TypeToken<Collection<VersionBean>>(){}.getType();
+                Type versionType = new TypeToken<Collection<VersionBean>>() {
+                }.getType();
                 List<VersionBean> versionSelectValues = gson.fromJson(json, versionType);
                 VersionSelectBean versionSelect = new VersionSelectBean();
                 versionSelect.setType(CustomFieldType.MULTIVERSION);
@@ -190,9 +201,6 @@ public class IssueDeserializer extends BaseDeserializer  implements JsonDeserial
                 return null;
         }
     }
-
-
-
 
 
 }

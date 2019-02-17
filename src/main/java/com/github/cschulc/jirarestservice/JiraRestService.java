@@ -1,24 +1,18 @@
+/*
+ * Copyright (c) 2019. cschulc (https://github.com/cschulc)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ */
+
 package com.github.cschulc.jirarestservice;
 
 import com.github.cschulc.jirarestservice.domain.field.FieldBean;
-import com.github.cschulc.jirarestservice.services.GroupRestService;
-import com.github.cschulc.jirarestservice.services.GroupRestServiceImpl;
-import com.github.cschulc.jirarestservice.services.IssueRestService;
-import com.github.cschulc.jirarestservice.services.IssueRestServiceImpl;
-import com.github.cschulc.jirarestservice.services.IssueSecuritySchemeRestService;
-import com.github.cschulc.jirarestservice.services.IssueSecuritySchemeRestServiceImpl;
-import com.github.cschulc.jirarestservice.services.NotificationSchemeRestService;
-import com.github.cschulc.jirarestservice.services.NotificationSchemeRestServiceImpl;
-import com.github.cschulc.jirarestservice.services.PermissionSchemeRestService;
-import com.github.cschulc.jirarestservice.services.PermissionSchemeRestServiceImpl;
-import com.github.cschulc.jirarestservice.services.ProjectRestService;
-import com.github.cschulc.jirarestservice.services.ProjectRestServiceImpl;
-import com.github.cschulc.jirarestservice.services.SearchRestService;
-import com.github.cschulc.jirarestservice.services.SearchRestServiceImpl;
-import com.github.cschulc.jirarestservice.services.SystemRestService;
-import com.github.cschulc.jirarestservice.services.SystemRestServiceImpl;
-import com.github.cschulc.jirarestservice.services.UserRestService;
-import com.github.cschulc.jirarestservice.services.UserRestServiveImpl;
+import com.github.cschulc.jirarestservice.services.*;
 import com.github.cschulc.jirarestservice.util.URIHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpHeaders;
@@ -46,11 +40,11 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
-import static com.github.cschulc.jirarestservice.misc.RestParams.*;
-import static com.github.cschulc.jirarestservice.misc.RestPaths.*;
+import static com.github.cschulc.jirarestservice.misc.RestParams.USERNAME;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.BASE_REST_PATH;
+import static com.github.cschulc.jirarestservice.misc.RestPaths.USER;
 
 public class JiraRestService {
 
@@ -67,7 +61,7 @@ public class JiraRestService {
 
     private static Map<String, FieldBean> customfields;
 
-    private static RequestConfig config;
+    private RequestConfig config;
 
     private IssueRestService issueRestService;
 
@@ -91,7 +85,7 @@ public class JiraRestService {
         this.executorService = executorService;
     }
 
-    public int connect(URI uri, String username, String password) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
+    public int connect(URI uri, String username, String password) throws IOException, URISyntaxException{
         return connect(uri, username, password, null);
     }
 
@@ -175,7 +169,7 @@ public class JiraRestService {
         return new URIBuilder(uri).setPath(path).build();
     }
 
-    public static RequestConfig getConfig() {
+    public RequestConfig getConfig() {
         return config;
     }
 
