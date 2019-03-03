@@ -173,7 +173,7 @@ public class JiraRestService {
         return config;
     }
 
-    public static Map<String, FieldBean> getCustomfields() {
+    public Map<String, FieldBean> getCustomfields() {
         if (customfields == null) {
             customfields = new HashMap<>();
         }
