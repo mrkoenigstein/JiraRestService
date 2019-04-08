@@ -56,11 +56,12 @@ public class ProjectRestServiceImpl extends BaseRestService implements ProjectRe
                 ProjectBean project = gson.fromJson(jsonReader, ProjectBean.class);
                 restApiCall.release();
                 return project;
+            } else if (statusCode == HttpURLConnection.HTTP_NOT_FOUND) {
+                return null;
             } else {
                 throw restApiCall.buildException();
             }
         });
-
     }
 
 
